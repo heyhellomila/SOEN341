@@ -1,4 +1,15 @@
 # soen341
-Winter 2018
+Winter 2018 - Prof. Weiyi Shang
 Team members: 
-Prof. Weiyi Shang
+
+Paul	Micu
+Landry	Signi
+Muhammad Bilal	Nasir
+Yazan	Odeh
+Patrick	Pin
+Mila	Roisin
+Debashish	Saha
+Michelle	Choi
+
+
+
