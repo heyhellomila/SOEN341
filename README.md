@@ -5,7 +5,7 @@ Team members:
 Paul	Micu
 Landry	Signi
 Muhammad Bilal	Nasir
-Yazan	Odeh #26556191
+Yazan	Odeh #26556191 (Added for Pull Request)
 Patrick	Pin
 Mila	Roisin
 Debashish	Saha
