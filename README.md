@@ -2,7 +2,7 @@
 Winter 2018 - Prof. Weiyi Shang
 Team members: 
 
-Paul	Micu
+Paul	Micu		27486340
 Landry	Signi
 Muhammad Bilal	Nasir
 Yazan	Odeh #26556191
