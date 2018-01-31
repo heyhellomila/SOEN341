@@ -1,0 +1,85 @@
+body {
+    background-image: url("../images/light_grey.png");
+
+}
+.secondaryLikes{
+	text-indent: -15px;
+}
+.secondaryLikes>button,.secondaryLikes>button>i{
+
+	padding: 2px !important;
+
+} 
+.no1-icon{
+	width: 64px;
+	height: auto;
+}
+.mainPost{
+	font-size: 22px;
+}
+.media{
+	
+	padding: 30px;
+}
+.no-border{
+	border: 0;
+}
+.interuptLine{
+	border-top: 1px solid lightgrey;
+	margin: 15px ;
+}
+
+.thumbnail {
+    padding:0px;
+}
+.panel {
+	position:relative;
+}
+.panel-heading:after{
+
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+
+.fa-reddit {
+  background: #ff5700;
+  color: white;
+}
+
+
