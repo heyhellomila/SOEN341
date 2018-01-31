@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-    </head>
-    <body>
-        <div class="jumbotron jumbotron-sm">
-    <div class="container">
+<?php
+require_once("partial/header.php");
+?>
+<div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="h1">Contact us </h1>
@@ -16,7 +9,6 @@
             </div>
         </div>
     </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -83,5 +75,7 @@
     </div>
 </div>
 
-    </body>
-</html>
+<?php
+require_once("partial/footer.php");
+
+
