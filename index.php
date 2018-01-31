@@ -16,11 +16,19 @@ require_once("partial/header.php")
 		<button class="btn btn-lg btn-primary btn-block" type="submit">
 		Sign in
 		</button>
-		<button class="btn btn-lg btn-block dummy"  type="submit">
-			<i class="fa fa-facebook" aria-hidden="true"></i>
+		<button class="btn btn-lg btn-block facebook-button-colour"  type="submit">
+			<i class="fa fa-facebook"></i>
 			Sign in with Facebook
 			
 		</button>
+
+		<button class="btn btn-lg btn-block google-button-colour"  type="submit">
+			<i class="fa fa-google"></i>
+			Sign in with Google
+			
+		</button>
+		
+
 
 
 		<hr>
