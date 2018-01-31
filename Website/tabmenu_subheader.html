@@ -1,2 +1,41 @@
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sub header tabs</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.tab-select{
+		margin: 20px;
+	}
+</style>
+</head>
+
+<body>
+	<div class="tab-select">
+    		<ul class="nav nav-tabs">
+        		<li class="active"><a data-toggle="tab" href="#active">Active</a></li>
+        		<li><a data-toggle="tab" href="#new">New</a></li>
+        		<li><a data-toggle="tab" href="#unanswered">Unanswered</a></li>
+    		</ul>
+    		<div class="tab-content">
+        		<div id="active" class="tab-pane fade in active">
+            			<h3>Active</h3>
+            			<p>Active Questions go here</p>
+        		</div>
+        		<div id="new" class="tab-pane fade">
+            			<h3>New</h3>
+            			<p>New Questions go here</p>
+        		</div>
+        		<div id="unanswered" class="tab-pane fade">
+            			<h3>Unanswered</h3>
+            			<p>Unanswered Questions go here</p>
+        		</div>
+    		</div>
+	</div>
+</body>
+
 </html>
