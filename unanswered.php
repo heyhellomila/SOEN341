@@ -11,7 +11,7 @@ require_once("partial/header.php");
 
    		<li class="tab"><a data-toggle="tab" href="activetab.php">Active</a></li>
         	<li><a data-toggle="tab" href="newquestiontab.php">New</a></li>
-        	<li><a data-toggle="tab" href=""#unanswered</a></li>
+        	<li><a data-toggle="tab" href="#unanswered"</a></li>
     	</ul>
 </div>
 <div id="unanswered" class="tab-pane fade">
