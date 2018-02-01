@@ -38,6 +38,7 @@ require_once("partial/header.php");
       </div>
     </div>
     <!-- End of table -->
+  </body>
 <?php
 require_once("partial/footer.php");
 ?>
