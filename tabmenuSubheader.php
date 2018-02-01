@@ -1,9 +1,26 @@
-
-	<div class="tab-select" style=" margin:20px;">
-    		<ul class="nav nav-tabs">
-        		<li class="active"><a data-toggle="tab" href="#active">Active</a></li>
-        		<li><a data-toggle="tab" href="#new">New</a></li>
-        		<li><a data-toggle="tab" href="#unanswered">Unanswered</a></li>
+<div class="tab-select" style=" margin:20px;">
+    	<ul class="nav nav-tabs">
+<?php 
+	$tab='';
+ if(!isset($_GET['tab'])){
+    $tab = 'Post Table.php';
+ } else{
+    $tab = $_GET['tab'];
+ }
+//$tab=$_REQUEST['tab'];
+if ($tab== 'activetab'){?>
+		 <li><b><span>Setup</span></b></li>
+	  <?php }else{ ?>
+    <li class="tab"><a data-toggle="tab" href="?tab=activetab">Active</a></li>
+    <?php } ?>
+        <?php if($tab=='newquestiontab'){ ?>
+		   <li><b><span>New</span></b></li>
+		<?php }else{ ?>
+        		<li><a data-toggle="tab" href="?tab=newquestiontab">New</a></li>
+		<?php if($tab=='unansweredtab'){ ?>
+		 <li><b><span>Unanswered</span></b></li>
+		<?php }else{ ?>
+        		<li><a data-toggle="tab" href="?tab=unansweredtab">Unanswered</a></li>
     		</ul>
     		<div class="tab-content">
         		<div id="active" class="tab-pane fade in active">
@@ -20,4 +37,4 @@
         		</div>
     		</div>
 	</div>
-
+require($tab.'.php');
