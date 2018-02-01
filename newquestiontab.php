@@ -1,5 +1,4 @@
-<?php
-require_once("partial/header.php");?>
+
     <div class="container">
       <!-- Table of posts -->
       <div class="my-3 p-3 bg-white">
@@ -15,7 +14,7 @@ require_once("partial/header.php");?>
         <!-- End of single post -->
         <h5>Question 2</h5>
         <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-          <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
+          <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/dog.png">
           <p class="media-body pb-2 mb-3 small lh-125">
             <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 6&emsp;</span><span style="color: blue;">Likes: 20</span></strong>
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
@@ -24,7 +23,7 @@ require_once("partial/header.php");?>
         </div>
         <h5>Question 3</h5>
         <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-          <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
+          <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/sakura.png">
           <p class="media-body pb-2 mb-3 small lh-125">
             <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 18&emsp;</span><span style="color: blue;">Likes: 43</span></strong>
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
@@ -33,5 +32,4 @@ require_once("partial/header.php");?>
       </div>
     </div>
     <!-- End of table -->
-<?php
-require_once("partial/footer.php");?>
+
