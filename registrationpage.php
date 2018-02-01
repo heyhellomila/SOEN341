@@ -7,49 +7,61 @@ require_once("partial/header.php");
 
 
 <div class="container-fluid"  align="justify">
-	<div class="row" >
-		<h2 class="center-block border-info">Create Account </h2>
-	</div>
-</div>
-<br>
-<br>
+	
+	<section class="hero"><div class="mt-2 text-center">
+                                    <h2>Create Your Account</h2>
+                                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 mx-auto">
+                        <div class="card border-none">
+                            <div class="card-body">
+                                
+                                
+                                <div class="mt-4">
+                                    <form><div class="form-group">
+                                            <input type="test" class="form-control" name="username" value="" placeholder="UserName">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" value="" placeholder="exmaple@gmail.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="password" value="" placeholder="Password">
+                                        </div> <div class="form-group">
+                                            <input type="text" class="form-control" name="Interest" value="" placeholder="Area Of Interest">
+                                        </div>
+                                        <div class="text-center">
+                                        <button type="submit" class="btn btn-danger">Join Us </button>
+										</div>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                    <div class="social-login">
+                                   	
+                                   <p>- - - - - - - - - - - - - Join Us With - - - - - - - - - - - - - </p>
+                                  
+                                  		<ul>
+                                <li><a href="" class="btn-primary"><i class="fa fa-facebook" ></i> Facebook</a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i> Google+</a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i> Twitter</a></li>
+                                </ul>
+                                 </div><div class="clearfix"></div>
+                                  </div>
+    
+                                   </div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                </div>
+            </div>
+        </section>
 
-<div class="row border-0">
-<div class="col-md-4 col-md-offset-4">
-<div class="form-body">
   
-        
-      
-    
-    <div class="tab-content">
-        <div id="sectionA" class="tab-pane fade in active">
-        <div class="innter-form">
-            <form class="sa-innate-form" method="post">
-            
-            <input type="text" name="username" placeholder="UserName" id="user">
-            <input type="text" name="emailaddress" placeholder="Email@example.com" id="email">
-            <input type="password" name="password" placeholder="Password" id="pas"><br>
-            <input type="text" name="interest" placeholder="Area Of Interest" id="Int">
-            <button type="submit" class="center-block btn-danger"  >Join Us</button>
-            
-            </form>
-            </div>
-            <div class="social-login">
-            <p>- - - - - - - - - - - - - Join Us With - - - - - - - - - - - - - </p>
-    		<ul>
-            <li><a href="" class="btn-primary"><i class="fa fa-facebook" ></i> Facebook</a></li>
-            <li><a href=""><i class="fa fa-google-plus"></i> Google+</a></li>
-            <li><a href=""><i class="fa fa-twitter"></i> Twitter</a></li>
-            </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+
 
 <?php
 
