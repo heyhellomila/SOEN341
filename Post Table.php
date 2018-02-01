@@ -1,10 +1,8 @@
 <?php
 require_once("partial/header.php");
 ?>
-  <head>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body class="bg-light">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <div class="bg-light">
     <div class="container">
       <!-- Table of posts -->
       <div class="my-3 p-3 bg-white">
@@ -38,7 +36,7 @@ require_once("partial/header.php");
       </div>
     </div>
     <!-- End of table -->
-  </body>
+  </div>
 <?php
 require_once("partial/footer.php");
 ?>
