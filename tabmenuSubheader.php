@@ -1,6 +1,18 @@
-<div class="tab-select" style=" margin:20px;">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sub header tabs</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<div class="tab-select" style="margin: 20px;">
   <!-- tabs -->
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" style="position:relative; left:10%;">
    <li class="tab item"><a data-toggle="tab" href="#active">Active</a></li>
    <li><a data-toggle="tab" href="#new">New</a></li>
    <li><a data-toggle="tab" href="#unanswered">Unanswered</a></li>
@@ -8,7 +20,7 @@
 
 
  <div class="tab-content">
-  <div id="active" class="tab-pane fade in active">
+  <div id="active" class="tab-pane fade">
     <div class="container">
       <!-- Table of posts -->
       <div class="my-3 p-3 bg-white">
@@ -112,3 +124,4 @@
   </div>
 </div>
 </div>
+</html>
