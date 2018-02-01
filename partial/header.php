@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -9,6 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap1.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap2.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme3.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme4.min.css">
+	
 
 </head>
 
