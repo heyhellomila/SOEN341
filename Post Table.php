@@ -1,7 +1,4 @@
-<?php
-require_once("partial/header.php");
-?>
-  <div class="bg-light">
+<div class="bg-light">
     <div class="container">
       <!-- Table of posts -->
       <div class="my-3 p-3 bg-white">
@@ -36,6 +33,3 @@ require_once("partial/header.php");
     </div>
     <!-- End of table -->
   </div>
-<?php
-require_once("partial/footer.php");
-?>
