@@ -1,7 +1,7 @@
 
 <div class="tab-select" style="margin: 20px;">
   <!-- tabs -->
-  <ul class="nav nav-tabs" style="position:relative; left:10%;">
+  <ul class="nav nav-tabs nav-justified" style="position:relative; left:10%;">
    <li class="tab item"><a data-toggle="tab" href="#active">Active</a></li>
    <li><a data-toggle="tab" href="#new">New</a></li>
    <li><a data-toggle="tab" href="#unanswered">Unanswered</a></li>
