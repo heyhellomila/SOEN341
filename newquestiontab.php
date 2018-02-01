@@ -1,4 +1,20 @@
+<?php
+require_once("partial/header.php");
+?>
 
+ <a href="contactUS.php">contact page</a> 
+ <a href="registrationpage.php">reg page</a> 
+ <a href="viewPost.php">view post</a> 
+
+<div class="tab-select" style=" margin:20px;">
+    	<ul class="nav nav-tabs">
+
+   		<li class="tab"><a data-toggle="tab" href="activetab.php">Active</a></li>
+        	<li><a data-toggle="tab" href="#new">New</a></li>
+        	<li><a data-toggle="tab" href="unansweredtab.php"</a></li>
+    	</ul>
+</div>
+<div id="new" class="tab-pane fade in active">
     <div class="container">
       <!-- Table of posts -->
       <div class="my-3 p-3 bg-white">
@@ -32,4 +48,7 @@
       </div>
     </div>
     <!-- End of table -->
-
+</div>
+<?php
+require_once("partial/footer.php");
+?>
