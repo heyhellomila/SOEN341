@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once("partial/header.php");
+?>
   <head>
-    <meta charset="UTF-8">
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body class="bg-light">
@@ -38,5 +38,6 @@
       </div>
     </div>
     <!-- End of table -->
-</body>
-</html>
+<?php
+require_once("partial/footer.php");
+?>
