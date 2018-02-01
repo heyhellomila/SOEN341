@@ -1,7 +1,9 @@
-<div class="bg-light">
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
     <div class="container">
       <!-- Table of posts -->
-      <div class="my-3 p-3 bg-white">
+      <div class="my-3 p-3 ">
         <!-- Single post that is added to the homepage starts here -->
         <h5>Question 1</h5>
         <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
@@ -33,3 +35,5 @@
     </div>
     <!-- End of table -->
   </div>
+  <div class="col-md-2"></div>
+</div>
