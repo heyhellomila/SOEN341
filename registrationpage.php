@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Create An Account </title>
+<?php
 
-<!-- Bootstrap -->
-<link href="file:///C|/Users/ABKS/Downloads/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-@import url("file:///C|/Users/ABKS/Documents/bootstrap-3.3.0/dist/css/bootstrap.css");
-@import url("file:///C|/Users/ABKS/Documents/bootstrap-3.3.0/dist/css/bootstrap.min.css");
-@import url("file:///C|/Users/ABKS/Documents/bootstrap-3.3.0/dist/css/bootstrap-theme.css");
-@import url("file:///C|/Users/ABKS/Documents/bootstrap-3.3.0/dist/css/bootstrap-theme.min.css");
-@import url("file:///C|/Users/ABKS/Documents/reg.css");
-</style>
+require_once("partial/header.php");
+
+?>
 
 
-</head>
-<body><div class="container-fluid"  align="justify">
+
+<div class="container-fluid"  align="justify">
 	<div class="row" >
 		<h2 class="center-block border-info">Create Account </h2>
 	</div>
@@ -63,5 +51,8 @@
     </div>
     </div>
 
-</body>
-</html>
+<?php
+
+require_once("partial/footer.php");
+
+?>
