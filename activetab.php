@@ -1,6 +1,3 @@
-<?php
-require_once("partial/header.php");
-?>
 
     <div class="container">
       <!-- Table of posts -->
@@ -36,5 +33,3 @@ require_once("partial/header.php");
     </div>
     <!-- End of table -->
 
-<?php
-require_once("partial/footer.php");?>
