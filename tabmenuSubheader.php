@@ -1,9 +1,9 @@
 <div class="tab-select" style=" margin:20px;">
 <!-- tabs -->
     <ul class="nav nav-tabs">
-   		    <li class="tab item"><a data-toggle="tab" href="activetab.php">Active</a></li>
-            <li class="tab item"><a data-toggle="tab" href="newquestiontab.php">New</a></li>
-        	<li class="tab item"><a data-toggle="tab" href="unansweredtab.php">Unanswered</a></li>
+   		    <li class="tab item"><a data-toggle="tab" href="#active">Active</a></li>
+            <li class="tab item"><a data-toggle="tab" href="#new">New</a></li>
+        	<li class="tab item"><a data-toggle="tab" href="#unanswered">Unanswered</a></li>
     	</ul>
     <div class="tab-content">
         		<div id="active" class="tab-pane fade in active">
