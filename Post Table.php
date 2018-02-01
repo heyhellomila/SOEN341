@@ -1,7 +1,6 @@
 <?php
 require_once("partial/header.php");
 ?>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
   <div class="bg-light">
     <div class="container">
       <!-- Table of posts -->
