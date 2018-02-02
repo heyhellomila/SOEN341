@@ -1,4 +1,4 @@
-<<?php 
+<?php 
 require_once("partial/header.php") 
 ?>
 	<div  class="text-center">
@@ -16,11 +16,19 @@ require_once("partial/header.php")
 		<button class="btn btn-lg btn-primary btn-block" type="submit">
 		Sign in
 		</button>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">
+		<button class="btn btn-lg btn-block facebook-button-colour"  type="submit">
 			<i class="fa fa-facebook"></i>
 			Sign in with Facebook
 			
 		</button>
+
+		<button class="btn btn-lg btn-block google-button-colour"  type="submit">
+			<i class="fa fa-google"></i>
+			Sign in with Google
+			
+		</button>
+		
+
 
 
 		<hr>
@@ -31,7 +39,6 @@ require_once("partial/header.php")
 		
 	</form>
 </div>
-<<?php 
+<?php 
 require_once("partial/footer.php") 
 ?>
-
