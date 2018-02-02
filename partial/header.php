@@ -22,9 +22,11 @@
 			<button class="btn btn-outline-success" type="submit">Search</button>
 			
 		</form>
-		<form class="row col">
-			<button class="col btn btn-secondary mr-2" type="button">Sign In</button>
-			<button class="col btn btn-primary mr-2" type="button">Sign Up</button>
+		<div class="col">
+		<form class="form-inline row">
+			<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
+			<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
 		</form>
+		</div>
 	</nav>
 	
