@@ -37,11 +37,7 @@ require_once("partial/header.php")
 				<a href="#forgot" data-toggle="modal"> Forgot Password? </a>
 			</div>
 
-			<button class="btn btn-lg btn-block google-button-colour"  type="submit">
-			<i class="fa fa-google"></i>
-			Sign in with Google
-			
-		</button>
+		
 		
 	</form>
 </div>
