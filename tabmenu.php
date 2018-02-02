@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-white px-0" style="line-height: 0.5 !important;" `>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item bg-light">
@@ -17,94 +17,109 @@
     <div id="activetab" class="container tab-pane active"><br>
       <div class="container">
         <!-- Table of posts -->
-        <div class="my-3 p-3 bg-white">
+        <div >
           <!-- Single post that is added to the homepage starts here -->
-          <h5>Aon mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo ?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
-              <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 70&emsp;</span><span style="color: blue;">Likes: 26</span>&emsp;Posted: 2 hours ago</strong>
-            </p>
+          <div class="row border-bottom border-gray">    
+            <div class="col">
+              <h5 class="row my-1">Aon mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo ?</h5>
+              <div class="my-1 text-muted small row">
+                <p class="m-0">
+                  <strong class="text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 70&emsp;</span><span style="color: blue;">Likes: 26</span>&emsp;Posted: 2 hours ago</strong>
+                </p>
+              </div>
+            </div>
           </div>
           <!-- End of single post -->
-          <h5>Non mi porta gravida at eget metus. Fusce dapibus?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/dog.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
-              <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 6&emsp;</span><span style="color: blue;">Likes: 20</span>&emsp;Posted: 1 day ago</strong>
-            </p>
+          <div class="row border-bottom border-gray">
+            <div class="col">
+              <h5 class="row my-1">Non mi porta gravida at eget metus. Fusce dapibus?</h5>
+              <div class="my-1 text-muted small row">
+                <p class="m-0">
+                  <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 6&emsp;</span><span style="color: blue;">Likes: 20</span>&emsp;Posted: 1 day ago</strong>
+                </p>
+              </div>
+            </div>
           </div>
-
-          <h5>Non mi porta gravida at eget metus?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/sakura.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
-              <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 18&emsp;</span><span style="color: blue;">Likes: 43</span>&emsp;Posted: 12 hours ago</strong>
-            </p>
+          <div class="row border-bottom border-gray">
+          <div class="col">
+            <h5 class="row my-1">Non mi porta gravida at eget metus?</h5>
+            <div class="my-1 text-muted row">
+              <p class="small m-0">
+                <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 18&emsp;</span><span style="color: blue;">Likes: 43</span>&emsp;Posted: 12 hours ago</strong>
+              </p>
+            </div></div>
           </div>
         </div>
       </div>
     </div>
     <div id="newtab" class="container tab-pane fade"><br>
      <div class="container">
-        <!-- Table of posts -->
-        <div class="my-3 p-3 bg-white">
-          <!-- Single post that is added to the homepage starts here -->
-          <h5>Non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
+      <!-- Table of posts -->
+      <div>
+        <!-- Single post that is added to the homepage starts here -->
+        <div class="row border-bottom border-gray">
+        <div class="col">
+          <h5 class="row">Non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus?</h5>
+          <div class="my-1 text-muted row">
+            <p class="small m-0">
               <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 2&emsp;</span><span style="color: blue;">Likes: 5</span>&emsp;Posted: Just now</strong>
             </p>
-          </div>
-          <!-- End of single post -->
-          <h5>Fusce dapibus, tellus ac cursus commodo?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/dog.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
+          </div></div>
+        </div>
+        <!-- End of single post -->
+        <div class="row border-bottom border-gray"><div class="col">
+          <h5 class="row">Fusce dapibus, tellus ac cursus commodo?</h5>
+          <div class="my-1 text-muted row">
+            <p class="small m-0">
               <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 6&emsp;</span><span style="color: blue;">Likes: 20</span>&emsp;Posted: 15 minutes ago</strong>
             </p>
-          </div>
-          <h5>Non mi porta gravida at eget metus. Tellus ac cursus commodo?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/sakura.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
+          </div></div>
+        </div>
+        <div class="row border-bottom border-gray"><div class="col">
+          <h5 class="row">Non mi porta gravida at eget metus. Tellus ac cursus commodo?</h5>
+          <div class="my-1 text-muted row">
+            <p class="small m-0">
               <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 18&emsp;</span><span style="color: blue;">Likes: 43</span>&emsp;Posted: 1 hour ago</strong>
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="unansweredtab" class="container tab-pane fade"><br>
-   <div class="container">
-        <!-- Table of posts -->
-        <div class="my-3 p-3 bg-white">
-          <!-- Single post that is added to the homepage starts here -->
-          <h5>Non mi porta gravida at eget metus?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/sakura.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
-              <strong class="d-block text-gray-dark">From: flower<span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: 125</span>&emsp;Posted: 15 hours ago</strong>
-            </p>
-          </div>
-          <!-- End of single post -->
-          <h5>Gravida at eget metus. Fusce dapibus, tellus ac cursus commodo?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/dog.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
-              <strong class="d-block text-gray-dark">From: amazingtrainer<span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: 125</span>&emsp;Posted: 3 days ago</strong>
-            </p>
-            <p></p>
-          </div>
-          <h5>Porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo?</h5>
-          <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
-            <img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
-            <p class="media-body pb-2 mb-3 small lh-125">
-              <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: 125</span>&emsp;Posted: 5 hours ago</strong>
-            </p>
-          </div>
+          </div></div>
         </div>
       </div>
     </div>
   </div>
+  <div id="unansweredtab" class="container tab-pane fade"><br>
+   <div class="container">
+    <!-- Table of posts -->
+    <div>
+      <!-- Single post that is added to the homepage starts here -->
+      <div class="row border-bottom border-gray"><div class="col">
+        <h5 class="row">Non mi porta gravida at eget metus?</h5>
+        <div class="my-1 text-muted row">
+          <p class="small m-0">
+            <strong class="d-block text-gray-dark">From: flower<span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: 125</span>&emsp;Posted: 15 hours ago</strong>
+          </p>
+        </div></div>
+      </div>
+      <!-- End of single post -->
+      <div class="row border-bottom border-gray"><div class="col">
+        <h5 class="row">Gravida at eget metus. Fusce dapibus, tellus ac cursus commodo?</h5>
+        <div class="my-1 text-muted row">
+          <p class="small m-0">
+            <strong class="d-block text-gray-dark">From: amazingtrainer<span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: 125</span>&emsp;Posted: 3 days ago</strong>
+          </p>
+        </div></div>
+        <p></p>
+      </div>
+      <div class="row border-bottom border-gray"><div class="col">
+        <h5 class="row">Porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo?</h5>
+        <div class="my-1 text-muted row">
+          <p class="small m-0">
+            <strong class="d-block text-gray-dark">From: Username<span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: 125</span>&emsp;Posted: 5 hours ago</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 </div>
