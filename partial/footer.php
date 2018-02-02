@@ -3,7 +3,6 @@
 <html>
 <body>
 <div id="footer", class="footer navbar-fixed-bottom">
-    PLACEHOLDER FOR LINKS
-</div>
+<center> ABOUT US | LEGAL | PRIVACY | SHOW ME DA WAE | LOREM IPSUM </center>
 </body>
 </html>
