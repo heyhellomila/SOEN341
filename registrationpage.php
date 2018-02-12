@@ -32,7 +32,7 @@ require_once("partial/header.php");
                                         </div>
                                         <div class="text-center">
                                         <button type="submit" class="btn btn-danger">Join Us </button>
-						<p><a href="/contactUS">contact us</a></p>
+						<p><a href="contactUS.php">contact us</a></p>
 										</div>
                                     </form>
                                     <div class="clearfix"></div>
