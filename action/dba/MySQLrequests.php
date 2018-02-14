@@ -15,8 +15,10 @@
 		
 		public static function template($desc,$id,$ext,$title,$main) {
 			//clean strings
+
 			$desc=MySQLRequests::clearString($desc);
 			$title=MySQLRequests::clearString($title);
+
 			//open connection
 			$connection = Connection::getConnection();
 			//prepare your request and put "?" instead ov the variables
@@ -39,6 +41,25 @@
 			//close connection
 			Connection::closeConnection();
 			//return your variable
+			return $info;
+		}
+
+
+		public static function authenticate($username, $password) {
+			$connection = connection::getConnection();
+			$pass = sha1($password);
+
+			$statement = $connection->prepare("SELECT *from user where user_pass = ? and user_email = ?");
+
+			$statement->bindParam(1, $pass);
+			$statement->bindParam(2, $username);
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+
+			$statement->execute();
+
+			$info = $statement->fetch();
+			connection::closeConnection();
 			return $info;
 		}
 
@@ -121,5 +142,6 @@
 			return $info;
 		
 		}
+
 
 	}
