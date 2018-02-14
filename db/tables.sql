@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `341`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `341`.`user` (
   `user_id` INT(8) NOT NULL AUTO_INCREMENT,
-  `user_creation_time` DATETIME NOT NULL,
+  `user_creation_time` DATETIME DEFAULT NOW(),
   `user_name` VARCHAR(25) NOT NULL,
   `user_email` VARCHAR(75) NOT NULL,
   `user_pass` VARCHAR(40) NOT NULL,
@@ -40,9 +40,10 @@ DROP TABLE IF EXISTS `341`.`post` ;
 
 CREATE TABLE IF NOT EXISTS `341`.`post` (
   `post_id` INT NOT NULL AUTO_INCREMENT,
-  `post_creation_time` DATETIME NOT NULL,
+  `post_creation_time` DATETIME DEFAULT NOW(),
   `post_title` VARCHAR(45) NOT NULL,
   `post_content` TEXT(1000) NOT NULL,
+  `post_nb_likes` INT(9) DEFAULT 0,
   `post_creator` INT(8) NOT NULL,
   PRIMARY KEY (`post_id`),
   INDEX `post_creator_idx` (`post_creator` ASC),
@@ -61,8 +62,9 @@ DROP TABLE IF EXISTS `341`.`comment` ;
 
 CREATE TABLE IF NOT EXISTS `341`.`comment` (
   `comment_id` INT NOT NULL AUTO_INCREMENT,
-  `comment_creation_time` DATETIME NOT NULL,
+  `comment_creation_time` DATETIME DEFAULT NOW(),
   `comment_content` TEXT(1000) NOT NULL,
+  `comment_nb_likes` INT(9) DEFAULT 0,
   `comment_creator` INT(8) NOT NULL,
   PRIMARY KEY (`comment_id`),
   INDEX `post_creator_idx` (`comment_creator` ASC),

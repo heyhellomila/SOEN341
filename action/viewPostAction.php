@@ -24,4 +24,11 @@ class viewPostAction extends commonAction{
 		}
 	}
 
+	public function getSubComments($id){
+		return MySQLrequests::getCommentsByCommentsID($id);
+	}
+	public function getUserByID($id){
+		return MySQLrequests::getUserByID($id);
+	}
+
 }

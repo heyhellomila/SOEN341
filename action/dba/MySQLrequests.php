@@ -35,7 +35,7 @@
 			$statement->setFetchMode(PDO::FETCH_ASSOC);
 
 			//get the results and put them in a variable
-			$info = $statement->fetch();
+			$info = $statement->fetchAll();
 			//close connection
 			Connection::closeConnection();
 			//return your variable
@@ -78,6 +78,38 @@
 			$connection = Connection::getConnection();
 
 			$statement = $connection->prepare("SELECT comment.* from comment,post_comment_ass where comment.comment_id=post_comment_ass.comment_id and post_comment_ass.post_id=?;");
+			
+			$statement->bindParam(1, $id);
+			$statement->execute();
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetchAll();
+			
+			Connection::closeConnection();
+			return $info;
+		
+		}
+
+		public static function getCommentsByCommentsID($id) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("SELECT comment.* from comment,comment_comment_ass where comment.comment_id=comment_comment_ass.child_id and comment_comment_ass.parent_id=?;");
+			
+			$statement->bindParam(1, $id);
+			$statement->execute();
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetchAll();
+			
+			Connection::closeConnection();
+			return $info;
+		
+		}
+
+		public static function getUserByID($id) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("SELECT * from user  where user_id=?;");
 			
 			$statement->bindParam(1, $id);
 			$statement->execute();
