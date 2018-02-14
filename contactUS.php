@@ -1,6 +1,7 @@
 <?php
 require_once("partial/header.php");
 ?>
+
 <div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
@@ -13,13 +14,13 @@ require_once("partial/header.php");
     <div class="row">
         <div class="col-md-8">
             <div class="well well-sm">
-                <form>
+                <form method = "post" action = "messageSending.php">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">
                                 Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                            <input type="text" class="form-control" id="name" name = "n" placeholder="Enter name" required="required" />
                         </div>
                         <div class="form-group">
                             <label for="email">
@@ -27,7 +28,7 @@ require_once("partial/header.php");
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                                <input type="email" class="form-control" name = "email" id="email" placeholder="Enter email" required="required" /></div>
                         </div>
                         <div class="form-group">
                             <label for="subject">
@@ -77,5 +78,6 @@ require_once("partial/header.php");
 
 <?php
 require_once("partial/footer.php");
+?>
 
 
