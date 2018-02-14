@@ -1,7 +1,7 @@
 <?php
 
 require_once("action/commonAction.php");
-require_once("action/dba/MySQLrequests.php");
+require_once("dba/MySQLrequests.php");
 
 class SignInAction extends commonAction {
 
