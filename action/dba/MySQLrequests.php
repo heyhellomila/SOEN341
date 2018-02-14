@@ -2,7 +2,7 @@
 	require_once("action/commonAction.php");
 	require_once("action/dba/connection.php");
 
-	class UserDAO {
+	class MySQLRequests {
 
 		private static $connection;
 
@@ -15,8 +15,8 @@
 		
 		public static function template($desc,$id,$ext,$title,$main) {
 			//clean strings
-			$desc=UserDAO::clearString($desc);
-			$title=UserDAO::clearString($title);
+			$desc=MySQLRequests::clearString($desc);
+			$title=MySQLRequests::clearString($title);
 			//open connection
 			$connection = Connection::getConnection();
 			//prepare your request and put "?" instead ov the variables

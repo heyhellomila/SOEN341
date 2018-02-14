@@ -16,7 +16,7 @@ require_once("partial/header.php");
 					<img class="d-flex mr-3 col user-icon" src="images/captain.png" alt="Generic placeholder image">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+							<strong><?=$this->postCreator["user_name"]?></strong> <span class="text-muted">commented 5 days ago</span>
 
 						</div>
 						<div class="media-body">

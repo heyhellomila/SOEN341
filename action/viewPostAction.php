@@ -1,10 +1,11 @@
 <?php
-require_once("action/CommonAction.php");
+require_once("action/commonAction.php");
+require_once("dba/MySQLrequests.php");
 
-class viewPostAction extends CommonAction{
+class viewPostAction extends commonAction{
 
 	public function __construct() {
-		parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
+		parent::__construct(commonAction::$VISIBILITY_PUBLIC);
 	}
 
 	protected function executeAction() {
@@ -14,9 +15,8 @@ class viewPostAction extends CommonAction{
 
 
 			$this->post=MySQLrequests::getPostbyID($id);
-			$this->postCreator=MySQLrequests::getPostCreatorByPostID($id)
+			$this->postCreator=MySQLrequests::getPostCreatorByPostID($id);
 			$this->comments=MySQLrequests::getCommentsByPostID($id);
-			$this->subComments[];
 
 		}
 		else{
