@@ -41,3 +41,22 @@
 			//return your variable
 			return $info;
 		}
+
+		public static function authenticate($username, $password) {
+			$connection = connection::getConnection();
+			$pass = sha1($password);
+
+			$statement = $connection->prepare("SELECT *from user where user_pass = ? and user_email = ?");
+
+			$statement->bindParam(1, $pass);
+			$statement->bindParam(2, $username);
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+
+			$statement->execute();
+
+			$info = $statement->fetch();
+			connection::closeConnection();
+			return $info;
+		}
+	}
