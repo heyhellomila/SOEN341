@@ -1,4 +1,8 @@
-<?php
+<?php 
+require_once("action/viewPostAction.php");
+
+$action = new viewPostAction();
+$action->execute();
 require_once("partial/header.php");
 ?>
 
@@ -12,17 +16,17 @@ require_once("partial/header.php");
 					<img class="d-flex mr-3 col user-icon" src="images/captain.png" alt="Generic placeholder image">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+							<strong><?=$action->postCreator["user_name"]?></strong> <span class="text-muted">created on <?=$action->post["post_creation_time"]?></span>
 
 						</div>
 						<div class="media-body">
 
-							Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+							<?=$action->post["post_content"]?>
 							<div class="interuptLine"> </div>
 
 							<div class="row">
 								<div class="col">
-									<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-thumbs-up"></i>Like | 1234</button>
+									<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-thumbs-up"></i>Like | <?=$action->post["post_nb_likes"]?></button>
 									<button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-thumbs-down"></i> </button>
 								</div>							
 								<div class="col">
@@ -49,94 +53,78 @@ require_once("partial/header.php");
 					</div>
 				</div>
 			</div>
-			<div class="row ">
-				<div class="media "><div class="col">
-					<img class="d-flex mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
-					<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+			<?php
+			foreach ($action->comments as $v) {
 
+				$subcomments=$action->getSubComments($v["comment_id"]);
+				$commentCreator = $action->getUserByID($v["comment_creator"]);
+				?>
+				<div class="row ">
+					<div class="media "><div class="col">
+						<img class="d-flex mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
+						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">
 					</div>
-					<div class="media-body">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong><?=$commentCreator["user_name"]?></strong> <span class="text-muted">commented on <?=$v["comment_creation_time"]?></span>
 
-						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-						<div class="col secondaryLikes">
-							<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | 44213</button>
-							<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
-						</div>	
+						</div>
+						<div class="media-body">
 
-						<div class="row">
-							<div class="media no-border">
-								<img class="d-flex mr-3" src="images/captain.png" alt="Generic placeholder image">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
-									</div>
-									<div class="media-body">
+							<?=$v["comment_content"]?>
+							<div class="col secondaryLikes">
+								<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | <?=$v["comment_nb_likes"]?></button>
+								<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
+							</div>	
+							<?php 
+							foreach ($subcomments as $subC) {
+								$subCommentCreator = $action->getUserByID($subC["comment_creator"]);
+								?>
 
-										Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								<div class="row">
+									<div class="media no-border">
+										<img class="d-flex mr-3" src="images/captain.png" alt="Generic placeholder image">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<strong><?=$subCommentCreator["user_name"]?></strong> <span class="text-muted">commented on <?=$subC["comment_creation_time"]?></span>
+											</div>
+											<div class="media-body">
+												<?=$subC["comment_content"]?>
 
-										<div class="col secondaryLikes">
-											<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | 44213</button>
-											<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
-										</div>	
+												<div class="col secondaryLikes">
+													<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | <?=$subC["comment_nb_likes"]?></button>
+													<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
+												</div>	
+											</div>
+										</div>
 									</div>
 								</div>
+								<?php
+							}
+							?>
+							<div class="interuptLine"> </div>
+							<div class="row">
+								<div class="col-2">
+									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
+								</div>
+								<form class="form col">
+									<div class="form-group ">
+										<label for="exampleFormControlTextarea1"></label>
+										<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write comments..."></textarea>
+									</div> 
+									<button type="submit" class="btn btn-primary">Comment</button>
+								</form>
 							</div>
 						</div>
-						<div class="interuptLine"> </div>
-						<div class="row">
-							<div class="col-2">
-								<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
-							</div>
-							<form class="form col">
-								<div class="form-group ">
-									<label for="exampleFormControlTextarea1"></label>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write comments..."></textarea>
-								</div> <button type="submit" class="btn btn-primary">Comment</button>
 
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row ">
-			<div class="media ">
-				<img class="d-flex mr-3" src="images/captain.png" alt="Generic placeholder image">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
-
-					</div>
-					<div class="media-body">
-
-						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.						
-						<div class="col secondaryLikes">
-							<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | 44213</button>
-							<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
-						</div>	
-						<div class="interuptLine"> </div>
-						<div class="row">
-							<div class="col-2">
-								<img class="align-self-center mr-3" src="images/captain.png" alt="Generic placeholder image">
-							</div>
-							<form class="form col">
-								<div class="form-group ">
-									<label for="exampleFormControlTextarea1"></label>
-									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write comments..."></textarea>
-								</div> <button type="submit" class="btn btn-primary">Comment</button>
-
-							</form>
-						</div>
 						
+
 					</div>
 				</div>
 			</div>
-		</div>
-
+			<?php 
+		}
+		?>
 
 	</div>
 </div>
