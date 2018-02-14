@@ -73,14 +73,14 @@ require_once("partial/header.php");
 
 							<?=$v["comment_content"]?>
 							<div class="col secondaryLikes">
-								<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | <?=$action->v["comment_nb_likes"]?></button>
+								<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | <?=$v["comment_nb_likes"]?></button>
 								<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
 							</div>	
 							<?php 
 							foreach ($subcomments as $subC) {
 								$subCommentCreator = $action->getUserByID($subC["comment_creator"]);
 								?>
-								
+
 								<div class="row">
 									<div class="media no-border">
 										<img class="d-flex mr-3" src="images/captain.png" alt="Generic placeholder image">
@@ -111,14 +111,14 @@ require_once("partial/header.php");
 									<div class="form-group ">
 										<label for="exampleFormControlTextarea1"></label>
 										<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write comments..."></textarea>
-									</div> <button type="submit" class="btn btn-primary">Comment</button>
-
+									</div> 
+									<button type="submit" class="btn btn-primary">Comment</button>
 								</form>
 							</div>
 						</div>
 
 						
-						
+
 					</div>
 				</div>
 			</div>
