@@ -7,7 +7,7 @@
 	require_once("action/dba/connection.php");
 
 
-	abstract class CommonAction {
+	abstract class commonAction {
 		public static $VISIBILITY_PUBLIC = 0;
 		public static $VISIBILITY_MEMBER=1;
 		public static $VISIBILITY_ADMINISTRATOR = 10;
@@ -45,7 +45,7 @@
 
 		// function checks if the session visibility is higher than public which means that someone is loged in cuz pupblic = 0 and member = 1
 		public function isLoggedIn() {
-			return $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
+			return $_SESSION["visibility"] > commonAction::$VISIBILITY_PUBLIC;
 		}
 
 		
