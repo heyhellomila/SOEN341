@@ -1,4 +1,8 @@
-<?php
+<?php 
+require_once("action/viewPostAction.php");
+
+	$action = new viewPostAction();
+	$action->execute();
 require_once("partial/header.php");
 ?>
 
