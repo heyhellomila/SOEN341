@@ -68,7 +68,35 @@ require_once("partial/header.php");
         </section>
 
 
-         
+         <script type="text/javascript">
+
+ var frmvalidator = new Validator("myform");
+	  frmvalidator.addValidation("username","req","Please enter your username");
+ frmvalidator.addValidation("username","maxlen=25",
+        "Max length for FirstName is 25");
+ 
+ frmvalidator.addValidation("Email","maxlen=25");
+ frmvalidator.addValidation("Email","req");
+ frmvalidator.addValidation("Email","email");
+		 frmvalidator.addValidation("Email2","maxlen=25");
+ frmvalidator.addValidation("Email2","req");
+ frmvalidator.addValidation("Email2","email")
+		   frmvalidator.addValidation("Email2","eqelmnt=Email", "The confirmed email  is not same as email address");
+		 
+		 
+		 frmvalidator.addValidation("pwd1","req","Please enter your password");
+		 frmvalidator.addValidation("pwd1","regexp=^[A-Za-z]{4,8}$","please enter valid password ");
+         frmvalidator.addValidation("pwd2","req","Please confirm password");
+     frmvalidator.addValidation("pwd2","eqelmnt=pwd1","The confirmed password is not same as password");
+
+		 
+		 
+		 
+
+ 
+ 
+ 
+</script>
 
   
 
