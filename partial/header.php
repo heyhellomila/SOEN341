@@ -34,12 +34,20 @@
 			<button class="btn btn-outline-success" type="submit">Search</button>
 			
 		</form>
-		<div class="col">
-			<form class="form-inline row">
-				<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
-				<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
-			</form>
-		</div>
+		<?php
+			if ($action->isLoggedIn())
+			{
+				
+			}
+			else
+			{
+				<div class="col">
+					<form class="form-inline row">
+						<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
+						<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
+					</form>
+				</div>
+			}
 	</nav>
 	<?php 
 	require_once("tabmenu.php");
