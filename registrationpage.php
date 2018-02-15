@@ -4,8 +4,6 @@ require_once("partial/header.php");
 
 ?>
 
-
-
 <div class="container-fluid"  align="justify">
 	
 	<section class="hero"><div class="mt-2 text-center">
@@ -19,22 +17,28 @@ require_once("partial/header.php");
                                 
                                 
                                 <div class="mt-4">
-                                    <form><div class="form-group">
-                                            <input type="test" class="form-control" name="username" value="" placeholder="UserName">
+                                    <form  id="myform" ><div class="form-group">
+                                           <label for='username'></label>
+                                            <input type="text" class="form-control" name="username" value="" placeholder="UserName" id="username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email" value="" placeholder="exmaple@gmail.com">
+                                            <input type="email" class="form-control" name="email" value="" placeholder="Example@gmail.com" id="Email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="password" value="" placeholder="Password">
+                                            <input type="email" class="form-control" name="email2" value="" placeholder="Confirm email address" id="Email2">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="pwd1" value="" placeholder="Password" id="pwd1">
+                                            
+										</div>
+                                           <div class="form-group">
+                                            <input type="password" class="form-control" name="pwd2" value="" placeholder="Confirm Password" id="pwd2">
+
                                         </div> <div class="form-group">
                                             <input type="text" class="form-control" name="Interest" value="" placeholder="Area Of Interest">
                                         </div>
                                         <div class="text-center">
                                         <button type="submit" class="btn btn-danger">Join Us </button>
-
-						<p><a href="contactUS.php">contact us</a></p>
-
 										</div>
                                     </form>
                                     <div class="clearfix"></div>
@@ -62,6 +66,9 @@ require_once("partial/header.php");
                 </div>
             </div>
         </section>
+
+
+         
 
   
 
