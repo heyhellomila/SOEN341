@@ -1,7 +1,9 @@
 <?php 
+
 require_once("action/postTableAction.php");
     $action = new postTableAction();
     $action->execute();
+
 require_once("partial/header.php") 
 ?>
 

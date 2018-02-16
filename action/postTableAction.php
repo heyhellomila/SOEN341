@@ -1,4 +1,5 @@
 <?php
+
 require_once("action/commonAction.php");
 require_once("dba/MySQLrequests.php");
 
@@ -12,6 +13,7 @@ class postTableAction extends commonAction{
 		if (isset($_REQUEST["post_id"])) {
 			$_SESSION["post_id"]=$_REQUEST["post_id"];
 			header("location:viewPost.php");}
+
 
 			$this->posts=MySQLrequests::getLastPosts(10,0);
 	}

@@ -143,8 +143,9 @@
 		
 		}
 
-		public static function addComment($creator,$parent,$content)  {
+		public static function getLastPosts($limit,$offset) {
 			$connection = Connection::getConnection();
+
 
 			$statement = $connection->prepare("INSERT INTO post_comment_ass(post_id,comment_id) VALUES(?,?);");
 			$id=MySQLRequests::insertComment($creator,$content);
@@ -154,47 +155,20 @@
 			$statement->execute();
 
 			$statement->setFetchMode(PDO::FETCH_ASSOC);
-			$info = $statement->fetch();
-			
-			Connection::closeConnection();
-			return ;
-		
-		}
-	public static function insertComment($creator,$content) {
-			$connection = Connection::getConnection();
 
-			$statement = $connection->prepare("INSERT INTO comment(comment_content,comment_creator) values(?,?);");
 			
-			$statement->bindParam(1, $content);
-			$statement->bindParam(2, $creator);
+			$statement->bindParam(1, $limit);
+			$statement->bindParam(2, $offset);
 			$statement->execute();
 
 			$statement->setFetchMode(PDO::FETCH_ASSOC);
-			$info = $statement->fetch();
-			
-			Connection::closeConnection();
-			return $connection->LastInsertId();;
-		}
-		
+			$info = $statement->fetchAll();
 
-		public static function addSubComments($creator,$parent,$content) {
-			$connection = Connection::getConnection();
-
-			$statement = $connection->prepare("INSERT INTO comment_comment_ass(parent_id,child_id) VALUES(?,?);");
-			
-			$id=MySQLRequests::insertComment($creator,$content);
-			
-			$statement->bindParam(1, $parent);
-			$statement->bindParam(2, $id);
-			$statement->execute();
-
-			$statement->setFetchMode(PDO::FETCH_ASSOC);
-			$info = $statement->fetch();
-			
 			Connection::closeConnection();
 			return $info;
-		
+			
 		}
+
 
 		public static function getLastPosts($limit,$offset) {
 			$connection = Connection::getConnection();
@@ -214,3 +188,4 @@
 		}
 
 	}
+
