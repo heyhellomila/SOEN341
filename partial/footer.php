@@ -1,3 +1,4 @@
+</div>
 <div id="footer" class="footer navbar navbar-dark bg-dark fixed-bottom">
 	<div id="topPage"><a href="#top"><img  src="./images/up.png"></a></div>
     <div class="container" >

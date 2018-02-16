@@ -195,8 +195,7 @@
 			return $info;
 		
 		}
-
-		public static function getLastPosts($limit,$offset) {
+public static function getLastPosts($limit,$offset) {
 			$connection = Connection::getConnection();
 
 			$statement = $connection->prepare("SELECT * from post limit ? offset ?");
@@ -210,7 +209,8 @@
 
 			Connection::closeConnection();
 			return $info;
-			
 		}
+
+
 
 	}
