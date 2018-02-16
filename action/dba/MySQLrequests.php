@@ -148,7 +148,7 @@
 
 			$statement = $connection->prepare("INSERT INTO post_comment_ass(post_id,comment_id) VALUES(?,?);");
 			$id=MySQLRequests::insertComment($creator,$content);
-echo $id;
+
 			$statement->bindParam(1, $parent);
 			$statement->bindParam(2, $id);
 			$statement->execute();

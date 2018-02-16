@@ -65,7 +65,7 @@ require_once("partial/header.php");
 				<div class="row ">
 					<div class="media "><div class="col">
 						<img class="d-flex mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
-						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">';
+						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">
 						
 					</div>
 					<div class="panel panel-default">
