@@ -8,14 +8,7 @@ class postTableAction extends commonAction{
 	}
 
 	protected function executeAction() {
-		if (isset($_GET["id"])) {
-			$id=$_GET["id"];
-
-			$this->post=MySQLrequests::getPostbyID($id);
-			$this->postCreator=MySQLrequests::getPostCreatorByPostID($id);
-			$this->comments=MySQLrequests::getCommentsByPostID($id);
-
-		}
+			$this->posts=MySQLrequests::getLastPosts(10,0);
 	}
 
 	public function getUserByID($id){

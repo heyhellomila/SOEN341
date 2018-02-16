@@ -1,50 +1,21 @@
-<?php 
-require_once("action/postTableAction.php");
+<script src="js/postTable.js"></script>
 
-$action = new postTableAction();
-$action->execute();
-?>  
-<script type="text/javascript">
-  var likes = 0;
-  var dom;
-
-  function getElementBtnIncrement() {
-    var button = document.getElementById("button1");
-    button.addEventListener("click", increment, false) }
-
-  function increment() {
-    likes++;
-    dom = document.getElementById("likes");
-    dom.innerHTML = "Likes: " + likes; }
-    
-  function getElementBtnDecrement() {
-    var button = document.getElementById("button2");
-    button.addEventListener("click", decrement, false) }
-
-  function decrement() {
-    likes--;
-    dom = document.getElementById("likes");
-    dom.innerHTML = "Likes: " + likes; }
- 
-  window.addEventListener("load", getElementBtnIncrement, false);
-  window.addEventListener("load", getElementBtnDecrement, false);
-</script>
-
+<div class="my-3">
 <?php
-//foreach ($action->post as $post) {
-// $postCreator = $action->getUserByID($post["post_creator"]);
+foreach ($action->posts as $post) {
+ $postCreator = $action->getUserByID($post["post_creator"]);
 ?>
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <div class="container">
-      <div class="my-3 p-3 ">
-        <!-- Single post that is added to the homepage starts here -->
-        <h5><a href="viewPost.php">&emsp;<?=$action->post["post_title"]?></a></h5>
-        <div class="media text-muted pt-2 mb-3 border-bottom border-gray">
+      <div>
+        <!-- Single post starts here -->
+        <h5><a href="viewPost.php"><?=$post["post_title"]?></a></h5>
+        <div class="media text-muted pt-0 mb-3 border-bottom border-gray">
           <table>
           <tr>
-            <td style="padding: 5px;"><!--<img alt="48x48" class="rounded" style="width: 48px; height: 48px;" src="images/captain.png">-->
+            <td>
             <strong class="d-block text-gray-dark">From: <?=$postCreator["user_name"]?></strong>
             <strong class="d-block text-gray-dark">Posted: <?=$post["post_creation_time"]?></strong>
             <strong class="d-block">Answers: 0</strong>
@@ -62,5 +33,6 @@ $action->execute();
   </div>
 </div>
 <?php
-//}
+}
 ?>
+</div>

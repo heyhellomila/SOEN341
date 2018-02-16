@@ -143,5 +143,21 @@
 		
 		}
 
+		public static function getLastPosts($limit,$offset) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("SELECT * from post limit ? offset ?");
+			
+			$statement->bindParam(1, $limit);
+			$statement->bindParam(2, $offset);
+			$statement->execute();
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetchAll();
+
+			Connection::closeConnection();
+			return $info;
+			
+		}
 
 	}
