@@ -1,4 +1,4 @@
-<div id="accordion"
+<div id="accordion">
 <div class="container bg-white px-0" style="line-height: 0.5 !important;" `>
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
