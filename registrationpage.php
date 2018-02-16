@@ -2,6 +2,41 @@
 
 require_once("partial/header.php");
 
+
+require_once ("formvalidator.php");
+$show_form=true;
+if(isset($_POST['Submit']))
+{
+             $validator = new FormValidator();
+    $validator->addValidation("username","req","Please enter your username");
+     $validator->addValidation("username","maxlen=25","Max length for FirstName is 25");
+
+     $validator->addValidation("Email","maxlen=50");
+    $validator->addValidation("Email","email", "The input for Email should be a valid email value");
+    $validator->addValidation("Email","req","Please fill in Email");
+    $validator->addValidation("Email2","maxlen=50");
+    $validator->addValidation("Email2","email", "The input for Email should be a valid email value");
+    $validator->addValidation("Email2","req","Please fill in Email");
+    $validator->addValidation("Email2","eqelmnt=Email", "The confirmed email  is not same as email address");
+
+    $validator->addValidation("pwd1","req","Please enter your password");
+    $validator->addValidation("pwd1","regexp=^[A-Za-z]{4,8}$","please enter valid password ");
+    $validator->addValidation("pwd2","req","Please confirm password");
+    $validator->addValidation("pwd2","eqelmnt=pwd1","The confirmed password is not same as password");
+    
+    if($validator->ValidateForm())
+    {
+        
+        $show_form=false;
+    }
+    else
+    {
+        echo "<B>Validation Errors:</B>";
+
+       
+    }
+}
+
 ?>
 
 <div class="container-fluid"  align="justify">
