@@ -11,10 +11,10 @@ $statement = $connection->prepare("INSERT into user (user_name, user_email, user
 // Escape user inputs for security
 if(isset($_REQUEST['username']) && isset($_REQUEST['pwd1']) && isset($_REQUEST['email']) )
 {
-	$user_name =$_REQUEST['username'];
+	$mail =$_REQUEST['email'];
 
-	$check= $connection->prepare("SELECT user_name FROM user WHERE user_name = :name");
-	$check->bindParam(':name',$user_name);
+	$check= $connection->prepare("SELECT user_email FROM user WHERE user_email = ?");
+	$check->bindParam(1,$mail);
 	$check->execute();
 
 	if($check-> rowCount() > 0)
@@ -41,11 +41,10 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['pwd1']) && isset($_REQUEST['
 
 		$statement->execute();
 		Connection::closeConnection();
-		$_SESSION["visibility"] = commonAction::$VISIBILITY_MEMBER;
-		$_SESSION["user_id"] = $user["user_id"];
+
 		echo "<script>
 		alert('Thank you for registration');
-		window.location.href='index.php';
+		window.location.href='signin.php';
 		</script>";
 	}
 }
