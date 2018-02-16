@@ -11,10 +11,10 @@ if(isset($_POST['Submit']))
     $validator->addValidation("username","req","Please enter your username");
      $validator->addValidation("username","maxlen=25","Max length for FirstName is 25");
 
-     $validator->addValidation("Email","maxlen=50");
+     $validator->addValidation("Email","maxlen=25");
     $validator->addValidation("Email","email", "The input for Email should be a valid email value");
     $validator->addValidation("Email","req","Please fill in Email");
-    $validator->addValidation("Email2","maxlen=50");
+    $validator->addValidation("Email2","maxlen=25");
     $validator->addValidation("Email2","email", "The input for Email should be a valid email value");
     $validator->addValidation("Email2","req","Please fill in Email");
     $validator->addValidation("Email2","eqelmnt=Email", "The confirmed email  is not same as email address");
