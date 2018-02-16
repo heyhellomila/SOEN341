@@ -1,6 +1,6 @@
 <div id="footer" class="footer navbar navbar-dark bg-dark fixed-bottom">
     <div class="container" >
-        <form class="row mx-auto">
+        <form class="row mx-auto" method="post">
             <input class="form-control mr-sm-3" style="width: 500px;" type="search" placeholder="What’s your question?" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">ASK!</button>        
         </form>
