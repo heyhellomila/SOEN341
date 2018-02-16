@@ -1,5 +1,5 @@
-<?php
-    mysql_connect("localhost", "root", "") or die("Error connecting to database: ".mysql_error());
+<?php/*
+    mysql_connect("localhost", "root", "") or die("Error connecting to database: ".mysql_error());*/
     /*
         localhost - it's location of the mysql server, usually localhost
         root - your username
@@ -8,12 +8,12 @@
         if connection fails it will stop loading the page and display an error
     */
      
-    mysql_select_db("341") or die(mysql_error());
+    /*mysql_select_db("341") or die(mysql_error());*/
     /* tutorial_search is the name of database we've created */
 ?>
-<?php/*
+<?php
 require_once('connect.php');
-require_once('config.php');*/
+/*require_once('config.php');*/
 ?>
  <?php
 require_once("partial/header.php");
@@ -38,10 +38,10 @@ require_once("partial/header.php");
         $query = htmlspecialchars($query); 
         // changes characters used in html to their equivalents, for example: < to &gt;
          
-        $query = mysql_real_escape_string($query);
+        $query = mysqli_real_escape_string($connection,$query);
         // makes sure nobody uses SQL injection
          
-        $raw_results = mysql_query("SELECT * FROM contactus_email
+        $raw_results = mysqli_query($connection,"SELECT * FROM contactus_email
             WHERE (`name` LIKE '%".$query."%') OR (`email` LIKE '%".$query."%')
 			OR (`subject` LIKE '%".$query."%') OR (`message` LIKE '%".$query."%')") or die(mysql_error());
              
@@ -52,11 +52,11 @@ require_once("partial/header.php");
         // it will match "hello", "Hello man", "gogohello", if you want exact match use `title`='$query'
         // or if you want to match just full word so "gogohello" is out use '% $query %' ...OR ... '$query %' ... OR ... '% $query'
          
-        if(mysql_num_rows($raw_results) > 0){ // if one or more rows are returned do following
+        if(mysqli_num_rows($raw_results) > 0){ // if one or more rows are returned do following
 		
-		    echo "<div class='col-md-6'><h3>RESULTS FOR $query</h3></div>";
+		    echo "<div class='col-md-6'><p><h3>SEARCH RESULTS FOR $query</h3></p></div>";
              
-            while($results = mysql_fetch_array($raw_results)){
+            while($results = mysqli_fetch_array($raw_results)){
             // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
 			
                 echo "<div class='col-md-6'>NAME OF SENDER: ".$results['name']."<br/>EMAIL: ".$results['email']."<br/>		

@@ -5,7 +5,7 @@ require_once("partial/header.php");
 <div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <h1 class="h1">Contact us </h1>
+                <p><h1 class="h1">Contact us </h1></p>
                 <p class="bd-lead">Questions and request to the team from users</p>
             </div>
         </div>

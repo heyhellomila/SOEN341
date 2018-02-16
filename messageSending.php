@@ -85,8 +85,8 @@ if(!isset($error) || empty($error)){
 <div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <h1 class="h1">Contact us </h1>
-                <p class="bd-lead">Your message has been sent, we will get back to you soon</p>
+                <p><h1 class="h1">Contact us </h1></p>
+                <p class="bd-lead"><p>Your message has been sent, we will get back to you soon</p></p>
             </div>
         </div>
     </div>
