@@ -1,4 +1,3 @@
-
 #topPage{
 	display: none;
   position: fixed;
@@ -19,12 +18,19 @@
 {
  border: none;
  background:none;
- outline: none;display: inline;
-  margin: 0;
-  padding: 0;
-  
+
+ outline: none;
+ display: inline;
+ color: orange;
+ cursor: pointer;
+ font-weight: bold;
+ font-size: 20px;
 }
 
+.notButton:hover {
+    text-decoration: underline;
+}
+s
 .contents{
   margin-bottom: 60px;
 }

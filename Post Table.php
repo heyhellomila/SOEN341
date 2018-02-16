@@ -1,5 +1,4 @@
 <script src="js/postTable.js"></script>
-
 <div class="my-3">
 <?php
 foreach ($action->posts as $post) {
