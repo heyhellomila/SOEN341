@@ -117,6 +117,26 @@ CREATE TABLE IF NOT EXISTS `341`.`post_comment_ass` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+	
+-- -----------------------------------------------------
+-- Table `341`.`contactus_email`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `341`.`contactus_email` ;
+
+CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `time` TIMESTAMP NOT NULL CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `subject` TEXT(225) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `message` TEXT(1000) NOT NULL,
+  `name` INT(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_creator_idx` (`id_creator` ASC),
+  CONSTRAINT `id_creator`
+    FOREIGN KEY (`id_creator`)
+    REFERENCES `341`.`contactus_email` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)	
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
