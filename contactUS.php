@@ -6,7 +6,7 @@ require_once("partial/header.php");
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <h1 class="h1">Contact us </h1>
-                <p class="bd-lead">Questions and request to the team from the users</p>
+                <p class="bd-lead">Questions and request to the team from users</p>
             </div>
         </div>
     </div>
@@ -20,7 +20,11 @@ require_once("partial/header.php");
                         <div class="form-group">
                             <label for="name">
                                 Name</label>
-                            <input type="text" class="form-control" id="name" name = "n" placeholder="Enter name" required="required" />
+							<div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="text" class="form-control" name = "name" id="name"  placeholder="Enter name" required="required" />
+							</div>
                         </div>
                         <div class="form-group">
                             <label for="email">
@@ -28,7 +32,8 @@ require_once("partial/header.php");
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="email" class="form-control" name = "email" id="email" placeholder="Enter email" required="required" /></div>
+                                <input type="email" class="form-control" name = "email" id="email" placeholder="Enter email" required="required" />
+							</div>
                         </div>
                         <div class="form-group">
                             <label for="subject">
