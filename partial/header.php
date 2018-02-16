@@ -29,11 +29,12 @@
 			<img class="navbar-brand " src="images/site_logo.png" height="60">
 		</a>
 
-		<form class="form-inline col-8">
+		<form class="form-inline col-8" method="post">
 			<input class="form-control mr-sm-3 col" type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success" type="submit">Search</button>
 			
 		</form>
+
 		<?php
 			if ($action->isLoggedIn())
 			{
@@ -62,6 +63,7 @@
 		<?php
 			}
 		?>
+
 	</nav>
 	<?php 
 	require_once("tabmenu.php");

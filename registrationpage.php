@@ -1,8 +1,45 @@
 <?php
 
 require_once("partial/header.php");
+require_once("reqregister.php");
+
+require_once ("formvalidator.php");
+$show_form=true;
+if(isset($_POST['Submit']))
+{
+             $validator = new FormValidator();
+    $validator->addValidation("username","req","Please enter your username");
+     $validator->addValidation("username","maxlen=25","Max length for FirstName is 25");
+
+     $validator->addValidation("Email","maxlen=50");
+    $validator->addValidation("Email","email", "The input for Email should be a valid email value");
+    $validator->addValidation("Email","req","Please fill in Email");
+    $validator->addValidation("Email2","maxlen=50");
+    $validator->addValidation("Email2","email", "The input for Email should be a valid email value");
+    $validator->addValidation("Email2","req","Please fill in Email");
+    $validator->addValidation("Email2","eqelmnt=Email", "The confirmed email  is not same as email address");
+
+    $validator->addValidation("pwd1","req","Please enter your password");
+    $validator->addValidation("pwd1","regexp=^[A-Za-z]{4,8}$","please enter valid password ");
+    $validator->addValidation("pwd2","req","Please confirm password");
+    $validator->addValidation("pwd2","eqelmnt=pwd1","The confirmed password is not same as password");
+    
+    if($validator->ValidateForm())
+    {
+        
+        $show_form=false;
+    }
+    else
+    {
+        echo "<B>Validation Errors:</B>";
+
+       
+    }
+}
+
 
 ?>
+
 
 <div class="container-fluid"  align="justify">
 	
@@ -17,30 +54,31 @@ require_once("partial/header.php");
                                 
                                 
                                 <div class="mt-4">
-                                    <form  id="myform" ><div class="form-group">
+                                    <form  id="myform" action="reqregister.php" method="post" ><div class="form-group">
                                            <label for='username'></label>
-                                            <input type="text" class="form-control" name="username" value="" placeholder="UserName" id="username">
+                                            <input type="text" class="form-control" name="username" value="" placeholder="Username" id="username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email" value="" placeholder="Example@gmail.com" id="Email">
+                                            <input type="email" class="form-control" name="email" value="" placeholder="example@gmail.com" id="Email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email2" value="" placeholder="Confirm email address" id="Email2">
+                                            <input type="email" class="form-control" name="email2" value="" placeholder="example@gmail.com" id="Email2">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="pwd1" value="" placeholder="Password" id="pwd1">
                                             
 										</div>
                                            <div class="form-group">
-                                            <input type="password" class="form-control" name="pwd2" value="" placeholder="Confirm Password" id="pwd2">
+                                            <input type="password" class="form-control" name="pwd2" value="" placeholder="Password" id="pwd2">
 
                                         </div> <div class="form-group">
                                             <input type="text" class="form-control" name="Interest" value="" placeholder="Area Of Interest">
                                         </div>
                                         <div class="text-center">
-                                        <button type="submit" class="btn btn-danger">Join Us </button>
+                                        <button type="submit" class="btn btn-danger" >Join Us </button>
 										</div>
                                     </form>
+                                    
                                     <div class="clearfix"></div>
                                     <div class="social-login">
                                    	
@@ -67,8 +105,36 @@ require_once("partial/header.php");
             </div>
         </section>
 
+     
+<script type="text/javascript">
 
-         
+ var frmvalidator = new Validator("myform");
+	  frmvalidator.addValidation("username","req","Please enter your username");
+ frmvalidator.addValidation("username","maxlen=25",
+        "Max length for FirstName is 25");
+ 
+ frmvalidator.addValidation("Email","maxlen=50");
+ frmvalidator.addValidation("Email","req");
+ frmvalidator.addValidation("Email","email");
+		 frmvalidator.addValidation("Email2","maxlen=50");
+ frmvalidator.addValidation("Email2","req");
+ frmvalidator.addValidation("Email2","email")
+		   frmvalidator.addValidation("Email2","eqelmnt=Email", "The confirmed email  is not same as email address");
+		 
+		 
+		 frmvalidator.addValidation("pwd1","req","Please enter your password");
+		 frmvalidator.addValidation("pwd1","regexp=^[A-Za-z]{4,8}$","please enter valid password ");
+         frmvalidator.addValidation("pwd2","req","Please confirm password");
+     frmvalidator.addValidation("pwd2","eqelmnt=pwd1","The confirmed password is not same as password");
+
+		 
+		 
+		 
+
+ 
+ 
+ 
+</script>
 
   
 
