@@ -60,7 +60,8 @@ require_once("partial/header.php");
             // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
 			
                 echo "<div class='col-md-6'>NAME OF SENDER: ".$results['name']."<br/>EMAIL: ".$results['email']."<br/>		
-				SUBJECT: ".$results['subject']."<br/>MESSAGE: <br/><p>".$results['message']."</p></div>";
+				SUBJECT: ".$results['subject']."<br/>		
+				TIME: ".$results['time']."<br/>MESSAGE: <br/><p>".$results['message']."</p></div>";
 				
                 // posts results gotten from database(title and text) you can also show id ($results['id'])
             }
