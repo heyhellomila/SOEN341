@@ -61,7 +61,7 @@ require_once("partial/header.php");
 			
                 echo "<div class='col-md-6'>NAME OF SENDER: ".$results['name']."<br/>EMAIL: ".$results['email']."<br/>		
 				SUBJECT: ".$results['subject']."<br/>		
-				TIME: ".$results['time']."<br/>MESSAGE: <br/><p>".$results['message']."</p></div>";
+				DATE AND TIME: ".$results['time']."<br/>MESSAGE: <br/><p>".$results['message']."</p></div>";
 				
                 // posts results gotten from database(title and text) you can also show id ($results['id'])
             }
