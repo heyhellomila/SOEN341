@@ -20,10 +20,10 @@
  background:none;
  outline: none;
  display: inline;
- color: blue;
+ color: orange;
  cursor: pointer;
  font-weight: bold;
- font-size: 21px;
+ font-size: 20px;
 }
 
 .notButton:hover {
