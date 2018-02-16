@@ -3,6 +3,7 @@
 require_once("partial/header.php");
 require_once("reqregister.php");
 
+
 require_once ("formvalidator.php");
 $show_form=true;
 if(isset($_POST['Submit']))
