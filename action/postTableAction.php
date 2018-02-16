@@ -1,4 +1,6 @@
 <?php
+
+require_once("action/commonAction.php");
 require_once("dba/MySQLrequests.php");
 
 class postTableAction extends commonAction{
