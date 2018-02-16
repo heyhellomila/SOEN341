@@ -7,7 +7,6 @@ class viewPostAction extends commonAction{
 	public function __construct() {
 		parent::__construct(commonAction::$VISIBILITY_PUBLIC);
 		$_SESSION["post_id"]=1;
-		$_SESSION["user_id"]=1;
 	}
 
 	protected function executeAction() {

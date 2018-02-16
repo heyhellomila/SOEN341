@@ -1,6 +1,8 @@
 <?php
 require_once("action/dba/MySQLrequests.php");
-
+if (!isset($_SESSION["user_id"])) {
+	header("location:signIn.php");
+}
 
 if ($_POST["parent_id"]=="post") {
 	addComment($_POST["commentContent"]);

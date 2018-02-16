@@ -41,7 +41,7 @@ require_once("partial/header.php");
 								<div class="col-2">
 									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
 								</div>
-								<form class="form col" action="r.php" method="post">
+								<form class="form col" action="commentDBA.php" method="post">
 									<input type="hidden" name="parent_id" value="post"></input>
 									<div class="form-group ">
 										<label for="commentContent"></label>
@@ -111,7 +111,7 @@ require_once("partial/header.php");
 								<div class="col-2">
 									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
 								</div>
-								<form class="form col" action="r.php" method="post">
+								<form class="form col" action="commentDBA.php" method="post">
 									<input type="hidden" name="parent_id" value="<?=$v["comment_id"]?>"></input>
     								<div class="form-group ">
 										<label for="commentContent"></label>
