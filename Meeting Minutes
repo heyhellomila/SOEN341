@@ -1,0 +1,115 @@
+Team Meeting #5 (TA/Client Consultation)
+Date: February 2, 2018
+Member(s) Present: Paul	Micu, Landry Signi, Muhammad Bilal Nasir
+Yazan	Odeh, Patrick Pin, Mila Roisin, Michelle Choi
+Member(s) Absent: Debashish Saha (due to external factors - Interview)
+
+
+
+
+
+
+Team Mini-Meeting #4 (Last Minute Meeting before Sprint #1)
+Date: February 1, 2018
+
+Member(s) Present: Paul Micu, Mila Roisin, Michelle Choi
+
+- Goal #1: Update OS to High Sierra to run latest version of Apache on Mila's PC (inconsistencies with Apache 5 with Apache 7).
+- Mila was unable to test the code due to failing running inconsistent environment on her machine. 
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Team Meeting #3 (Task Assignment and Team Revision before Sprint #1)
+Date: 29 January 2018
+
+Member(s) Present: Paul Micu, Landry Signi, Muhammad Bilal Nasir, 
+Yazan Odeh, Patrick Pin, Mila Roisin, Michelle Choi, Debashish Saha
+Member(s) Absent: None
+
+***NEXT MEETING:
+
+- [!!!] Everyone must include a detailed description in their commits to Master, and peer-reviewed by at least two members per commit.
+
+- Goal #1: Send email to TA for last chance file modification.
+- Goal #2: Installation of WAMP Server for second sprint.
+- Goal #3: Integration of TravisCI with Github Repo
+
+- Member check-in conducted.
+- Weekly meetings settled for Mondays at 2 PM.
+- Mini tutorial on CSS/HTML for COEN team members unfamiliar with language.
+- Discussion on webpage layout and voting ranking system for comments and FQA, and to include a link for the separate login page.
+- For first sprint, compile user interface: the buttons need not be function, but we must present website layout to our client.
+- Troubleshooting on Bootstrap framework and installation of Apache, PHP and SQL on all team members' machines.
+- Decided on installation of wamp server by second sprint.
+- Clarification: send email to TA to find out when is the last chance to modify our files before presenting our progress for first sprint.
+- Inclusion of FB login link?
+- Password recovery system up for debate for sprint #2?
+- Ideal: Infinite Scroll feature into our website
+- Notification system on receiving new comments to a Question?
+- Pending: 
+
+
+- [!!!] Everyone must include a detailed description in their commits to Master, and peer-reviewed by at least two members per commit.
+
+TEAM TASK ASSIGNMENTS:
+
+Michelle - Top Questions Tag System, Logo Design
+Mila - Footer, Adding Questions
+Patrick - Body, Scrolling Up button
+Paul - Q/A page
+Bilal - Registration Account Paghe
+Landry - Privacy/Contact Us Form
+Yazan - Header, Login page, search engine
+Deba - Login page, search engine
+
+Debate: Post vs. Questions - Posts!
+
+Meeting Adjourned.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Team Meeting #2 (Brainstorm and Consultation with TA)
+Date: 26 January 2018
+
+Member(s) Present: Paul	Micu, Landry Signi, Muhammad Bilal Nasir
+Yazan	Odeh, Patrick Pin, Mila Roisin, Michelle Choi, Debashish	Saha
+
+Member(s) Absent: None
+
+
+***NEXT MEETING: 
+
+- Goal #1: Familiarize with Bootstrap and assign individual tasks to team members. [Done]
+- Goal #2: Set up UI for website.
+- Goal #3: Compile Minutes #1, 2 for Github Repo - Mila [Done]
+
+- Discussed UI interface and brainstormed ideas/elements to include our website to present for our client.
+- Website will be hosted on local server.
+- Set up weekly meetings for Thursdays (2-3 pm).
+- Quick tutorial for software tools and environments for team members unfamiliar with Slack and Doodle. 
+- Decided that framework would be more efficient tool to speed up coding process, rather than writing code from scratch.
+- Prior meeting will be held, Monday, January 29, 2017 at 3 pm for last minute team discussions before next sprint. 
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Team Meeting #1 (Introduction to SOEN 341 Project)
+Date: 19 January 2018
+
+Member(s) Present: Paul	Micu, Landry Signi, Muhammad Bilal Nasir
+Yazan	Odeh, Patrick Pin, Mila Roisin, Debashish	Saha
+
+Member(s) Absent: Michelle Choi
+
+***NEXT MEETING
+Goal #1: Set up Slack workspace. [Done]
+Goal #2: Email all team members with contact info [Done]
+Goal #3: Consult Team Member's availabilities for weekly meetings. [Done]
+Goal #4: Each team member must set up github account and do pull request.[Done]
+
+- Introduction and greetings to new team members.
+- Setting up github repo for members who do not have one.
+- Discussed using Slack as main communication medium between members.
+- Had difficulty in integrating github plug-in with Slack app.
+
+
+
