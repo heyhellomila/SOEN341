@@ -2,9 +2,6 @@
 require_once("partial/header.php");
 ?>
 <?php
-require_once('connect.php');
-require_once('config.php');
-require('PHPMailer/PHPMailerAutoload.php');
 
 if(isset($_POST) & !empty($_POST)){
 

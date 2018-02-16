@@ -4,6 +4,7 @@
 <head>
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/global.css">
 	<link rel="stylesheet" type="text/css" href="css/viewPost.css">
 	<link rel="stylesheet" type="text/css" href="css/reg.css">
 	<link rel="stylesheet" type="text/css" href="css/SignIn.css">
@@ -18,6 +19,8 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/gen_validatorv4.js"></script>
+	
+	<script type="text/javascript" src="js/main.js"></script>
 
 
 
@@ -55,7 +58,7 @@
 			{		
 		?>		
 			<div class="col">
-				<form class="form-inline row">
+				<form class="form-inline row" method="post">
 					<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
 					<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
 				</form>

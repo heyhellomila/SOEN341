@@ -11,7 +11,11 @@ foreach ($action->posts as $post) {
     <div class="container">
       <div>
         <!-- Single post starts here -->
-        <h5><a href="viewPost.php"><?=$post["post_title"]?></a></h5>
+        <form name="title" action="index.php" method="post">
+          <input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          <button type="submit" class="notButton"><?=$post["post_title"]?></button>
+        </form>
+                
         <div class="media text-muted pt-0 mb-3 border-bottom border-gray">
           <table>
           <tr>
