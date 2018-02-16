@@ -8,5 +8,3 @@ before_install:
 
 before_script:
 	- composer before_install
-
-script: phpunit --configuration phpunit.xml --coverage-text
