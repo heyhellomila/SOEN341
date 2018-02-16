@@ -1,7 +1,7 @@
 <?php
 require_once("action/commonAction.php");
 require_once("dba/MySQLrequests.php");
-require_once("connect.php");
+
 
 
 class postQuestionAction extends commonAction {
@@ -10,33 +10,32 @@ class postQuestionAction extends commonAction {
 
 	}
 	protected function executeAction() {
-		// check if user is logged in
-	//	if(isloggedIn()){
-		// get data sent from form
-		$a=$_POST['questiontopic']; 
-		$b=$_POST['content'];
-		$name = '2';
-		// checks if data are set
-		if (isset($a) && isset($b)){
+		if (commonAction::isLoggedIn()) {
+			
 
-		$sql="INSERT INTO post(post_title, post_content, post_creator) VALUES('$a','$b','$name')";	
-		$conn = new mysqli('localhost','root','');
-		mysqli_select_db($conn,'341');
-	}
-		if ($conn->query($sql) === TRUE) {
-			echo "New record created successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
+			$a=$_POST['questiontopic']; 
+			$b=$_POST['content'];
+			$name = $_SESSION["user_id"];
+			if (isset($a) && isset($b)){
+
+				$connection=connection::getConnection();
+
+				$statement = $connection->prepare("INSERT INTO post(post_title, post_content, post_creator) VALUES(?,?,?)");
+
+				$statement->bindParam(1, $a);
+				$statement->bindParam(2, $b);
+				$statement->bindParam(3, $name);
+
+				$statement->setFetchMode(PDO::FETCH_ASSOC);
+				$statement->execute();
+				$info = $statement->fetchAll();
+				$liked=$info;
+
+				connection::closeConnection();
+			}
 		}
-		mysqli_close($conn);	
-
-			//header("location:index.php");
-			//exit;
-	//	}
-
-
-
-	
-
+		else
+			header("location:signIn.php");
+		
 	}
 }
