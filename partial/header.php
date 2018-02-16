@@ -68,6 +68,7 @@
 		?>
 
 	</nav>
+	<div class="contents">
 	<?php 
 	require_once("tabmenu.php");
 	?>
