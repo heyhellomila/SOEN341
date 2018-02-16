@@ -41,12 +41,14 @@ require_once("partial/header.php");
 								<div class="col-2">
 									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
 								</div>
-								<form class="form col" method="post">
+								<form class="form col" action="r.php" method="post">
+									<input type="hidden" name="parent_id" value="post"></input>
 									<div class="form-group ">
-										<label for="exampleFormControlTextarea1"></label>
-										<textarea name="commentPostContent" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write comments..."></textarea>
+										<label for="commentContent"></label>
+										<textarea class="form-control" name="commentContent"  rows="3" placeholder="Write comments..."></textarea>
 									</div> 
-									<button type="submit" name="commentPost" class="btn btn-primary">Comment</button>
+									<button type="submit" class="btn btn-primary">Comment</button>
+
 
 								</form>
 							</div>
@@ -63,7 +65,8 @@ require_once("partial/header.php");
 				<div class="row ">
 					<div class="media "><div class="col">
 						<img class="d-flex mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
-						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">
+						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">';
+						
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -108,12 +111,13 @@ require_once("partial/header.php");
 								<div class="col-2">
 									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
 								</div>
-								<form class="form col" action="viewPost.php" method="post">
-									<div class="form-group ">
-										<label for="exampleFormControlTextarea1"></label>
-										<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write comments..."></textarea>
+								<form class="form col" action="r.php" method="post">
+									<input type="hidden" name="parent_id" value="<?=$v["comment_id"]?>"></input>
+    								<div class="form-group ">
+										<label for="commentContent"></label>
+										<textarea class="form-control" name="commentContent" rows="3" placeholder="Write comments..."></textarea>
 									</div> 
-									<button type="submit" id="<?=$v["comment_id"]?>" name="commentComment" class="btn btn-primary">Comment</button>
+									<button type="submit" class="btn btn-primary">Comment</button>
 								</form>
 							</div>
 						</div>
@@ -134,3 +138,4 @@ require_once("partial/header.php");
 
 <?php
 require_once("partial/footer.php");
+?>
