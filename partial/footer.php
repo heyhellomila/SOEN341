@@ -1,8 +1,8 @@
 <div id="footer" class="footer navbar navbar-dark bg-dark fixed-bottom">
+	<div id="topPage"><a href="#top"><img  src="./images/up.png"></a></div>
     <div class="container" >
-        <form class="row mx-auto" method="post">
-            <input class="form-control mr-sm-3" style="width: 500px;" type="search" placeholder="What’s your question?" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">ASK!</button>        
+        <form class="row mx-auto" method="post" action="postQuestion.php">
+            <button class="btn btn-outline-success" type="submit">Got a Question? Click here to ask!</button>        
         </form>
         <div class="row text-white">
             <a class="text-white" href="contactus.php"> CONTACT US </a> | LEGAL | <a class="text-white" href="Privacy_policy.php"> PRIVACY </a> | SHOW ME DA WAE | LOREM IPSUM
@@ -11,4 +11,5 @@
     
 </div>
 </body>
+
 </html>
