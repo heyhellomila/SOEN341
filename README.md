@@ -3,7 +3,6 @@
 ## Winter 2018 - Prof. Weiyi Shang
 
 
-=======
 ## Team members | Student IDs: 
 
 * Paul	Micu | 27486340
