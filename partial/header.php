@@ -66,9 +66,116 @@
 		<?php
 			}
 		?>
-
 	</nav>
 	<div class="contentWrap">
+	
+	<?php
+		
+	abstract class Notification
+	{
+		protected $recipient;
+		protected $sender;
+		protected $unread;
+		protected $type;
+		protected $parameters;
+		protected $referenceId;
+		protected $createdAt;
+		
+		public function messageForNotification(Notification $notification) : string;
+		public function messageForNotifications(array $notifications) : string;
+
+		public function message() : string
+		{
+			return $this->messageForNotification($this);
+		}
+	}
+	
+	class NotificationManager
+	{
+		protected $notificationAdapter;
+
+		public function add(Notification $notification);
+
+		public function markRead(array $notifications);
+
+		public function get(User $user, $limit = 20, $offset = 0) : array;
+	}
+	
+	public function add(Notification $notification)
+	{
+		if (!$this->notificationAdapter->isDoublicate($notification))
+		{
+			$this->notificationAdapter->add([
+				'recipient_id' => $notification->recipient->getId(),
+				'sender_id' => $notification->sender->getId()
+				'unread' => 1,
+				'type' => $notification->type,
+				'parameters' => $notification->parameters,
+				'reference_id' => $notification->reference->getId(),
+				'created_at' => time(),
+			]);
+		}
+	}
+	
+	namespace Notification\Comment;
+
+	class CommentLikedNotification extends \Notification
+	{
+		public function messageForNotification(Notification $notification) : string 
+		{
+			return $this->sender->getName() . 'has commented on your post: ' . substr($this->reference->text, 0, 10) . '...'; 
+		}
+
+   
+		public function messageForNotifications(array $notifications, int $realCount = 0) : string 
+		{
+			if ($realCount === 0) {
+				$realCount = count($notifications);
+			}
+
+			if ($realCount === 2) {
+				$names = $this->messageForTwoNotifications($notifications);
+			}
+			
+			elseif ($realCount < 5) {
+				$names = $this->messageForManyNotifications($notifications);
+			}
+        
+			else {
+				$names = $this->messageForManyManyNotifications($notifications, $realCount);
+			}
+
+			return $names . 'have commented on your post: ' . substr($this->reference->text, 0, 10) . '...'; 
+		}
+
+
+		protected function messageForTwoNotifications(array $notifications) : string 
+		{
+			list($first, $second) = $notifications;
+			return $first->getName() . ' and ' . $second->getName(); // John and Jane
+		}
+
+   
+		protected function messageForManyNotifications(array $notifications) : string 
+		{
+			$last = array_pop($notifications);
+		
+			foreach($notifications as $notification) {
+				$names .= $notification->getName() . ', ';
+			}
+
+			return substr($names, 0, -2) . ' and ' . $last->getName(); // Jane, Johnny, James and Jenny
+		}
+
+		protected function messageForManyManyNotifications(array $notifications, int $realCount) : string 
+		{
+			list($first, $second) = array_slice($notifications, 0, 2);
+	
+			return $first->getName() . ', ' . $second->getName() . ' and ' .  $realCount . ' others'; // Jonny, James and 12 other
+		}
+	}
+	?>
+		
 	<?php 
 	require_once("tabmenu.php");
 	?>
