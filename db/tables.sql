@@ -133,7 +133,26 @@ CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
   `message` TEXT(1000) NOT NULL,
   `name` CHAR(25) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `id_creator_idx` (`id` ASC))  
+  INDEX `id_creator_idx` (`id` ASC)) ;
+  
+-- -----------------------------------------------------
+-- Table `341`.`notifications`
+-- -----------------------------------------------------
+  
+DROP TABLE IF EXISTS `341`.`notifications` ;
+
+CREATE TABLE IF NOT EXISTS `341`.`notifications` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `recipient_id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `unread` tinyint(1) NOT NULL DEFAULT '1',
+  `type` varchar(255) NOT NULL DEFAULT '',
+  `parameters` text NOT NULL,
+  `reference_id` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
   
 
 SET SQL_MODE=@OLD_SQL_MODE;
