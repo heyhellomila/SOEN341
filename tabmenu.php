@@ -1,5 +1,5 @@
 <?php
-
+require_once("action/profilePageAction.php");
 require_once("action/dba/MySQLrequests.php");
 //make connection
 $connection=connection::getConnection();
@@ -50,10 +50,13 @@ connection::closeConnection();
 							$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 							<div class="row border-bottom border-gray">    
-								<div class="col">
-									<h5 class="row my-1"><?=$post["post_title"]?></h5>
+								<div class="col my-1">
+									<form class="row" name="title" action="index.php" method="post">
+										<input type="hidden" name="post_id" value="<?=$post["post_id"]?>">          
+										<button type="submit" class="notButton"><?=$post["post_title"]?></button>
+									</form>
 									<div class="my-1 text-muted small row">
-										<p class="m-0">
+										<p class="my-2">
 											<strong class="text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 70&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 										</p>
 									</div>
@@ -75,15 +78,18 @@ connection::closeConnection();
 							$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							
 							?>
-								<div class="row border-bottom border-gray">
-									<div class="col">
-										<h5 class="row"><?=$post["post_title"]?></h5>
-										<div class="my-1 text-muted row">
-											<p class="small m-0">
-												<strong class="d-block text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 2&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
-											</p>
-										</div></div>
-									</div>
+							<div class="row border-bottom border-gray">
+								<div class="col my-1">
+									<form class="row" name="title" action="index.php" method="post">
+										<input type="hidden" name="post_id" value="<?=$post["post_id"]?>">          
+										<button type="submit" class="notButton"><?=$post["post_title"]?></button>
+									</form>
+									<div class="my-1 text-muted row small">
+										<p class=" my-2">
+											<strong class="d-block text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 2&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
+										</p>
+									</div></div>
+								</div>
 								<?php } ?>
 								<!-- End of single post -->
 							</div>
@@ -96,21 +102,24 @@ connection::closeConnection();
 								<!-- Single post that is added to the homepage starts here -->
 								<?php foreach ($unpopular as $post) {
 									$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
-							?>
-									<div class="row border-bottom border-gray"><div class="col">
-										<h5 class="row"><?=$post["post_title"]?></h5>
-										<div class="my-1 text-muted row">
-											<p class="small m-0">
+									?>
+									<div class="row border-bottom border-gray"><div class="col my-1">
+										<form class="row" name="title" action="index.php" method="post">
+										<input type="hidden" name="post_id" value="<?=$post["post_id"]?>">          
+										<button type="submit" class="notButton"><?=$post["post_title"]?></button>
+									</form>
+										<div class="my-1 text-muted row small">
+											<p class=" my-2">
 												<strong class="d-block text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>
-								<?php } ?>
+									<?php } ?>
 
-								<!-- End of single post -->
+									<!-- End of single post -->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
