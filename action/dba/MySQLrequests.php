@@ -345,4 +345,28 @@ public static function getAnswers($id, $answers) {
 			Connection::closeConnection();
 			return $info;
 		}
+  
+		public static function updateProfile($username,$userbio,$password,$id){
+			$connection = Connection::getConnection();
+
+				$username = $_POST['username'];
+				$id=$_SESSION["user_id"];
+				$userbio = $_POST['userbio'];
+				$password=$_POST['password'];
+				$pass = sha1($password);
+				
+				$statement=$connection->prepare("UPDATE user SET user_name='$username', user_bio='$userbio',user_pass='$pass' WHERE user_id='$id'");
+				$statement->bindParam(1, $username);
+				$statement->bindParam(2, $userbio);
+				$statement->bindParam(3, $password);
+
+				$statement->execute();
+
+				$statement->setFetchMode(PDO::FETCH_ASSOC);
+				$info = $statement->fetch();
+			
+				Connection::closeConnection();
+			
+		}
+
 }

@@ -14,7 +14,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -31,7 +31,6 @@
 		<a class="navbar-brand col pt-0" href="index.php">
 			<img class="navbar-brand " src="images/site_logo.png" height="60">
 		</a>
-
 		<form class="form-inline col-8" method="post">
 			<input class="form-control mr-sm-3 col" type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success" type="submit">Search</button>
@@ -39,36 +38,56 @@
 		</form>
 
 		<?php
-			if ($action->isLoggedIn())
-			{
-		?>
-			<div class="dropdown">
+		if ($action->isLoggedIn())
+		{
+			?>
+			<div class="dropdown mr-5">
 				<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
+					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/captain.png">
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">Profile</a>
-					<a class="dropdown-item" href="./?logout=true">Sign Out</a>
+					
+					<img alt="32x32" class="mr-4 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
+					<p class="small">
+						<a href="editProfilePage.php">Change Photo</a></p>
+
+						<div class="text-centered">
+							john
+							<p class="text-muted small">
+							email</p>
+						</div>
+
+						<div>
+							<a href="editProfilePage.php" class="btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Change Password</a>
+						</div>
+
+						<div class="col-mr-2">
+							<a href="profilePage.php" class="btn btn-default btn-sm">Profile</a>
+						</div>
+						<div>
+							<a href="./?logout=true" class="btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
+						</div>
+
+					</div>
 				</div>
-			</div>
-		
-		<?php
+
+				<?php
 			}
 			else
 			{		
-		?>		
-			<div class="col">
-				<form class="form-inline row" method="post">
-					<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
-					<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
-				</form>
-			</div>
-		<?php
+				?>		
+				<div class="col">
+					<form class="form-inline row" method="post">
+						<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
+						<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
+					</form>
+				</div>
+				<?php
 			}
-		?>
+			?>
 
-	</nav>
-	<div class="contentWrap">
-	<?php 
-	require_once("tabmenu.php");
-	?>
+		</nav>
+		<div class="contentWrap">
+			<?php 
+			require_once("tabmenu.php");
+			?>

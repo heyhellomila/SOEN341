@@ -13,11 +13,11 @@ class postQuestionAction extends commonAction {
 		if (commonAction::isLoggedIn()) {
 			
 
-			$a=$_POST['questiontopic']; 
-			$b=$_POST['content'];
+			
 			$name = $_SESSION["user_id"];
-			if (isset($a) && isset($b)){
-
+			if (isset($_POST['questiontopic']) && isset($_POST['content'])){
+				$a=$_POST['questiontopic']; 
+				$b=$_POST['content'];
 				$connection=connection::getConnection();
 
 				$statement = $connection->prepare("INSERT INTO post(post_title, post_content, post_creator) VALUES(?,?,?)");

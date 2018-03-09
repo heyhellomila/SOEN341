@@ -1,5 +1,5 @@
 <?php
-
+require_once("action/profilePageAction.php");
 require_once("action/dba/MySQLrequests.php");
 //make connection
 $connection=connection::getConnection();
@@ -120,12 +120,12 @@ connection::closeConnection();
 											</p>
 										</div></div>
 									</div>
-								<?php } ?>
+									<?php } ?>
 
-								<!-- End of single post -->
+									<!-- End of single post -->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
