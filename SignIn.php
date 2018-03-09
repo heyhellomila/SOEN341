@@ -4,7 +4,11 @@ require_once("action/SignInAction.php");
 
 $action = new SignInAction();
 $action->execute();
-require_once("partial/header.php") 
+require_once("partial/header.php") ;
+
+
+
+
 ?>
 	<div  class="text-center">
 	<form class="form-signin" method="post">
@@ -25,11 +29,13 @@ require_once("partial/header.php")
 		<button class="btn btn-lg btn-primary btn-block" type="submit">
 		Sign in
 		</button>
-		<button class="btn btn-lg btn-block facebook-button-colour"  type="submit">
+		
+		<a href="<?=htmlspecialchars($loginURL)?>" class="btn btn-lg btn-block facebook-button-colour"  type="submit">
 			<i class="fa fa-facebook"></i>
-			Sign in with Facebook
+			Sign In with Facebook
 			
-		</button>
+		</a>
+
 
 		<button class="btn btn-lg btn-block google-button-colour"  type="submit">
 			<i class="fa fa-google"></i>
