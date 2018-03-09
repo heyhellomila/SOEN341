@@ -32,11 +32,12 @@
 			<img class="navbar-brand " src="images/site_logo.png" height="60">
 		</a>
 
-		<form class="form-inline col-8" method="post">
-			<input class="form-control mr-sm-3 col" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success" type="submit">Search</button>
+		<form class="form-inline col-8" action="search.php" method="GET">
+			<input class="form-control mr-sm-3 col" type="text" placeholder="Search" aria-label="Search" name="query">
+			<button class="btn btn-outline-success" type="submit" value="Search">Search</button>
 			
 		</form>
+
 
 		<?php
 			if ($action->isLoggedIn())
