@@ -48,13 +48,13 @@
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					
 					<img alt="32x32" class="mr-4 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
-					<p class="text-centered small">
+					<p class="small">
 						<a href="editProfilePage.php">Change Photo</a></p>
 
-						<div>
-							John Doe
+						<div class="text-centered">
+							john
 							<p class="text-muted small">
-							example@pods.tld</p>
+							email</p>
 						</div>
 
 						<div>
@@ -65,7 +65,7 @@
 							<a href="profilePage.php" class="btn btn-default btn-sm">Profile</a>
 						</div>
 						<div>
-							<a href="#" class="btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" href="./?logout=true"></i> Sign Out</a>
+							<a href="./?logout=true" class="btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
 						</div>
 
 					</div>
