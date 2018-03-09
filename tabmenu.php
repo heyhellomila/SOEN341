@@ -1,5 +1,5 @@
 <?php
-
+require_once("action/profilePageAction.php");
 require_once("action/dba/MySQLrequests.php");
 //make connection
 $connection=connection::getConnection();
@@ -29,7 +29,7 @@ connection::closeConnection();
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item bg-light">
-				<a class="nav-link active font-weight-bold text-info" data-toggle="collapse" href="#activetab">Active</a>
+				<a class="nav-link active font-weight-bold text-info" data-toggle="collapse" href="#activetab">Popular</a>
 			</li>
 			<li class="nav-item bg-light">
 				<a class="nav-link font-weight-bold text-info" data-toggle="collapse" href="#newtab">New</a>
@@ -51,10 +51,15 @@ connection::closeConnection();
 							?>
 							<div class="row border-bottom border-gray">    
 								<div class="col">
-									<h5 class="row my-1"><?=$post["post_title"]?></h5>
+									<h5 class="row">
+										<form name="title" action="index.php" method="post">
+          								<input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          								<button type="submit" class="notButton"><?=$post["post_title"]?></button>
+        								</form>
+        							</h5>
 									<div class="my-1 text-muted small row">
 										<p class="m-0">
-											<strong class="text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 70&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
+											<strong class="text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 										</p>
 									</div>
 								</div>
@@ -77,10 +82,15 @@ connection::closeConnection();
 							?>
 								<div class="row border-bottom border-gray">
 									<div class="col">
-										<h5 class="row"><?=$post["post_title"]?></h5>
+										<h5 class="row">
+											<form name="title" action="index.php" method="post">
+          									<input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          									<button type="submit" class="notButton"><?=$post["post_title"]?></button>
+        									</form>
+        								</h5>
 										<div class="my-1 text-muted row">
 											<p class="small m-0">
-												<strong class="d-block text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 2&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
+												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>
@@ -98,19 +108,24 @@ connection::closeConnection();
 									$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 									<div class="row border-bottom border-gray"><div class="col">
-										<h5 class="row"><?=$post["post_title"]?></h5>
+										<h5 class="row">
+											<form name="title" action="index.php" method="post">
+          									<input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          									<button type="submit" class="notButton"><?=$post["post_title"]?></button>
+        									</form>
+        								</h5>
 										<div class="my-1 text-muted row">
 											<p class="small m-0">
-												<strong class="d-block text-gray-dark">From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: 0&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
+												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>
-								<?php } ?>
+									<?php } ?>
 
-								<!-- End of single post -->
+									<!-- End of single post -->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
