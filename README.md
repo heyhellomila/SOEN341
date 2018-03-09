@@ -2,10 +2,10 @@
 
 ## Winter 2018 - Prof. Weiyi Shang
 
-Objective
+Objective: 
 Develop a question and answer online forum.
 
-Project
+Project: 
 The web application is a platform for users to ask and answer questions. Users can register as members or not, can vote or grade questions and answers. The questions and answers are on a wide range of topics allows.
 
 
