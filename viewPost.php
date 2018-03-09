@@ -1,4 +1,51 @@
-<?php 
+<?php
+
+  $con = mysqli_connect('localhost', '341DBAuser', '', '341');
+
+  if (isset($_POST['post_liked'])) {
+    $postid = $_POST['postid'];
+    $result = mysqli_query($con, "SELECT * FROM post WHERE post_id=$postid");
+    $row = mysqli_fetch_array($result);
+    $n = $row['post_nb_likes'];
+
+    mysqli_query($con, "UPDATE post SET post_nb_likes=$n+1 WHERE post_id=$postid");
+
+    echo $n+1;
+    exit(); }
+
+  if (isset($_POST['post_disliked'])) {
+    $postid = $_POST['postid'];
+    $result = mysqli_query($con, "SELECT * FROM post WHERE post_id=$postid");
+    $row = mysqli_fetch_array($result);
+    $n = $row['post_nb_likes'];
+
+    mysqli_query($con, "UPDATE post SET post_nb_likes=$n-1 WHERE post_id=$postid");
+    
+    echo $n-1;
+    exit(); }
+
+   if (isset($_POST['comment_liked'])) {
+    $commentid = $_POST['commentid'];
+    $result = mysqli_query($con, "SELECT * FROM comment WHERE comment_id=$commentid");
+    $row = mysqli_fetch_array($result);
+    $n = $row['comment_nb_likes'];
+
+    mysqli_query($con, "UPDATE comment SET comment_nb_likes=$n+1 WHERE comment_id=$commentid");
+
+    echo $n+1;
+    exit(); }
+
+  if (isset($_POST['comment_disliked'])) {
+    $commentid = $_POST['commentid'];
+    $result = mysqli_query($con, "SELECT * FROM comment WHERE comment_id=$commentid");
+    $row = mysqli_fetch_array($result);
+    $n = $row['comment_nb_likes'];
+
+    mysqli_query($con, "UPDATE comment SET comment_nb_likes=$n-1 WHERE comment_id=$commentid");
+    
+    echo $n-1;
+    exit(); }
+ 
 require_once("action/viewPostAction.php");
 
 $action = new viewPostAction();
@@ -9,8 +56,8 @@ require_once("partial/header.php");
 <div class="background container">
 	<div class="row">
 		<div class="col-md-2"></div>
-
 		<div class="col-md-8">
+			<h2 style="margin-top: 25px;"><?=$action->post["post_title"]?></h2>
 			<div class="row mainPost">
 				<div class="media ">
 					<img class="d-flex mr-3 col user-icon" src="images/captain.png" alt="Generic placeholder image">
@@ -26,15 +73,17 @@ require_once("partial/header.php");
 
 							<div class="row">
 								<div class="col">
-									<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-thumbs-up"></i>Like | <?=$action->post["post_nb_likes"]?></button>
-									<button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-thumbs-down"></i> </button>
+									<div class="row">
+										<strong id="likes" class="d-block" style="margin-left: 30px; padding: 10px;"><span class="post_likes_count">Likes: <?=$action->post["post_nb_likes"]?></span></strong>
+            							<span class="post_like fa fa-thumbs-up" data-id="<?=$action->post["post_id"]?>"></span>
+            							<span class="post_dislike fa fa-thumbs-down" data-id="<?=$action->post["post_id"]?>"></span>
+            						</div>
 								</div>							
-								<div class="col">
-
+								<!--<div class="col">
 									<a href="https://facebook.com/" target="_blank" class="button pull-right"><i class="fa fa-facebook" aria-hidden="true"></i></a>
 									<a href="https://google.com/" target="_blank" class="button pull-right"><i class="fa fa-google" aria-hidden="true"></i></a>
 									<a href="https://twitter.com/" target="_blank" class="button pull-right"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-								</div>
+								</div>-->
 							</div>
 							<div class="interuptLine"> </div>
 							<div class="row">
@@ -57,10 +106,11 @@ require_once("partial/header.php");
 				</div>
 			</div>
 			<?php
+			$answers = 0;
 			foreach ($action->comments as $v) {
-
+				$answers++;
 				$subcomments=$action->getSubComments($v["comment_id"]);
-				$commentCreator = $action->getUserByID($v["comment_creator"]);
+				$commentCreator=$action->getUserByID($v["comment_creator"]);
 				?>
 				<div class="row ">
 					<div class="media "><div class="col">
@@ -74,11 +124,11 @@ require_once("partial/header.php");
 
 						</div>
 						<div class="media-body">
-
 							<?=$v["comment_content"]?>
 							<div class="col secondaryLikes">
-								<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | <?=$v["comment_nb_likes"]?></button>
-								<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
+								<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$v["comment_nb_likes"]?></span>
+            					<span class="comment_like fa fa-thumbs-up" data-id="<?=$v["comment_id"]?>"></span>
+            					<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$v["comment_id"]?>"></span>
 							</div>	
 							<?php 
 							foreach ($subcomments as $subC) {
@@ -95,9 +145,10 @@ require_once("partial/header.php");
 											<div class="media-body">
 												<?=$subC["comment_content"]?>
 
-												<div class="col secondaryLikes">
-													<button type="button" class="btn btn-primary btn-sm "><i class="fa fa-thumbs-up "></i>Like | <?=$subC["comment_nb_likes"]?></button>
-													<button type="button" class="btn btn-secondary btn-sm "><i class="fa fa-thumbs-down "></i> </button>
+												<div class="col secondaryLikes">					
+													<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$subC["comment_nb_likes"]?></span>
+					            					<span class="comment_like fa fa-thumbs-up" data-id="<?=$subC["comment_id"]?>"></span>
+					            					<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$subC["comment_id"]?>"></span>
 												</div>	
 											</div>
 										</div>
@@ -105,6 +156,10 @@ require_once("partial/header.php");
 								</div>
 								<?php
 							}
+
+    						$post_id = $action->post["post_id"];
+    						mysqli_query($con, "UPDATE post SET post_nb_answers=$answers WHERE post_id=$post_id");
+
 							?>
 							<div class="interuptLine"> </div>
 							<div class="row">
@@ -135,6 +190,81 @@ require_once("partial/header.php");
 </div>
 </div>
 <div class="col-md-2"></div>
+
+<script src="js/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.post_like').on('click', function(){
+      var postid = $(this).data('id');
+          $post = $(this);
+
+      $.ajax({
+        url: 'viewPost.php',
+        type: 'post',
+        data: {
+          'post_liked': 1,
+          'postid': postid
+        },
+        success: function(response){
+          $post.parent().find('span.post_likes_count').text("Likes: " + response);
+        }
+      });
+    });
+
+    $('.post_dislike').on('click', function(){
+      var postid = $(this).data('id');
+        $post = $(this);
+
+      $.ajax({
+        url: 'viewPost.php',
+        type: 'post',
+        data: {
+          'post_disliked': 1,
+          'postid': postid
+        },
+        success: function(response){
+          $post.parent().find('span.post_likes_count').text("Likes: " + response);
+        }
+      });
+    }); 
+
+    $('.comment_like').on('click', function(){
+      var commentid = $(this).data('id');
+          $comment = $(this);
+
+      $.ajax({
+        url: 'viewPost.php',
+        type: 'post',
+        data: {
+          'comment_liked': 1,
+          'commentid': commentid
+        },
+        success: function(response){
+          $post.parent().find('span.comment_likes_count').text("Likes: " + response);
+        }
+      });
+      location.reload();
+    });
+
+    $('.comment_dislike').on('click', function(){
+      var commentid = $(this).data('id');
+          $comment = $(this);
+
+      $.ajax({
+        url: 'viewPost.php',
+        type: 'post',
+        data: {
+          'comment_disliked': 1,
+          'commentid': commentid
+        },
+        success: function(response){
+          $post.parent().find('span.comment_likes_count').text("Likes: " + response);
+        }
+      });
+      location.reload();
+    });
+  });
+</script>
 
 <?php
 require_once("partial/footer.php");

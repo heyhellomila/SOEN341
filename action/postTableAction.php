@@ -15,7 +15,7 @@ class postTableAction extends commonAction{
 			header("location:viewPost.php");}
 
 
-			$this->posts=MySQLrequests::getLastPosts(10,0);
+			$this->posts=MySQLrequests::getLastPosts(255,0);
 	}
 
 	public function getUserByID($id){
