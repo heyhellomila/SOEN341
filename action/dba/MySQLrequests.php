@@ -192,10 +192,14 @@
 			$info = $statement->fetch();
 			
 			Connection::closeConnection();
+			
+			MySQLRequests::add_notification();
+			
+			
 			return $info;
 		
 		}
-public static function getLastPosts($limit,$offset) {
+		public static function getLastPosts($limit,$offset) {
 			$connection = Connection::getConnection();
 
 			$statement = $connection->prepare("SELECT * from post limit ? offset ?");
@@ -210,6 +214,17 @@ public static function getLastPosts($limit,$offset) {
 			Connection::closeConnection();
 			return $info;
 		}
+		public static function add_notification(){ // get recipient and message
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT * , count(*) as count from notifications where recipient_id = 1
+												group by `type`, `reference_id`	order by created_at desc, unread desc limit 20");
+			$statement->execute();
+			Connection::closeConnection();
+			
+			return $info;	
+		}
+		
+		
 
 
 
