@@ -1,27 +1,21 @@
 <?php
-
-  $con = mysqli_connect('localhost', '341DBAuser', '', '341');
+  
+require_once("action/postTableAction.php");
+    $action = new postTableAction();
+    $action->execute();
 
   if (isset($_POST['liked'])) {
     $postid = $_POST['postid'];
-    $result = mysqli_query($con, "SELECT * FROM post WHERE post_id=$postid");
-    $row = mysqli_fetch_array($result);
-    $n = $row['post_nb_likes'];
-
-    mysqli_query($con, "UPDATE post SET post_nb_likes=$n+1 WHERE post_id=$postid");
-
-    echo $n+1;
+    $n = $action->getPostByID($postid);
+    $action->updateLike($postid, $n["post_nb_likes"]);
+    echo $n["post_nb_likes"]+1;
     exit(); }
 
   if (isset($_POST['disliked'])) {
     $postid = $_POST['postid'];
-    $result = mysqli_query($con, "SELECT * FROM post WHERE post_id=$postid");
-    $row = mysqli_fetch_array($result);
-    $n = $row['post_nb_likes'];
-
-    mysqli_query($con, "UPDATE post SET post_nb_likes=$n-1 WHERE post_id=$postid");
-    
-    echo $n-1;
+    $n = $action->getPostByID($postid);
+    $action->updateDislike($postid, $n["post_nb_likes"]);
+    echo $n["post_nb_likes"]-1;
     exit(); }
 
 ?>

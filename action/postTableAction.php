@@ -14,11 +14,22 @@ class postTableAction extends commonAction{
 			$_SESSION["post_id"]=$_REQUEST["post_id"];
 			header("location:viewPost.php");}
 
-
 			$this->posts=MySQLrequests::getLastPosts(255,0);
+	}
+
+	public function getPostByID($id){
+		return MySQLrequests::getPostByID($id);
 	}
 
 	public function getUserByID($id){
 		return MySQLrequests::getUserByID($id);
+	}
+
+	public function updateLike($id, $n){
+		return MySQLrequests::updateLike($id, $n);
+	}	
+
+	public function updateDislike($id, $n){
+		return MySQLrequests::updateDislike($id, $n);
 	}
 }

@@ -1,56 +1,38 @@
 <?php
 
-  $con = mysqli_connect('localhost', '341DBAuser', '', '341');
-
-  if (isset($_POST['post_liked'])) {
-    $postid = $_POST['postid'];
-    $result = mysqli_query($con, "SELECT * FROM post WHERE post_id=$postid");
-    $row = mysqli_fetch_array($result);
-    $n = $row['post_nb_likes'];
-
-    mysqli_query($con, "UPDATE post SET post_nb_likes=$n+1 WHERE post_id=$postid");
-
-    echo $n+1;
-    exit(); }
-
-  if (isset($_POST['post_disliked'])) {
-    $postid = $_POST['postid'];
-    $result = mysqli_query($con, "SELECT * FROM post WHERE post_id=$postid");
-    $row = mysqli_fetch_array($result);
-    $n = $row['post_nb_likes'];
-
-    mysqli_query($con, "UPDATE post SET post_nb_likes=$n-1 WHERE post_id=$postid");
-    
-    echo $n-1;
-    exit(); }
-
-   if (isset($_POST['comment_liked'])) {
-    $commentid = $_POST['commentid'];
-    $result = mysqli_query($con, "SELECT * FROM comment WHERE comment_id=$commentid");
-    $row = mysqli_fetch_array($result);
-    $n = $row['comment_nb_likes'];
-
-    mysqli_query($con, "UPDATE comment SET comment_nb_likes=$n+1 WHERE comment_id=$commentid");
-
-    echo $n+1;
-    exit(); }
-
-  if (isset($_POST['comment_disliked'])) {
-    $commentid = $_POST['commentid'];
-    $result = mysqli_query($con, "SELECT * FROM comment WHERE comment_id=$commentid");
-    $row = mysqli_fetch_array($result);
-    $n = $row['comment_nb_likes'];
-
-    mysqli_query($con, "UPDATE comment SET comment_nb_likes=$n-1 WHERE comment_id=$commentid");
-    
-    echo $n-1;
-    exit(); }
- 
 require_once("action/viewPostAction.php");
 
 $action = new viewPostAction();
 $action->execute();
 require_once("partial/header.php");
+
+  if (isset($_POST['post_liked'])) {
+    $postid = $_POST['postid'];
+    $n = $action->getPostByID($postid);
+    $action->updateLike($postid, $n["post_nb_likes"]);
+    echo $n["post_nb_likes"]+1;
+    exit(); }
+
+  if (isset($_POST['post_disliked'])) {
+    $postid = $_POST['postid'];
+    $n = $action->getPostByID($postid);
+    $action->updateDislike($postid, $n["post_nb_likes"]);
+    echo $n["post_nb_likes"]-1;
+    exit(); }
+
+   if (isset($_POST['comment_liked'])) {
+    $commentid = $_POST['commentid'];
+    $n = $action->getCommentByID($commentid);
+    $action->updateCommentLike($commentid, $n["comment_nb_likes"]);
+    echo $n["comment_nb_likes"]+1;
+    exit(); }
+
+  if (isset($_POST['comment_disliked'])) {
+    $commentid = $_POST['commentid'];
+    $n = $action->getCommentByID($commentid);
+    $action->updateCommentDislike($commentid, $n["comment_nb_likes"]);
+    echo $n["comment_nb_likes"]-1;
+    exit(); }
 ?>
 
 <div class="background container">
@@ -158,7 +140,7 @@ require_once("partial/header.php");
 							}
 
     						$post_id = $action->post["post_id"];
-    						mysqli_query($con, "UPDATE post SET post_nb_answers=$answers WHERE post_id=$post_id");
+    						$action->getAnswers($post_id, $answers);
 
 							?>
 							<div class="interuptLine"> </div>
@@ -209,6 +191,7 @@ require_once("partial/header.php");
           $post.parent().find('span.post_likes_count').text("Likes: " + response);
         }
       });
+      location.reload();
     });
 
     $('.post_dislike').on('click', function(){
@@ -226,6 +209,7 @@ require_once("partial/header.php");
           $post.parent().find('span.post_likes_count').text("Likes: " + response);
         }
       });
+      location.reload();
     }); 
 
     $('.comment_like').on('click', function(){
