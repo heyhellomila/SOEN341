@@ -94,6 +94,22 @@
 			return $info;
 		
 		}
+		
+		public static function getCommentCreatorByCommentID($id) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("SELECT user.* from user left JOIN  comment ON (user_id = comment.comment_creator) where comment.comment_id=?;");
+			
+			$statement->bindParam(1, $id);
+			$statement->execute();
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetch();
+			
+			Connection::closeConnection();
+			return $info;
+		
+		}
 
 		public static function getCommentsByPostID($id) {
 			$connection = Connection::getConnection();
@@ -193,7 +209,7 @@
 			
 			Connection::closeConnection();
 			
-			MySQLRequests::add_notification();
+			MySQLRequests::add_notification
 			
 			
 			return $info;
@@ -214,10 +230,15 @@
 			Connection::closeConnection();
 			return $info;
 		}
-		public static function add_notification(){ // get recipient and message
+		public static function add_notification($recipient_id,$sender_id,$unread,$type){
 			$connection = Connection::getConnection();
-			$statement = $connection->prepare("SELECT * , count(*) as count from notifications where recipient_id = 1
-												group by `type`, `reference_id`	order by created_at desc, unread desc limit 20");
+			$unread = 0;
+			$statement = $connection->prepare("INSERT INTO notifications(recipient_id,sender_id,unread,type) VALUES(?,?,?,?);");
+			$statement->bindParam(1, $recipient_id);
+			$statement->bindParam(2, $sender_id);
+			$statement->bindParam(3, $unread);
+			$statement->bindParam(4, $type);
+			
 			$statement->execute();
 			Connection::closeConnection();
 			

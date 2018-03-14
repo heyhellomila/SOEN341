@@ -138,26 +138,17 @@ CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
 -- -----------------------------------------------------
 -- Table `341`.`notifications`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `341`.`notifications` ; 
   
-DROP TABLE IF EXISTS `comments` ;
-
-CREATE TABLE IF NOT EXISTS `comments` (
-  `com_id` int(11) NOT NULL AUTO_INCREMENT,
-  `comments` text,
-  `msg_id_fk` int(11) DEFAULT NULL,
-  PRIMARY KEY (`com_id`),
-  KEY `msg_id_fk` (`msg_id_fk`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
-DROP TABLE IF EXISTS `messages` ;
-
-CREATE TABLE IF NOT EXISTS `messages` (
-  `msg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `message` text,
-  PRIMARY KEY (`msg_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
-  
+CREATE TABLE `341`.`notifications` (
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `recipient_id` int(8) NOT NULL,
+  `sender_id` int(8) NOT NULL,
+  `unread` tinyint(1) NOT NULL DEFAULT '1',
+  `type` varchar(255) NOT NULL DEFAULT '',
+  `created_at` DATETIME DEFAULT NOW(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
