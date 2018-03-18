@@ -4,7 +4,7 @@ require_once("action/dba/MySQLrequests.php");
 //make connection
 $connection=connection::getConnection();
 
-$statement = $connection->prepare("SELECT * FROM post ORDER BY post_nb_likes DESC LIMIT 3");
+$statement = $connection->prepare("SELECT * FROM post ORDER BY post_likes DESC LIMIT 3");
 $statement->setFetchMode(PDO::FETCH_ASSOC);
 $statement->execute();
 $info = $statement->fetchAll();
@@ -59,7 +59,7 @@ connection::closeConnection();
         							</h5>
 									<div class="my-1 text-muted small row">
 										<p class="m-0">
-											<strong class="text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
+											<strong class="text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 										</p>
 									</div>
 								</div>
@@ -90,7 +90,7 @@ connection::closeConnection();
         								</h5>
 										<div class="my-1 text-muted row">
 											<p class="small m-0">
-												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
+												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>
@@ -116,7 +116,7 @@ connection::closeConnection();
         								</h5>
 										<div class="my-1 text-muted row">
 											<p class="small m-0">
-												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
+												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>

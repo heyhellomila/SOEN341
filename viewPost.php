@@ -8,30 +8,30 @@ require_once("partial/header.php");
 
   if (isset($_POST['post_liked'])) {
     $postid = $_POST['postid'];
-    $n = $action->getPostByID($postid);
-    $action->updateLike($postid, $n["post_nb_likes"]);
-    echo $n["post_nb_likes"]+1;
+    $likes = $action->getPostByID($postid);
+    $action->updateLike($postid, $likes["post_likes"]);
+    echo $likes["post_likes"]+1;
     exit(); }
 
   if (isset($_POST['post_disliked'])) {
     $postid = $_POST['postid'];
-    $n = $action->getPostByID($postid);
-    $action->updateDislike($postid, $n["post_nb_likes"]);
-    echo $n["post_nb_likes"]-1;
+    $likes = $action->getPostByID($postid);
+    $action->updateDislike($postid, $likes["post_likes"]);
+    echo $likes["post_likes"]-1;
     exit(); }
 
    if (isset($_POST['comment_liked'])) {
     $commentid = $_POST['commentid'];
-    $n = $action->getCommentByID($commentid);
-    $action->updateCommentLike($commentid, $n["comment_nb_likes"]);
-    echo $n["comment_nb_likes"]+1;
+    $likes = $action->getCommentByID($commentid);
+    $action->updateCommentLike($commentid, $likes["comment_likes"]);
+    echo $likes["comment_likes"]+1;
     exit(); }
 
   if (isset($_POST['comment_disliked'])) {
     $commentid = $_POST['commentid'];
-    $n = $action->getCommentByID($commentid);
-    $action->updateCommentDislike($commentid, $n["comment_nb_likes"]);
-    echo $n["comment_nb_likes"]-1;
+    $likes = $action->getCommentByID($commentid);
+    $action->updateCommentDislike($commentid, $likes["comment_likes"]);
+    echo $likes["comment_likes"]-1;
     exit(); }
 ?>
 
@@ -56,7 +56,7 @@ require_once("partial/header.php");
 							<div class="row">
 								<div class="col">
 									<div class="row">
-										<strong id="likes" class="d-block" style="margin-left: 30px; padding: 10px;"><span class="post_likes_count">Likes: <?=$action->post["post_nb_likes"]?></span></strong>
+										<strong id="likes" class="d-block" style="margin-left: 30px; padding: 10px;"><span class="post_likes_count">Likes: <?=$action->post["post_likes"]?></span></strong>
             							<span class="post_like fa fa-thumbs-up" data-id="<?=$action->post["post_id"]?>"></span>
             							<span class="post_dislike fa fa-thumbs-down" data-id="<?=$action->post["post_id"]?>"></span>
             						</div>
@@ -108,7 +108,7 @@ require_once("partial/header.php");
 						<div class="media-body">
 							<?=$v["comment_content"]?>
 							<div class="col secondaryLikes">
-								<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$v["comment_nb_likes"]?></span>
+								<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$v["comment_likes"]?></span>
             					<span class="comment_like fa fa-thumbs-up" data-id="<?=$v["comment_id"]?>"></span>
             					<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$v["comment_id"]?>"></span>
 							</div>	
@@ -128,7 +128,7 @@ require_once("partial/header.php");
 												<?=$subC["comment_content"]?>
 
 												<div class="col secondaryLikes">					
-													<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$subC["comment_nb_likes"]?></span>
+													<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$subC["comment_likes"]?></span>
 					            					<span class="comment_like fa fa-thumbs-up" data-id="<?=$subC["comment_id"]?>"></span>
 					            					<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$subC["comment_id"]?>"></span>
 												</div>	
@@ -191,7 +191,7 @@ require_once("partial/header.php");
           $post.parent().find('span.post_likes_count').text("Likes: " + response);
         }
       });
-      location.reload();
+      //location.reload();
     });
 
     $('.post_dislike').on('click', function(){
@@ -209,7 +209,7 @@ require_once("partial/header.php");
           $post.parent().find('span.post_likes_count').text("Likes: " + response);
         }
       });
-      location.reload();
+      //location.reload();
     }); 
 
     $('.comment_like').on('click', function(){

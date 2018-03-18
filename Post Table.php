@@ -6,16 +6,16 @@ require_once("action/postTableAction.php");
 
   if (isset($_POST['liked'])) {
     $postid = $_POST['postid'];
-    $n = $action->getPostByID($postid);
-    $action->updateLike($postid, $n["post_nb_likes"]);
-    echo $n["post_nb_likes"]+1;
+    $likes = $action->getPostByID($postid);
+    $action->updateLike($postid, $likes["post_likes"]);
+    echo $likes["post_likes"]+1;
     exit(); }
 
   if (isset($_POST['disliked'])) {
     $postid = $_POST['postid'];
-    $n = $action->getPostByID($postid);
-    $action->updateDislike($postid, $n["post_nb_likes"]);
-    echo $n["post_nb_likes"]-1;
+    $likes = $action->getPostByID($postid);
+    $action->updateDislike($postid, $likes["post_likes"]);
+    echo $likes["post_likes"]-1;
     exit(); }
 
 ?>
@@ -48,8 +48,8 @@ foreach ($action->posts as $index=>$post) {
       
         </form></strong>
             <strong class="d-block text-gray-dark">Posted: <?=$post["post_creation_time"]?></strong>
-            <strong class="d-block">Answers: <?=$post["post_nb_answers"]?></strong>
-            <strong id="likes" class="d-block"><span class="likes_count">Likes: <?=$post["post_nb_likes"]?></span></strong>
+            <strong class="d-block">Answers: <?=$post["post_answers"]?></strong>
+            <strong id="likes" class="d-block"><span class="likes_count">Likes: <?=$post["post_likes"]?></span></strong>
             <span class="like fa fa-thumbs-up" data-id="<?=$post["post_id"]?>"></span>
             <span class="dislike fa fa-thumbs-down" data-id="<?=$post["post_id"]?>"></span>
             </td>
