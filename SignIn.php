@@ -36,16 +36,7 @@ require_once("partial/header.php") ;
 			
 		</a>
 
-
-		<button class="btn btn-lg btn-block google-button-colour"  type="submit">
-			<i class="fa fa-google"></i>
-			Sign in with Google
-			
-		</button>
-		
-
-
-
+	
 		<hr>
 
 			<div class="form-group">
