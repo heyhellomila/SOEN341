@@ -76,26 +76,13 @@ if(isset($_POST['Submit']))
 										</div>
                                            <div class="form-group">
                                             <input type="password" class="form-control" name="pwd2" value="" placeholder="Password" id="pwd2">
-
-                                        </div> <div class="form-group">
-                                            <input type="text" class="form-control" name="Interest" value="" placeholder="Area Of Interest">
-                                        </div>
                                         <div class="text-center">
-                                        <button type="submit" class="btn btn-danger" >Join Us </button>
+                                        <button type="submit" class="btn btn-success" >Sign Up </button>
 										</div>
                                     </form>
                                     
                                     <div class="clearfix"></div>
-                                    <div class="social-login">
-                                   	
-                                   <p>- - - - - - - - - - - - - Join Us With - - - - - - - - - - - - - </p>
-                                  
-                                  		<ul>
-                                <li><a href="" class="btn-primary"><i class="fa fa-facebook" ></i> Facebook</a></li>
-                                <li><a href=""><i class="fa fa-google-plus"></i> Google+</a></li>
-                                <li><a href=""><i class="fa fa-twitter"></i> Twitter</a></li>
-                                </ul>
-                                 </div><div class="clearfix"></div>
+                                    <div class="clearfix"></div>
                                   </div>
     
                                    </div>

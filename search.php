@@ -8,9 +8,6 @@ $action = new SignInAction();
 $action->execute();
 
 require_once("partial/header.php");
-require_once("action/dba/connection.php");
-
-require_once("action/dba/MySQLrequests.php");
 
 
 $connection = Connection::getConnection();
