@@ -29,7 +29,7 @@ class SignInAction extends commonAction {
 		}
 	}
 }
-// Include FB config file && User class
+/* Include FB config file && User class
 require_once ("action/fbConfig.php");
 
 if(isset($accessToken)){
@@ -107,4 +107,4 @@ if(isset($accessToken)){
 
     // Render facebook login button
   //  $output = '<a href="'.htmlspecialchars($loginURL).'"><img src="images/fblogin-btn.png"></a>';
-	}
+	}*/

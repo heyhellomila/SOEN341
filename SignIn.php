@@ -10,13 +10,13 @@ require_once("partial/header.php") ;
 
 
 ?>
-	<div  class="text-center">
+<div  class="text-center">
 	<form class="form-signin" method="post">
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		<?php 
-					if ($action->wrongSignin) 
-						echo '<div class="alert alert-danger"><strong> Error! </strong> Wrong username or password entered </div>';
-				?>
+		if ($action->wrongSignin) 
+			echo '<div class="alert alert-danger"><strong> Error! </strong> Wrong username or password entered </div>';
+		?>
 		<label for="inputEmail" class="sr-only">Email address</label>
 		<input type="email" id="inputEmail" class="form-control" name= "username" placeholder="Email address">
 		<label for="inputPassword" class="sr-only">Password</label>
@@ -27,7 +27,7 @@ require_once("partial/header.php") ;
 			</label>
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">
-		Sign in
+			Sign in
 		</button>
 		
 		<a href="<?=htmlspecialchars($loginURL)?>" class="btn btn-lg btn-block facebook-button-colour"  type="submit">
@@ -48,9 +48,9 @@ require_once("partial/header.php") ;
 
 		<hr>
 
-			<div class="form-group">
-				<a href="#forgot" data-toggle="modal"> Forgot Password? </a>
-			</div>
+		<div class="form-group">
+			<a href="#forgot" data-toggle="modal"> Forgot Password? </a>
+		</div>
 
 		
 		
