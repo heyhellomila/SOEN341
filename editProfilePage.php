@@ -20,12 +20,13 @@ require_once("partial/header.php")
 			<div class="panel panel-default">
 				<div class="panel-body">
 
-					<form class="form-horizontal action="updateProfile.php" method="POST">
+					<form class="form-horizontal" method="POST">
 						<label for="User_name">Username</label>
-						<input type="text" class="form-control" id="User_name" name="username" placeholder="<?=$action->userInfo["user_name"]?>" value="<?=$action->userInfo["user_name"]?>">
+						<input type="text" class="form-control" id="User_name" name="username" placeholder="<?=$action->userInfo["user_name"]?>">
 						<br>
 						<label for="password">Password</label>
-						<input type="text" class="form-control" id="password" name="password" placeholder="<?=$action->userInfo["user_pass"]?>" value="<?=$action->userInfo["user_pass"]?>">
+						<input type="password" class="form-control" id="password" name="password" placeholder="Write your old password here">
+						<input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Write your new password here">
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div align="center">
@@ -51,7 +52,7 @@ require_once("partial/header.php")
 											<button class="btn btn-default btn-sm"><i class="fa fa-fw fa-times" aria-hidden="true"></i> Cancel</button>
 											<button type="submit" name="submit" id="update" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Update Profile</button>
 											<?php if(isset($_POST['submit']))
-											MySQLrequests::updateProfile($_POST['username'],$_POST['userbio'],$_POST['password'],$_SESSION['user_id']); ?>
+											MySQLrequests::updateProfile($_POST['username'],$_POST['userbio'],$_POST['password'],$_POST['newpassword'],$_SESSION['user_id']); ?>
 
 										</div>
 									</div>

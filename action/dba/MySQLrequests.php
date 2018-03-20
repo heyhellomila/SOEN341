@@ -346,27 +346,68 @@ public static function getAnswers($id, $answers) {
 			return $info;
 		}
   
-		public static function updateProfile($username,$userbio,$password,$id){
+		public static function updateProfile($username,$userbio,$password,$newpassword,$id){
 			$connection = Connection::getConnection();
-
-				$username = $_POST['username'];
-				$id=$_SESSION["user_id"];
-				$userbio = $_POST['userbio'];
-				$password=$_POST['password'];
-				$pass = sha1($password);
+			// $username=$_POST['username'];
+			// $userbio=$_POST['userbio'];
+			// $password=$_POST['password'];
+			// $newpassword=$_POST['newpassword'];
+			// $id= $_SESSION['user_id'];
+			$q=array();
+			if(trim($username) !=='')
+				{
+					
+					$q[]="user_name =$username, ";}
+			if(trim($userbio) !=='')
+			{
 				
-				$statement=$connection->prepare("UPDATE user SET user_name='$username', user_bio='$userbio',user_pass='$pass' WHERE user_id='$id'");
-				$statement->bindParam(1, $username);
-				$statement->bindParam(2, $userbio);
-				$statement->bindParam(3, $password);
+				$q[]="user_bio =$userbio, ";
+			}
+			if(trim($password) !=='')
+			{
+				
+				$pass = sha1($password);
+				$passdb = $connection->prepare("SELECT user_pass from user where user_id=$id");
 
+			// check password
+			if($pass!=$passdb){
+				die("Password does not match");
+			}
+			}
+			if(trim($newpassword) !='')
+			{
+				$newpass = sha1($newpassword);
+				$q[]="user_pass=$newpass, ";
+				if(strlen($newpassword)>26||strlen($newpassword)<4)
+				{
+					echo "Password must be between 4 and 26";
+				}
+				
+			}
+			$subsection = implode(", ",$q);
+	
+			
+			if(sizeof($q)>0)
+				try
+			 {//check if any are updated, otherwise don't execute
+			 	$query="UPDATE user SET $subsection WHERE user_id=$id";
+				$statement=$connection->prepare($query);
+				$statement->bindParam("user_id",$id);
+				if(trim($username)!==""){$statement->bindParam("user_name", $username);}
+				if(trim($userbio)!==""){$statement->bindParam("user_bio",$userbio);}
+				if(trim($newpassword)!==""){$statement->bindParam("user_pass", $newpass);}
+				
 				$statement->execute();
-
 				$statement->setFetchMode(PDO::FETCH_ASSOC);
-				$info = $statement->fetch();
-			
-				Connection::closeConnection();
-			
+			$info = $statement->fetch();
+			Connection::closeConnection();		
+			}
+			catch(PDOEXCEPTION $e)
+			{print "Error!: " .$e->getMessage()."<br/>";
+			die();	
+		}
+		
+
 		}
 
 }
