@@ -45,14 +45,18 @@ require_once("partial/header.php")
 								<div class="panel-body">
 									<h5 class="panel-title pull-left">My User Bio</h5>
 									<br><br>
-									<textarea class="form-control"  placeholder="<?=$action->userInfo["user_bio"]?>" value="<?=$action->userInfo["user_bio"]?>" rows="3" name="userbio"></textarea>
+									<input class="form-control" placeholder="<?=$action->userInfo["user_bio"]?>" value="<?=$action->userInfo["user_bio"]?>" rows="3" name="userbio"></input>
 									<br><br>
 									<div class="panel panel-default mb-2">
 										<div class="panel-body">
 											<button class="btn btn-default btn-sm"><i class="fa fa-fw fa-times" aria-hidden="true"></i> Cancel</button>
 											<button type="submit" name="submit" id="update" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Update Profile</button>
-											<?php if(isset($_POST['submit']))
-											MySQLrequests::updateProfile($_POST['username'],$_POST['userbio'],$_POST['password'],$_POST['newpassword'],$_SESSION['user_id']); ?>
+											<?php if(isset($_POST['submit'])) {
+											$user_id = $action->userInfo["user_id"];
+											$bio = $_POST['userbio'];
+											$action->updateBio($user_id, $bio); 
+											}
+											//MySQLrequests::updateProfile($_POST['username'],$_POST['userbio'],$_POST['password'],$_POST['newpassword'],$_SESSION['user_id']); ?>
 
 										</div>
 									</div>

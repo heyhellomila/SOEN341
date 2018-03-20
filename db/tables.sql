@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `341`.`user` (
   `user_name` VARCHAR(25) NOT NULL,
   `user_email` VARCHAR(75) NOT NULL,
   `user_pass` VARCHAR(40) NOT NULL,
-  `user_bio` TEXT(1000) DEAFAULT NULL,
+  `user_bio` TEXT(1000) DEFAULT NULL,
   `user_img` VARBINARY(max) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
   `message` TEXT(1000) NOT NULL,
   `name` CHAR(25) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `id_creator_idx` (`id` ASC))  
+  INDEX `id_creator_idx` (`id` ASC));  
   
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -346,6 +346,24 @@ public static function getAnswers($id, $answers) {
 			return $info;
 		}
   
+
+public static function updateBio($id, $bio) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("UPDATE user SET user_bio=? WHERE user_id=?");
+			
+			$statement->bindParam(1, $bio);
+			$statement->bindParam(2, $id);
+			$statement->execute();
+
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetch();
+
+			Connection::closeConnection();
+			return $info;
+		}
+
+  		//holy damn this is long
 		public static function updateProfile($username,$userbio,$password,$newpassword,$id){
 			$connection = Connection::getConnection();
 			// $username=$_POST['username'];

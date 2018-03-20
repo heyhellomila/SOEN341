@@ -35,5 +35,9 @@ class profilePageAction extends commonAction{
 
 		}	
 	}
+
+	public function updateBio($id, $bio) {
+		return MySQLrequests::updateBio($id, $bio);
+	}
 }
 
