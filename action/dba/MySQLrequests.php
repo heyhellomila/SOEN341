@@ -256,14 +256,13 @@
 			return $info;	
 		}
 		
-			public static function get_notification_status($post_creator){
+			public static function get_notification($notification_post_creator_id){
 			$connection = Connection::getConnection();
 			
-			$statement = $connection->prepare("SELECT * FROM notifications WHERE post_creator=?, status=?;");
-			
-			$statement->bindParam(1, $post_creator);
-			$statement->bindParam(2, 1);
-			
+			$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_post_creator_id=? and notification_status=? order by notification_id desc;");
+			$temp = 1;
+			$statement->bindParam(1, $notification_post_creator_id);
+			$statement->bindParam(2,$temp);
 			$statement->execute();
 			
 			$statement->setFetchMode(PDO::FETCH_ASSOC);

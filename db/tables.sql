@@ -142,13 +142,11 @@ DROP TABLE IF EXISTS `341`.`notifications` ;
   
 CREATE TABLE `341`.`notifications` (
   `notification_id` int(8) NOT NULL AUTO_INCREMENT,
-	`post_id` INT(8) NOT NULL,
-    `comment_id` INT(8) NOT NULL,
-  `comment_creator` INT(8) NOT NULL,
-  `status` int(1) DEFAULT 1,
-  `post_creator` INT(8) NOT NULL,
+  `notification_post_creator_id` INT(8) NOT NULL,
+  `notification_comment_creator_id` INT(8) NOT NULL,
+  `notification_status` int(1) DEFAULT 1,
   
-  PRIMARY KEY (`notification_id`));
+  PRIMARY KEY (`notification_id`)); 
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
