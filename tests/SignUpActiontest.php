@@ -1,6 +1,7 @@
-<?php
+<?php 
+use PHPUnit_Framework_TestCase
 
-class HelloWorldTest extends PHPUnit_Framework_TestCase
+class SignUpActiontest extends testcase
 {
     /**
      * @var PDO
