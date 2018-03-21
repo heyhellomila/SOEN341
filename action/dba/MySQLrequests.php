@@ -374,11 +374,11 @@ class MySQLRequests {
 		Connection::closeConnection();
 		return $info;
 	}
-	public static function favoriteComment($comment_id) {
+	public static function invertFavorite($comment_id,$temp) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("UPDATE post_comment_ass SET favorite=? WHERE comment_id=?");
-		$temp = 1;
+	
 		$statement->bindParam(1, $temp);
 		$statement->bindParam(2, $comment_id);
 		$statement->execute();
@@ -389,13 +389,12 @@ class MySQLRequests {
 		Connection::closeConnection();
 		return $info;
 	}
-	public static function unfavoriteComment($comment_id) {
+	public static function getFavoriteStatus($comment_id) {
 		$connection = Connection::getConnection();
 
-		$statement = $connection->prepare("UPDATE post_comment_ass SET favorite=? WHERE comment_id=?");
-		$temp = 0;
-		$statement->bindParam(1, $temp);
-		$statement->bindParam(2, $comment_id);
+		$statement = $connection->prepare("SELECT * from post_comment_ass where comment_id=?");
+
+		$statement->bindParam(1, $comment_id);
 		$statement->execute();
 
 		$statement->setFetchMode(PDO::FETCH_ASSOC);

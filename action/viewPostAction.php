@@ -17,23 +17,49 @@ class viewPostAction extends commonAction{
 			$this->postCreator=MySQLrequests::getPostCreatorByPostID($id);
 			$this->comments=MySQLrequests::getCommentsByPostID($id);
 			
+			if (isset($_POST["comment_id"])){
+				$comment_id = $_POST["comment_id"];			
+				$invertFavorite = abs(MySQLRequests::getFavoriteStatus($comment_id)["favorite"]-1);
+				MySQLrequests::invertFavorite($comment_id,$invertFavorite);
+			}
 
+			if (isset($_POST['post_liked'])) {
+				$postid = $_POST['postid'];
+				$n = $this->getPostByID($postid);
+				$this->updateLike($postid, $n["post_nb_likes"]);
+				echo $n["post_nb_likes"]+1;
+				exit(); 
+			}
+
+			if (isset($_POST['post_disliked'])) {
+				$postid = $_POST['postid'];
+				$n = $this->getPostByID($postid);
+				$this->updateDislike($postid, $n["post_nb_likes"]);
+				echo $n["post_nb_likes"]-1;
+				exit(); 
+			}
+
+			if (isset($_POST['comment_liked'])) {
+				$commentid = $_POST['commentid'];
+				$n = $this->getCommentByID($commentid);
+				$this->updateCommentLike($commentid, $n["comment_nb_likes"]);
+				echo $n["comment_nb_likes"]+1;
+				exit(); 
+			}
+
+			if (isset($_POST['comment_disliked'])) {
+				$commentid = $_POST['commentid'];
+				$n = $this->getCommentByID($commentid);
+				$this->updateCommentDislike($commentid, $n["comment_nb_likes"]);
+				echo $n["comment_nb_likes"]-1;
+				exit(); 
+			}
 		}
 		else{
 			header("location:error404.php");	
 		}
 	}
-	public function favoriteComment($comment_id){
-		return MySQLrequests::favoriteComment($comment_id);
-		
-
-	}
-	public function unfavoriteComment($comment_id){
-
-			$wrongSignin=true;
-		return MySQLrequests::unfavoriteComment($comment_id);
-		
-	}
+	
 
 	public function isViewerCreator(){
 		if ($this->postCreator["user_id"] == $_SESSION["user_id"]) 

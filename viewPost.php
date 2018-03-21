@@ -6,49 +6,7 @@ $action = new viewPostAction();
 $action->execute();
 
 require_once("partial/header.php");
-if (isset($_POST['post_liked'])) {
-	$postid = $_POST['postid'];
-	$n = $action->getPostByID($postid);
-	$action->updateLike($postid, $n["post_nb_likes"]);
-	echo $n["post_nb_likes"]+1;
-	exit(); 
-}
 
-if (isset($_POST['post_disliked'])) {
-	$postid = $_POST['postid'];
-	$n = $action->getPostByID($postid);
-	$action->updateDislike($postid, $n["post_nb_likes"]);
-	echo $n["post_nb_likes"]-1;
-	exit(); 
-}
-
-if (isset($_POST['comment_liked'])) {
-	$commentid = $_POST['commentid'];
-	$n = $action->getCommentByID($commentid);
-	$action->updateCommentLike($commentid, $n["comment_nb_likes"]);
-	echo $n["comment_nb_likes"]+1;
-	exit(); 
-}
-
-if (isset($_POST['comment_disliked'])) {
-	$commentid = $_POST['commentid'];
-	$n = $action->getCommentByID($commentid);
-	$action->updateCommentDislike($commentid, $n["comment_nb_likes"]);
-	echo $n["comment_nb_likes"]-1;
-	exit(); 
-}
-
-if (isset($_POST['favorite'])) {
-	$comment_id = $_POST['commentid'];
-	$action->favoriteComment($comment_id);
-	exit(); 
-}
-
-if (isset($_POST['unfavorite'])) {
-	$comment_id = $_POST['commentid'];
-	$action->unfavoriteComment($comment_id);
-	exit(); 
-}
 
 ?>
 
@@ -92,7 +50,7 @@ if (isset($_POST['unfavorite'])) {
 										<textarea class="form-control" name="commentContent"  rows="3" placeholder="Write comments..."></textarea>
 									</div> 
 									<button type="submit" class="btn btn-primary">Comment</button>
-
+									`
 
 								</form>
 							</div>
@@ -121,12 +79,20 @@ if (isset($_POST['unfavorite'])) {
 					if ($action->isViewerCreator()) {
 						if ($action->isFavorite($comment["comment_id"])) {
 							?>
-							<img class="favorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/favorite.png" alt="Generic placeholder image" >
+
+							<form action="viewPost.php" method="post">
+								<input type="hidden" name="comment_id" value="<?=$comment["comment_id"]?>"></input>
+								<img onclick="$(this).parent('form').submit();" class="favorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/favorite.png" alt="Generic placeholder image">
+							</form>
+
 							<?php
 						}
 						else{
 							?>
-							<img class="unfavorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/unfavorite.png" alt="Generic placeholder image">
+							<form action="viewPost.php" method="post">
+								<input type="hidden" name="comment_id" value="<?=$comment["comment_id"]?>"></input>
+								<img onclick="$(this).parent('form').submit();" class="unfavorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/unfavorite.png" alt="Generic placeholder image">
+							</form>
 							<?php
 						}
 					}
@@ -236,7 +202,7 @@ if (isset($_POST['unfavorite'])) {
 					$post.parent().find('span.post_likes_count').text("Likes: " + response);
 				}
 			});
-			location.reload();
+			//location.reload();
 		});
 
 
@@ -255,7 +221,7 @@ if (isset($_POST['unfavorite'])) {
 					$post.parent().find('span.post_likes_count').text("Likes: " + response);
 				}
 			});
-			location.reload();
+			//location.reload();
 		}); 
 
 		$('.comment_like').on('click', function(){
@@ -270,10 +236,10 @@ if (isset($_POST['unfavorite'])) {
 					'commentid': commentid
 				},
 				success: function(response){
-					$post.parent().find('span.comment_likes_count').text("Likes: " + response);
+					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
 				}
 			});
-			location.reload();
+			//location.reload();
 		});
 
 		$('.comment_dislike').on('click', function(){
@@ -288,38 +254,10 @@ if (isset($_POST['unfavorite'])) {
 					'commentid': commentid
 				},
 				success: function(response){
-					$post.parent().find('span.comment_likes_count').text("Likes: " + response);
+					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
 				}
 			});
-			location.reload();
-		});
-		$('.favorite').on('click', function(){
-			var commentid = $(this).data('id');
-			$comment = $(this);
-
-			$.ajax({
-				url: 'viewPost.php',
-				type: 'post',
-				data: {
-					'favorite': 1,
-					'commentid': commentid
-				}
-			});
-			location.reload();
-		});
-		$('.unfavorite').on('click', function(){
-			var commentid = $(this).data('id');
-			$comment = $(this);
-
-			$.ajax({
-				url: 'viewPost.php',
-				type: 'post',
-				data: {
-					'unfavorite': 1,
-					'commentid': commentid
-				}	
-			});
-			location.reload();
+			//location.reload();
 		});
 	});
 </script>
