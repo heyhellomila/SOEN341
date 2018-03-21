@@ -141,14 +141,15 @@ CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
 DROP TABLE IF EXISTS `341`.`notifications` ; 
   
 CREATE TABLE `341`.`notifications` (
-  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-  `recipient_id` int(8) NOT NULL,
-  `sender_id` int(8) NOT NULL,
-  `unread` tinyint(1) NOT NULL DEFAULT '1',
-  `type` varchar(255) NOT NULL DEFAULT '',
-  `created_at` DATETIME DEFAULT NOW(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+  `notification_id` int(8) NOT NULL AUTO_INCREMENT,
+	`post_id` INT(8) NOT NULL,
+    `comment_id` INT(8) NOT NULL,
+  `comment_creator` INT(8) NOT NULL,
+  `status` int(1) DEFAULT 1,
+  `post_creator` INT(8) NOT NULL,
+  
+  PRIMARY KEY (`notification_id`));
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

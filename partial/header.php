@@ -1,11 +1,4 @@
-<?php
-namespace Notification\Comment;
-?>
-<!doctype html>
-<html>
 
-<head>
-	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/global.css">
 	<link rel="stylesheet" type="text/css" href="css/viewPost.css">
@@ -16,7 +9,7 @@ namespace Notification\Comment;
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -24,9 +17,7 @@ namespace Notification\Comment;
 	<script type="text/javascript" src="js/gen_validatorv4.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-</head>
 
-<body>
 	<nav class="navbar sticky-top navbar-dark bg-dark justify-content-between">
 		<a class="navbar-brand col pt-0" href="index.php">
 			<img class="navbar-brand " src="images/site_logo.png" height="60">
@@ -41,8 +32,10 @@ namespace Notification\Comment;
 		<?php
 			if ($action->isLoggedIn())
 			{
-				if(false)
-				{
+				if (isset($_SESSION["user_id"])) {
+					$id=$_SESSION["user_id"];
+					if(MySQLrequests::get_notification_status($id)) {
+				
 		?>
 			<div class="dropdown">
 				<button class = "btn btn-dark" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,7 +77,7 @@ namespace Notification\Comment;
 		
 		<?php
 				}
-			}
+			} }
 			else
 			{		
 		?>		
@@ -98,7 +91,6 @@ namespace Notification\Comment;
 			}
 		?>
 	</nav>
-	<div class="contentWrap">
 		
 	<?php 
 	require_once("tabmenu.php");

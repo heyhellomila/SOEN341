@@ -9,8 +9,8 @@ class viewPostAction extends commonAction{
 	}
 
 	protected function executeAction() {
-		if (isset($_SESSION["post_id"])) {
-			$id=$_SESSION["post_id"];
+		if (isset($_SESSION["user_id"])) {
+			$id=$_SESSION["user_id"];
 
 
 

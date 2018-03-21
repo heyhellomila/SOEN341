@@ -173,6 +173,10 @@
 			$info = $statement->fetch();
 			
 			Connection::closeConnection();
+			
+			MySQLRequests::add_notification($parent,$creator);
+			
+			
 			return ;
 		
 		}
@@ -189,7 +193,7 @@
 			$info = $statement->fetch();
 			
 			Connection::closeConnection();
-			return $connection->LastInsertId();;
+			return $connection->LastInsertId();
 		}
 		
 
@@ -209,12 +213,16 @@
 			
 			Connection::closeConnection();
 			
-			MySQLRequests::add_notification
-			
-			
 			return $info;
 		
 		}
+		
+		public static function getSubComment()
+		{
+			$connection = Connection::getConnection();
+			
+		}
+		
 		public static function getLastPosts($limit,$offset) {
 			$connection = Connection::getConnection();
 
@@ -230,16 +238,36 @@
 			Connection::closeConnection();
 			return $info;
 		}
-		public static function add_notification($recipient_id,$sender_id,$unread,$type){
+		public static function add_notification($post_id,$comment_creator_id){
 			$connection = Connection::getConnection();
-			$unread = 0;
-			$statement = $connection->prepare("INSERT INTO notifications(recipient_id,sender_id,unread,type) VALUES(?,?,?,?);");
-			$statement->bindParam(1, $recipient_id);
-			$statement->bindParam(2, $sender_id);
-			$statement->bindParam(3, $unread);
-			$statement->bindParam(4, $type);
+			
+			$post_creator = MySQLRequests::getUserByID($post_id);
+			
+			$statement = $connection->prepare("INSERT INTO notifications(post_id, comment_creator_id,post_creator) VALUES(?,?,?);");
+			
+			$statement->bindParam(1, $post_id);
+			$statement->bindParam(2, $comment_creator_id);
+			$statement->bindParam(3, $post_creator);
 			
 			$statement->execute();
+			$info = $statement->fetchAll();
+			Connection::closeConnection();
+			
+			return $info;	
+		}
+		
+			public static function get_notification_status($post_creator){
+			$connection = Connection::getConnection();
+			
+			$statement = $connection->prepare("SELECT * FROM notifications WHERE post_creator=?, status=?;");
+			
+			$statement->bindParam(1, $post_creator);
+			$statement->bindParam(2, 1);
+			
+			$statement->execute();
+			
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetchAll();
 			Connection::closeConnection();
 			
 			return $info;	
