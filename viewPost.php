@@ -4,6 +4,7 @@ require_once("action/viewPostAction.php");
 
 $action = new viewPostAction();
 $action->execute();
+
 require_once("partial/header.php");
 if (isset($_POST['post_liked'])) {
 	$postid = $_POST['postid'];
@@ -38,13 +39,13 @@ if (isset($_POST['comment_disliked'])) {
 }
 
 if (isset($_POST['favorite'])) {
-	$comment_id = $_POST['comment_id'];
+	$comment_id = $_POST['commentid'];
 	$action->favoriteComment($comment_id);
 	exit(); 
 }
 
 if (isset($_POST['unfavorite'])) {
-	$comment_id = $_POST['comment_id'];
+	$comment_id = $_POST['commentid'];
 	$action->unfavoriteComment($comment_id);
 	exit(); 
 }
@@ -100,6 +101,9 @@ if (isset($_POST['unfavorite'])) {
 				</div>
 			</div>
 			<?php
+
+
+			
 			$answers = 0;
 			foreach ($action->comments as $comment) {
 				$answers++;
@@ -114,15 +118,15 @@ if (isset($_POST['unfavorite'])) {
 						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">
 						<?php  
 					}
-					if ($action->isViewerCreator($commentCreator)) {
+					if ($action->isViewerCreator()) {
 						if ($action->isFavorite($comment["comment_id"])) {
 							?>
-							<img class="favorite-comment d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/favorite.png" alt="Generic placeholder image" >
+							<img class="favorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/favorite.png" alt="Generic placeholder image" >
 							<?php
 						}
 						else{
 							?>
-							<img class="unfavorite-comment d-flex mr-3 no1-icon" onclick="window.reload()" data-id="<?=$comment["comment_id"]?>" src="images/unfavorite.png" alt="Generic placeholder image">
+							<img class="unfavorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/unfavorite.png" alt="Generic placeholder image">
 							<?php
 						}
 					}
@@ -289,32 +293,34 @@ if (isset($_POST['unfavorite'])) {
 			});
 			location.reload();
 		});
-		$('.favorite-comment').addEventListener('click', function(){
-			var comment_id = $(this).data('id');
+		$('.favorite').on('click', function(){
+			var commentid = $(this).data('id');
+			$comment = $(this);
 
 			$.ajax({
 				url: 'viewPost.php',
 				type: 'post',
 				data: {
 					'favorite': 1,
-					'comment_id': comment_id
+					'commentid': commentid
 				}
 			});
 			location.reload();
-		}); 
-		$('.unfavorite-comment').addEventListener('click', function(){
-			var comment_id = $(this).data('id');
+		});
+		$('.unfavorite').on('click', function(){
+			var commentid = $(this).data('id');
+			$comment = $(this);
 
 			$.ajax({
 				url: 'viewPost.php',
 				type: 'post',
 				data: {
 					'unfavorite': 1,
-					'comment_id': comment_id
-				}
+					'commentid': commentid
+				}	
 			});
 			location.reload();
-		}); 
+		});
 	});
 </script>
 

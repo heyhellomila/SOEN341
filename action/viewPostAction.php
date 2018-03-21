@@ -13,12 +13,10 @@ class viewPostAction extends commonAction{
 			$id=$_SESSION["post_id"];
 
 
-
 			$this->post=MySQLrequests::getPostbyID($id);
 			$this->postCreator=MySQLrequests::getPostCreatorByPostID($id);
 			$this->comments=MySQLrequests::getCommentsByPostID($id);
 			
-
 
 		}
 		else{
@@ -26,17 +24,19 @@ class viewPostAction extends commonAction{
 		}
 	}
 	public function favoriteComment($comment_id){
-		MySQLrequests::favoriteComment($comment_id);
+		return MySQLrequests::favoriteComment($comment_id);
 		
-		
+
 	}
 	public function unfavoriteComment($comment_id){
-		MySQLrequests::unfavoriteComment($comment_id);
+
+			$wrongSignin=true;
+		return MySQLrequests::unfavoriteComment($comment_id);
 		
 	}
 
-	public function isViewerCreator($creator_id){
-		if ($creator_id == $_SESSION["user_id"]) 
+	public function isViewerCreator(){
+		if ($this->postCreator["user_id"] == $_SESSION["user_id"]) 
 			return true;
 		return false;
 	}
