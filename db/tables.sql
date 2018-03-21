@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `341`.`user` (
   `user_name` VARCHAR(25) NOT NULL,
   `user_email` VARCHAR(75) NOT NULL,
   `user_pass` VARCHAR(40) NOT NULL,
+  `user_bio` TEXT(1000),
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
 ENGINE = InnoDB;
@@ -107,6 +108,7 @@ DROP TABLE IF EXISTS `341`.`post_comment_ass` ;
 CREATE TABLE IF NOT EXISTS `341`.`post_comment_ass` (
   `post_id` INT(8) NOT NULL,
   `comment_id` INT(8) NOT NULL,
+  `favorite` tinyint(1) NOT NULL default 0,
   PRIMARY KEY (`post_id`, `comment_id`),
   INDEX `comment_id_idx` (`comment_id` ASC),
   CONSTRAINT `post_id0`
@@ -120,23 +122,3 @@ CREATE TABLE IF NOT EXISTS `341`.`post_comment_ass` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-	
--- -----------------------------------------------------
--- Table `341`.`contactus_email`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `341`.`contactus_email` ;
-
-CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
-  `id` INT(8) NOT NULL AUTO_INCREMENT,
-  `time` DATETIME DEFAULT NOW(),
-  `subject` CHAR(100) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `message` TEXT(1000) NOT NULL,
-  `name` CHAR(25) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `id_creator_idx` (`id` ASC))  
-  
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
