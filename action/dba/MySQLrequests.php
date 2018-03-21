@@ -130,7 +130,7 @@ class MySQLRequests {
 	public static function getCommentsByPostID($id) {
 		$connection = Connection::getConnection();
 
-		$statement = $connection->prepare("SELECT comment.* from comment,post_comment_ass where comment.comment_id=post_comment_ass.comment_id and post_comment_ass.post_id=?;");
+		$statement = $connection->prepare("SELECT comment.* from comment,post_comment_ass where comment.comment_id=post_comment_ass.comment_id and post_comment_ass.post_id=? Order by comment.comment_nb_likes desc;");
 
 		$statement->bindParam(1, $id);
 		$statement->execute();
@@ -348,7 +348,7 @@ class MySQLRequests {
 	public static function getBestAnswerByPostID($post_id) {
 		$connection = Connection::getConnection();
 
-		$statement = $connection->prepare("UPDATE post SET post_nb_answers=? WHERE post_id=?");
+		$statement = $connection->prepare("SELECT * from post  WHERE post_id=?");
 		
 		$statement->bindParam(1, $post_id);
 		$statement->execute();
@@ -359,13 +359,13 @@ class MySQLRequests {
 		Connection::closeConnection();
 		return $info;
 	}
-	public static function getFavoriteAnswerByPostID($post_id) {
+	public static function getIsFavorite($comment_id) {
 		$connection = Connection::getConnection();
 
-		$statement = $connection->prepare("SELECT comment.* from comment left JOIN  post_comment_ass ON (comment.comment_id = post_comment_ass.comment_id) where post_comment_ass.post_id=? and post_comment_ass.favorite=1;
+		$statement = $connection->prepare("SELECT comment.* from post_comment_ass left JOIN  comment ON (comment.comment_id = post_comment_ass.comment_id) where post_comment_ass.comment_id=? and favorite=1;;
 			");
 		
-		$statement->bindParam(1, $post_id);
+		$statement->bindParam(1, $comment_id);
 		$statement->execute();
 
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
