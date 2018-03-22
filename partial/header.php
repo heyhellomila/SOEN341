@@ -47,48 +47,32 @@
 					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/captain.png">
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<p class="text-center"><?=$action->userInfo["user_name"]?></p>
+					<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
+					<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
 					
-					<img alt="32x32" class="mr-4 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
-					<p class="small">
-						<a href="editProfilePage.php">Change Photo</a></p>
+					<a href="./?logout=true" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
 
-						<div class="text-centered">
-							john
-							<p class="text-muted small">
-							email</p>
-						</div>
-
-						<div>
-							<a href="editProfilePage.php" class="btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Change Password</a>
-						</div>
-
-						<div class="col-mr-2">
-							<a href="profilePage.php" class="btn btn-default btn-sm">Profile</a>
-						</div>
-						<div>
-							<a href="./?logout=true" class="btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
-						</div>
-
-					</div>
 				</div>
+			</div>
 
-				<?php
-			}
-			else
-			{		
-				?>		
-				<div class="col">
-					<form class="form-inline row" method="post">
-						<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
-						<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
-					</form>
-				</div>
-				<?php
-			}
-			?>
+			<?php
+		}
+		else
+		{		
+			?>		
+			<div class="col">
+				<form class="form-inline row" method="post">
+					<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
+					<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
+				</form>
+			</div>
+			<?php
+		}
+		?>
 
-		</nav>
-		<div class="contentWrap">
-			<?php 
-			require_once("tabmenu.php");
-			?>
+	</nav>
+	<div class="contentWrap">
+		<?php 
+		require_once("tabmenu.php");
+		?>

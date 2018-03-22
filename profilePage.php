@@ -8,7 +8,7 @@ require_once("partial/header.php")
 ?>
 <div class="mainbody container">
 	<div class="row">
-		<div style="padding-top:50px;"> </div>
+		<div style="padding-top:50px;"></div>
 
 		<div class="card col-lg-9 col-md-9 col-sm-12 col-xs-12 mt-2 justified">
 			<div class="panel panel-default">
