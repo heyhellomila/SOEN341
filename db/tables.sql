@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `341`.`post` (
   `post_content` TEXT(1000) NOT NULL,
   `post_nb_likes` INT(9) DEFAULT 0,
   `post_creator` INT(8) NOT NULL,
+  `post_nb_answers` INT(9) DEFAULT 0,
   PRIMARY KEY (`post_id`),
   INDEX `post_creator_idx` (`post_creator` ASC),
   CONSTRAINT `post_creator`
