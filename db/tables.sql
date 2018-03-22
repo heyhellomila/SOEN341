@@ -127,7 +127,8 @@ DROP TABLE IF EXISTS `341`.`notifications` ;
 CREATE TABLE `341`.`notifications` (
   `notification_id` int(8) NOT NULL AUTO_INCREMENT,
   `notification_post_id` INT(8) NOT NULL,
-  `notification_comment_creator_id` INT(8) NOT NULL,
+  `notification_notificant_id` INT(8) NOT NULL,
+  `notification_notifier_id` INT(8) NOT NULL,
   `notification_status` int(1) DEFAULT 1,
   
   PRIMARY KEY (`notification_id`)); 

@@ -175,8 +175,8 @@
 			Connection::closeConnection();
 			
 			$post_creator_id = MySQLRequests::getPostCreatorByPostID($post_id)["user_id"];
-			if ($post_creator_id != $_SESSION["user_id"]) {
-				MySQLRequests::add_notification($post_id,$creator);
+			if ($post_creator_id != $creator) {
+				MySQLRequests::add_notification($post_id,$post_creator_id,$creator);
 			}
 			
 			
@@ -200,7 +200,7 @@
 		}
 		
 
-		public static function addSubComments($creator,$parent,$content) {
+		public static function addSubComments($creator,$post_id,$parent,$content) {
 			$connection = Connection::getConnection();
 
 			$statement = $connection->prepare("INSERT INTO comment_comment_ass(parent_id,child_id) VALUES(?,?);");
@@ -216,6 +216,12 @@
 			
 			Connection::closeConnection();
 			
+			$comment_creator_id = MySQLRequests::getCommentCreatorByCommentID($parent)["user_id"];
+			if ($comment_creator_id != $creator) {
+				MySQLRequests::add_notification($post_id,$comment_creator_id,$creator);
+			}
+			
+
 			return $info;
 		
 		}
@@ -241,14 +247,15 @@
 			Connection::closeConnection();
 			return $info;
 		}
-		public static function add_notification($post_id,$comment_creator_id){
+		public static function add_notification($notification_post_id,$notification_notificant_id,$notification_notifier_id){
 			$connection = Connection::getConnection();
 			
-			$statement = $connection->prepare("INSERT INTO notifications(notification_post_id,notification_comment_creator_id) 
- VALUES(?,?);");
-			
-			$statement->bindParam(1, $post_id);
-			$statement->bindParam(2, $comment_creator_id);
+			$statement = $connection->prepare("INSERT INTO notifications(notification_post_id,notification_notificant_id,notification_notifier_id) 
+ VALUES(?,?,?);");
+
+			$statement->bindParam(1, $notification_post_id);
+			$statement->bindParam(2, $notification_notificant_id);
+			$statement->bindParam(3, $notification_notifier_id);
 			
 			$statement->execute();
 			$info = $statement->fetchAll();
@@ -257,12 +264,12 @@
 			return $info;	
 		}
 		
-			public static function get_notification($notification_post_id){
+			public static function get_notification($notification_notificant_id){
 			$connection = Connection::getConnection();
 			
-			$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_post_id=? and notification_status=? order by notification_id desc;");
+			$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_notificant_id=? and notification_status=? order by notification_id desc;");
 			$temp = 1;
-			$statement->bindParam(1, $notification_post_id);
+			$statement->bindParam(1, $notification_notificant_id);
 			$statement->bindParam(2,$temp);
 			$statement->execute();
 			
@@ -283,6 +290,21 @@
 			
 			$statement->setFetchMode(PDO::FETCH_ASSOC);
 			$info = $statement->fetchAll();
+			Connection::closeConnection();
+			
+			return $info;	
+		}
+
+		public static function getPostIDbyCommentID($comment_id){
+			$connection = Connection::getConnection();
+			
+			$statement = $connection->prepare("SELECT post_id from post_comment_ass  where comment_id=?");
+
+			$statement->bindParam(1, $comment_id);
+			$statement->execute();
+			
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetch();
 			Connection::closeConnection();
 			
 			return $info;	

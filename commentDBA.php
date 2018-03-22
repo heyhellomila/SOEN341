@@ -13,7 +13,7 @@ else{
 }
 
  function addSubComments($id,$content){
-	MySQLrequests::addSubComments($_SESSION["user_id"],$id,$content);
+	MySQLrequests::addSubComments($_SESSION["user_id"],$_SESSION["post_id"],$id,$content);
 }
  function addComment($content){
 	MySQLrequests::addComment($_SESSION["user_id"],$_SESSION["post_id"],$content);
