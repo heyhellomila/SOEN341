@@ -62,5 +62,10 @@ class profilePageAction extends commonAction{
 		}
 		return true;
 	}
+
+	public function getNumberPosts($id){
+		return MySQLrequests::getNumberPosts($id);
+	}
+
 }
 

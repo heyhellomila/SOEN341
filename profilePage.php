@@ -25,6 +25,9 @@ require_once("partial/header.php")
 					<strong>Member Since: </strong>
 					<?=$action->userInfo["user_creation_time"]?>
 				</div>
+				<div class="row"><strong>Number of Posts: </strong>
+					<?=$action->getNumberPosts($_SESSION["user_id"])?>
+				</div>
 
 
 			</div>

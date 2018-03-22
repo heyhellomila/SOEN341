@@ -431,4 +431,17 @@ class MySQLRequests {
 		return $info;
 	}
 
+	public static function getNumberPosts($id){
+		$connection=connection::getConnection();
+		$statement= $connection->prepare("SELECT * FROM post WHERE post_creator=?");
+		$statement->bindParam(1, $id);
+		$statement->execute();
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info=count($statement->fetchall());
+		connection::closeConnection();
+
+		return $info;
+
+	}
+
 }
