@@ -117,7 +117,7 @@ require_once("partial/header.php");
 
 					</div>
 					<div class="media-body">
-						<?=$v["comment_content"]?>
+						<?=$comment["comment_content"]?>
 						<div class="col secondaryLikes">
 							<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$comment["comment_nb_likes"]?></span>
 							<span class="comment_like fa fa-thumbs-up" data-id="<?=$comment["comment_id"]?>"></span>
