@@ -62,7 +62,7 @@ class viewPostAction extends commonAction{
 	
 
 	public function isViewerCreator(){
-		if ($this->postCreator["user_id"] == $_SESSION["user_id"]) 
+		if ($this->isLoggedIn() && $this->postCreator["user_id"] == $_SESSION["user_id"]) 
 			return true;
 		return false;
 	}
