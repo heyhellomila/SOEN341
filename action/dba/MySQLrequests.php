@@ -437,8 +437,94 @@ class MySQLRequests {
 		
 		return $info;	
 	}
-	
-	
+	public static function getCommentbyID($id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT * from comment where comment_id=?");
+
+		$statement->bindParam(1, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+
+	public static function getAnswers($id, $answers) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("UPDATE post SET post_nb_answers=? WHERE post_id=?");
+		
+		$statement->bindParam(1, $answers);
+		$statement->bindParam(2, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function getBestAnswerByPostID($post_id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT * from post  WHERE post_id=?");
+		
+		$statement->bindParam(1, $post_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function getIsFavorite($comment_id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT comment.* from post_comment_ass left JOIN  comment ON (comment.comment_id = post_comment_ass.comment_id) where post_comment_ass.comment_id=? and favorite=1;;
+			");
+		
+		$statement->bindParam(1, $comment_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function invertFavorite($comment_id,$temp) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("UPDATE post_comment_ass SET favorite=? WHERE comment_id=?");
+		
+		$statement->bindParam(1, $temp);
+		$statement->bindParam(2, $comment_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function getFavoriteStatus($comment_id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT * from post_comment_ass where comment_id=?");
+
+		$statement->bindParam(1, $comment_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}	
 
 	
 	public static function updateProfile($username,$userbio,$password,$id){
