@@ -344,37 +344,9 @@ class MySQLRequests {
 		return $info;
 		
 	}
-	public static function getCommentbyID($id) {
-		$connection = Connection::getConnection();
-		$statement = $connection->prepare("SELECT * from comment where comment_id=?");
-		
-		$statement->bindParam(1, $id);
-		$statement->execute();
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-		Connection::closeConnection();
-		return $info;
-	}
-
-	
 
 
-	public static function getAnswers($id, $answers) {
 
-		$connection = Connection::getConnection();
-
-		$statement = $connection->prepare("UPDATE post SET post_nb_answers=? WHERE post_id=?");
-		
-		$statement->bindParam(1, $answers);
-		$statement->bindParam(2, $id);
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-
-		Connection::closeConnection();
-		return $info;
-	}
 	public static function add_notification($notification_post_id,$notification_notificant_id,$notification_notifier_id){
 		$connection = Connection::getConnection();
 		
