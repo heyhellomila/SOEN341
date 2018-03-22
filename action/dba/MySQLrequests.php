@@ -159,13 +159,13 @@
 		
 		}
 
-		public static function addComment($creator,$parent,$content)  {
+		public static function addComment($creator,$post_id,$content)  {
 			$connection = Connection::getConnection();
 
 			$statement = $connection->prepare("INSERT INTO post_comment_ass(post_id,comment_id) VALUES(?,?);");
 			$id=MySQLRequests::insertComment($creator,$content);
 
-			$statement->bindParam(1, $parent);
+			$statement->bindParam(1, $post_id);
 			$statement->bindParam(2, $id);
 			$statement->execute();
 
@@ -174,7 +174,10 @@
 			
 			Connection::closeConnection();
 			
-			//MySQLRequests::add_notification($parent,$creator);
+			$post_creator_id = MySQLRequests::getPostCreatorByPostID($post_id)["user_id"];
+			if ($post_creator_id != $_SESSION["user_id"]) {
+				MySQLRequests::add_notification($post_id,$creator);
+			}
 			
 			
 			return ;
@@ -241,13 +244,11 @@
 		public static function add_notification($post_id,$comment_creator_id){
 			$connection = Connection::getConnection();
 			
-			$post_creator = MySQLRequests::getUserByID($post_id);
-			
-			$statement = $connection->prepare("INSERT INTO notifications(post_id, comment_creator_id,post_creator) VALUES(?,?,?);");
+			$statement = $connection->prepare("INSERT INTO notifications(notification_post_id,notification_comment_creator_id) 
+ VALUES(?,?);");
 			
 			$statement->bindParam(1, $post_id);
 			$statement->bindParam(2, $comment_creator_id);
-			$statement->bindParam(3, $post_creator);
 			
 			$statement->execute();
 			$info = $statement->fetchAll();
