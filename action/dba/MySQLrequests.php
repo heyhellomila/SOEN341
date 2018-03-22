@@ -174,7 +174,7 @@
 			
 			Connection::closeConnection();
 			
-			MySQLRequests::add_notification($parent,$creator);
+			//MySQLRequests::add_notification($parent,$creator);
 			
 			
 			return ;
@@ -256,13 +256,28 @@
 			return $info;	
 		}
 		
-			public static function get_notification($notification_post_creator_id){
+			public static function get_notification($notification_post_id){
 			$connection = Connection::getConnection();
 			
-			$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_post_creator_id=? and notification_status=? order by notification_id desc;");
+			$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_post_id=? and notification_status=? order by notification_id desc;");
 			$temp = 1;
-			$statement->bindParam(1, $notification_post_creator_id);
+			$statement->bindParam(1, $notification_post_id);
 			$statement->bindParam(2,$temp);
+			$statement->execute();
+			
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$info = $statement->fetchAll();
+			Connection::closeConnection();
+			
+			return $info;	
+		}
+		public static function checkSeeNotifByID($notification_id){
+			$connection = Connection::getConnection();
+			
+			$statement = $connection->prepare("UPDATE notifications set notification_status=0 where notification_id=?;
+");
+			$temp = 1;
+			$statement->bindParam(1, $notification_id);
 			$statement->execute();
 			
 			$statement->setFetchMode(PDO::FETCH_ASSOC);

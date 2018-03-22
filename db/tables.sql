@@ -119,22 +119,6 @@ CREATE TABLE IF NOT EXISTS `341`.`post_comment_ass` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-	
--- -----------------------------------------------------
--- Table `341`.`contactus_email`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `341`.`contactus_email` ;
-
-CREATE TABLE IF NOT EXISTS `341`.`contactus_email` (
-  `id` INT(8) NOT NULL AUTO_INCREMENT,
-  `time` DATETIME DEFAULT NOW(),
-  `subject` CHAR(100) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `message` TEXT(1000) NOT NULL,
-  `name` CHAR(25) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `id_creator_idx` (`id` ASC)) ;
-  
 -- -----------------------------------------------------
 -- Table `341`.`notifications`
 -- -----------------------------------------------------
@@ -142,7 +126,7 @@ DROP TABLE IF EXISTS `341`.`notifications` ;
   
 CREATE TABLE `341`.`notifications` (
   `notification_id` int(8) NOT NULL AUTO_INCREMENT,
-  `notification_post_creator_id` INT(8) NOT NULL,
+  `notification_post_id` INT(8) NOT NULL,
   `notification_comment_creator_id` INT(8) NOT NULL,
   `notification_status` int(1) DEFAULT 1,
   

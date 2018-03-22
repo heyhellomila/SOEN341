@@ -45,11 +45,16 @@
 					<?php
 					foreach ($action->notifications as $notif) {
 						if ($_SESSION["user_id"] != $notif["notification_comment_creator_id"]) {
-						?>
-						<a class="dropdown-item" href="#"><?=$action->getName($notif["notification_comment_creator_id"])?> has commented on your stuff</a>
-						<?php
-					}
+							?>
+							<form name="title" action="index.php" method="post">
+								<input type="hidden" name="post_id" value="<?= $notif["notification_post_id"]?>"></input>    
+								<input type="hidden" name="removeNotif" value="<?= $notif["notification_id"]?>"></input>           
+								<a class="dropdown-item" href="#"  onclick="$(this).closest('form').submit();"><?=$action->getName($notif["notification_comment_creator_id"])?> has commented on your stuff</a>
+							
+							</form>
+							<?php
 						}
+					}
 					?>
 				</div>
 				<?php
