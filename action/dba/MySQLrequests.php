@@ -400,5 +400,35 @@ class MySQLRequests {
 		
 
 	}
+	public static function getPopularPost(){
+		$connection=connection::getConnection();
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_nb_likes DESC LIMIT 3");
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+		connection::closeConnection();
+		return $info;
+	}
+
+	public static  function getNewestPost(){
+		$connection=connection::getConnection();
+		
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id DESC LIMIT 3");
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+		connection::closeConnection();
+		return $info;
+	}
+
+	public static function getUnpopularPost(){
+		$connection=connection::getConnection();
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id ASC LIMIT 3");
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+		connection::closeConnection();
+		return $info;
+	}
 
 }

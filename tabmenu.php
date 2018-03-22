@@ -1,28 +1,6 @@
 <?php
 require_once("action/profilePageAction.php");
 require_once("action/dba/MySQLrequests.php");
-//make connection
-$connection=connection::getConnection();
-
-$statement = $connection->prepare("SELECT * FROM post ORDER BY post_nb_likes DESC LIMIT 3");
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$statement->execute();
-$info = $statement->fetchAll();
-$liked=$info;
-$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id DESC LIMIT 3");
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$statement->execute();
-$info = $statement->fetchAll();
-$newest=$info;
-$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id ASC LIMIT 3");
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$statement->execute();
-$info = $statement->fetchAll();
-$unpopular=$info;
-connection::closeConnection();
-
-
-
 ?>
 <div id="accordion">
 	<div class="container bg-white px-0" style="line-height: 0.5 !important;" `>
@@ -46,14 +24,15 @@ connection::closeConnection();
 					<!-- Table of posts -->
 					<div >
 						<!-- Single post that is added to the homepage starts here -->
-						<?php foreach ($liked as $post) {
+						<?php $liked=MySQLrequests::getPopularPost();
+						foreach ($liked as $post) {
 							$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 							<div class="row border-bottom border-gray">    
 								<div class="col">
 									<h5 class="row">
 										<form name="title" action="index.php" method="post">
-          								<input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          								<input type="hidden" name="post_id" value="<?=$post["post_id"]?>">           
           								<button type="submit" class="notButton"><?=$post["post_title"]?></button>
         								</form>
         							</h5>
@@ -76,7 +55,8 @@ connection::closeConnection();
 					<!-- Table of posts -->
 					<div>
 						<!-- Single post that is added to the homepage starts here -->
-						<?php foreach ($newest as $post) {
+						<?php $newest=MySQLrequests::getNewestPost();
+						foreach ($newest as $post) {
 							$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							
 							?>
@@ -84,7 +64,7 @@ connection::closeConnection();
 									<div class="col">
 										<h5 class="row">
 											<form name="title" action="index.php" method="post">
-          									<input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          									<input type="hidden" name="post_id" value="<?=$post["post_id"]?>">          
           									<button type="submit" class="notButton"><?=$post["post_title"]?></button>
         									</form>
         								</h5>
@@ -104,13 +84,14 @@ connection::closeConnection();
 							<!-- Table of posts -->
 							<div>
 								<!-- Single post that is added to the homepage starts here -->
-								<?php foreach ($unpopular as $post) {
+								<?php $unpopular=MySQLrequests::getUnpopularPost(); 
+								foreach ($unpopular as $post) {
 									$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 									<div class="row border-bottom border-gray"><div class="col">
 										<h5 class="row">
 											<form name="title" action="index.php" method="post">
-          									<input type="hidden" name="post_id" value="<?=$post["post_id"]?>"></input>           
+          									<input type="hidden" name="post_id" value="<?=$post["post_id"]?>">           
           									<button type="submit" class="notButton"><?=$post["post_title"]?></button>
         									</form>
         								</h5>
