@@ -29,3 +29,6 @@ VALUES('2','2');
 
 INSERT INTO comment_comment_ass(parent_id,child_id)
 VALUES('1','3');
+
+INSERT INTO notifications(post_creator,comment_creator,status) 
+VALUES('1','2','1');

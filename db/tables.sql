@@ -122,3 +122,22 @@ CREATE TABLE IF NOT EXISTS `341`.`post_comment_ass` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+-- -----------------------------------------------------
+-- Table `341`.`notifications`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `341`.`notifications` ; 
+  
+CREATE TABLE `341`.`notifications` (
+  `notification_id` int(8) NOT NULL AUTO_INCREMENT,
+  `notification_post_id` INT(8) NOT NULL,
+  `notification_notificant_id` INT(8) NOT NULL,
+  `notification_notifier_id` INT(8) NOT NULL,
+  `notification_status` int(1) DEFAULT 1,
+  
+  PRIMARY KEY (`notification_id`)); 
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
