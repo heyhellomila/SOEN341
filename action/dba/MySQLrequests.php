@@ -243,14 +243,14 @@ class MySQLRequests {
 		return $info;
 	}
 
-public static function updateLike($postID, $n) {
+public static function updateLike($postID, $likes) {
 			$connection = Connection::getConnection();
 
-			$n2=$n+1;
+			$newLikes=$likes+1;
 
-			$statement = $connection->prepare("UPDATE post SET post_nb_likes=? WHERE post_id=?");
+			$statement = $connection->prepare("UPDATE post SET post_likes=? WHERE post_id=?");
 			
-			$statement->bindParam(1, $n2);
+			$statement->bindParam(1, $newLikes);
 			$statement->bindParam(2, $postID);
 			$statement->execute();
 
@@ -261,14 +261,14 @@ public static function updateLike($postID, $n) {
 			return $info;
 		}
 
-public static function updateDislike($postID, $n) {
+public static function updateDislike($postID, $likes) {
 			$connection = Connection::getConnection();
 
-			$n2=$n-1;
+			$newLikes=$likes-1;
 
-			$statement = $connection->prepare("UPDATE post SET post_nb_likes=? WHERE post_id=?");
+			$statement = $connection->prepare("UPDATE post SET post_likes=? WHERE post_id=?");
 			
-			$statement->bindParam(1, $n2);
+			$statement->bindParam(1, $newLikes);
 			$statement->bindParam(2, $postID);
 			$statement->execute();
 
@@ -279,14 +279,14 @@ public static function updateDislike($postID, $n) {
 			return $info;
 		}
 
-public static function updateCommentLike($id, $n) {
+public static function updateCommentLike($id, $likes) {
 			$connection = Connection::getConnection();
 
-			$n2=$n+1;
+			$newLikes=$likes+1;
 
-			$statement = $connection->prepare("UPDATE comment SET comment_nb_likes=? WHERE comment_id=?");
+			$statement = $connection->prepare("UPDATE comment SET comment_likes=? WHERE comment_id=?");
 			
-			$statement->bindParam(1, $n2);
+			$statement->bindParam(1, $newLikes);
 			$statement->bindParam(2, $id);
 			$statement->execute();
 
@@ -297,14 +297,14 @@ public static function updateCommentLike($id, $n) {
 			return $info;
 		}
 
-public static function updateCommentDislike($id, $n) {
+public static function updateCommentDislike($id, $likes) {
 			$connection = Connection::getConnection();
 
-			$n2=$n-1;
+			$newLikes=$likes-1;
 
-			$statement = $connection->prepare("UPDATE comment SET comment_nb_likes=? WHERE comment_id=?");
+			$statement = $connection->prepare("UPDATE comment SET comment_likes=? WHERE comment_id=?");
 			
-			$statement->bindParam(1, $n2);
+			$statement->bindParam(1, $newLikes);
 			$statement->bindParam(2, $id);
 			$statement->execute();
 
@@ -333,7 +333,7 @@ public static function getCommentbyID($id) {
 public static function getAnswers($id, $answers) {
 			$connection = Connection::getConnection();
 
-			$statement = $connection->prepare("UPDATE post SET post_nb_answers=? WHERE post_id=?");
+			$statement = $connection->prepare("UPDATE post SET post_answers=? WHERE post_id=?");
 			
 			$statement->bindParam(1, $answers);
 			$statement->bindParam(2, $id);

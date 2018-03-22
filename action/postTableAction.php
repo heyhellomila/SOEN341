@@ -25,11 +25,11 @@ class postTableAction extends commonAction{
 		return MySQLrequests::getUserByID($id);
 	}
 
-	public function updateLike($id, $n){
-		return MySQLrequests::updateLike($id, $n);
+	public function updateLike($id, $likes){
+		return MySQLrequests::updateLike($id, $likes);
 	}	
 
-	public function updateDislike($id, $n){
-		return MySQLrequests::updateDislike($id, $n);
+	public function updateDislike($id, $likes){
+		return MySQLrequests::updateDislike($id, $likes);
 	}
 }

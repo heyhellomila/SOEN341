@@ -40,20 +40,20 @@ class viewPostAction extends commonAction{
 		return MySQLrequests::getCommentByID($id);
 	}
 
-	public function updateLike($id, $n){
-		return MySQLrequests::updateLike($id, $n);
+	public function updateLike($id, $likes){
+		return MySQLrequests::updateLike($id, $likes);
 	}	
 
-	public function updateDislike($id, $n){
-		return MySQLrequests::updateDislike($id, $n);
+	public function updateDislike($id, $likes){
+		return MySQLrequests::updateDislike($id, $likes);
 	}
 
-	public function updateCommentLike($id, $n){
-		return MySQLrequests::updateCommentLike($id, $n);
+	public function updateCommentLike($id, $likes){
+		return MySQLrequests::updateCommentLike($id, $likes);
 	}	
 
-	public function updateCommentDislike($id, $n){
-		return MySQLrequests::updateCommentDislike($id, $n);
+	public function updateCommentDislike($id, $likes){
+		return MySQLrequests::updateCommentDislike($id, $likes);
 	}
 
 	public function getAnswers($id, $answers){
