@@ -10,8 +10,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/global.css">
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -25,10 +26,9 @@
 		<img class="navbar-brand " src="images/site_logo.png" height="60">
 	</a>
 
-	<form class="form-inline col-8" method="post">
-		<input class="form-control mr-sm-3 col" type="search" placeholder="Search" aria-label="Search">
-		<button class="btn btn-outline-success" type="submit">Search</button>
-
+	<form class="form-inline col-8" action="search.php" method="POST">
+		<input class="form-control mr-sm-3 col" type="text" placeholder="Search" aria-label="Search" name="query">
+		<button class="btn btn-outline-success" type="submit" value="Search">Search</button>
 	</form>
 	<?php
 	if ($action->isLoggedIn())
@@ -36,7 +36,7 @@
 		?>
 		<div class="dropdown">
 			<button class = " btn btn-dark" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        
+				
 				<?php
 				if(!empty($action->notifications)) {
 					?>
@@ -45,14 +45,14 @@
 				<div class="dropdown-menu dropdown-menu-right">
 					<?php
 					foreach ($action->notifications as $notif) {
-							?>
-							<form name="title" action="index.php" method="post">
-								<input type="hidden" name="post_id" value="<?= $notif["notification_post_id"]?>"></input>    
-								<input type="hidden" name="removeNotif" value="<?= $notif["notification_id"]?>"></input>           
-								<a class="dropdown-item" href="#"  onclick="$(this).closest('form').submit();"><?=$action->getName($notif["notification_notifier_id"])?> has commented on your stuff</a>
+						?>
+						<form name="title" action="index.php" method="post">
+							<input type="hidden" name="post_id" value="<?= $notif["notification_post_id"]?>"></input>    
+							<input type="hidden" name="removeNotif" value="<?= $notif["notification_id"]?>"></input>           
+							<a class="dropdown-item" href="#"  onclick="$(this).closest('form').submit();"><?=$action->getName($notif["notification_notifier_id"])?> has commented on your stuff</a>
 							
-							</form>
-							<?php
+						</form>
+						<?php
 					}
 					?>
 				</div>
@@ -68,19 +68,19 @@
 
 		</div>
 
-<div class="dropdown mr-5">
-				<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>">
-				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<p class="text-center"><?=$_SESSION["userInfo"]["user_name"]?></p>
-					<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
-					<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
-					
-					<a href="./?logout=true" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
+		<div class="dropdown mr-5">
+			<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>">
+			</button>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+				<p class="text-center"><?=$_SESSION["userInfo"]["user_name"]?></p>
+				<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
+				<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
+				
+				<a href="./?logout=true" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
 
-				</div>
 			</div>
+		</div>
 		<?php
 	} 
 	else

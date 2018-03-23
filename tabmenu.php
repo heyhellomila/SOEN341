@@ -1,6 +1,4 @@
 <?php
-require_once("action/profilePageAction.php");
-require_once("action/dba/MySQLrequests.php");
 ?>
 <div id="accordion">
 	<div class="container bg-white px-0" style="line-height: 0.5 !important;" `>

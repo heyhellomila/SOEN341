@@ -4,20 +4,6 @@ require_once("action/postTableAction.php");
     $action = new postTableAction();
     $action->execute();
 
-  if (isset($_POST['liked'])) {
-    $postid = $_POST['postid'];
-    $n = $action->getPostByID($postid);
-    $action->updateLike($postid, $n["post_nb_likes"]);
-    echo $n["post_nb_likes"]+1;
-    exit(); }
-
-  if (isset($_POST['disliked'])) {
-    $postid = $_POST['postid'];
-    $n = $action->getPostByID($postid);
-    $action->updateDislike($postid, $n["post_nb_likes"]);
-    echo $n["post_nb_likes"]-1;
-    exit(); }
-
 ?>
 
 <div class="my-3">
@@ -47,8 +33,8 @@ foreach ($action->posts as $index=>$post) {
             <strong class="d-block text-gray-dark">Posted: <?=$post["post_creation_time"]?></strong>
             <strong class="d-block">Answers: <?=$post["post_nb_answers"]?></strong>
             <strong id="likes" class="d-block"><span class="likes_count">Likes: <?=$post["post_nb_likes"]?></span></strong>
-            <span class="like fa fa-thumbs-up" data-id="<?=$post["post_id"]?>"></span>
-            <span class="dislike fa fa-thumbs-down" data-id="<?=$post["post_id"]?>"></span>
+            <!--<span class="like fa fa-thumbs-up" data-id="<?=$post["post_id"]?>"></span>
+            <span class="dislike fa fa-thumbs-down" data-id="<?=$post["post_id"]?>"></span>-->
             </td>
             <td style="padding: 5px;"><?=$post["post_content"]?></td>
           </tr>
@@ -64,7 +50,7 @@ foreach ($action->posts as $index=>$post) {
 }
 ?>
 </div>
-
+<!--
 <script src="js/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
@@ -76,7 +62,7 @@ foreach ($action->posts as $index=>$post) {
         url: 'Post Table.php',
         type: 'post',
         data: {
-          'liked': 1,
+          'post_liked': 1,
           'postid': postid
         },
         success: function(response){
@@ -93,7 +79,7 @@ foreach ($action->posts as $index=>$post) {
         url: 'Post Table.php',
         type: 'post',
         data: {
-          'disliked': 1,
+          'post_disliked': 1,
           'postid': postid
         },
         success: function(response){
@@ -103,3 +89,4 @@ foreach ($action->posts as $index=>$post) {
     });
   });
 </script>
+-->

@@ -44,7 +44,6 @@ require_once("partial/header.php");
 										<textarea class="form-control" name="commentContent"  rows="3" placeholder="Write comments..."></textarea>
 									</div> 
 									<button type="submit" class="btn btn-primary">Comment</button>
-									`
 
 								</form>
 							</div>

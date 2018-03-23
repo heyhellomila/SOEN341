@@ -12,9 +12,7 @@ class postTableAction extends commonAction{
 	protected function executeAction() {
 		if (isset($_REQUEST["post_id"])) {
 			$_SESSION["post_id"]=$_REQUEST["post_id"];
-			if (isset($_REQUEST["removeNotif"])) {
-				MySQLrequests::checkSeeNotifByID($_REQUEST["removeNotif"]);
-			}
+			
 			header("location:viewPost.php");
 		}
 
@@ -29,11 +27,26 @@ class postTableAction extends commonAction{
 		return MySQLrequests::getUserByID($id);
 	}
 
-	public function updateLike($id, $n){
-		return MySQLrequests::updateLike($id, $n);
+	public function addPostLike(){
+		if (isset($_POST['post_liked'])) {
+			$post_id = $_POST['postid'];
+			$post = $this->getPostByID($post_id);
+			$newLike = $post["post_nb_likes"]+1;
+			MySQLrequests::updatePostLike($post_id, $newLike);
+			echo $newLike;
+			exit(); 
+		}
 	}	
 
-	public function updateDislike($id, $n){
-		return MySQLrequests::updateDislike($id, $n);
+	public function addPostDisike(){
+		if (isset($_POST['post_disliked'])) {
+			$post_id = $_POST['postid'];
+			$post = $this->getPostByID($post_id);
+			$newLike = $post["post_nb_likes"]-1;
+			MySQLrequests::updatePostLike($post_id, $newLike);
+			echo $newLike;
+			exit(); 
+		}
+
 	}
 }
