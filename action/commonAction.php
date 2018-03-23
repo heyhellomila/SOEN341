@@ -62,8 +62,3 @@ abstract class commonAction {
 
 	}
 }
-r_id){
-		return MySQLrequests::getUserById($user_id)["user_name"];
-
-	}
-}
