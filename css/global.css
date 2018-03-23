@@ -34,3 +34,48 @@
 .contentWrap{
   margin-bottom:80px; 
 }
+
+
+
+
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+
+
+.img_captain{background-image:url(../images/icons/captain.png);}
+.img_astronaut{background-image:url(../images/icons/astronaut.png);}
+.img_concierge{background-image:url(../images/icons/concierge.png);}
+.img_cooker{background-image:url(../images/icons/cooker.png);}
+.img_firefighter{background-image:url(../images/icons/firefighter.png);}
+.img_judge{background-image:url(../images/icons/judge.png);}
+.img_maid{background-image:url(../images/icons/maid.png);}
+.img_writer{background-image:url(../images/icons/writer.png);}
+
+input:active +.profileimage-cc, .cc-selector input:active +.profileimage-cc{opacity: .9;}
+input:checked +.profileimage-cc, .cc-selector input:checked +.profileimage-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.profileimage-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:84px;height:64px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: grayscale(1) ;
+       -moz-filter: grayscale(1);
+            filter: grayscale(1) ;
+}
+.profileimage-cc:hover{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;

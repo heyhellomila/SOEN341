@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS `341`.`user` (
   `user_name` VARCHAR(25) NOT NULL,
   `user_email` VARCHAR(75) NOT NULL,
   `user_pass` VARCHAR(40) NOT NULL,
-  `user_bio` TEXT(1000),
+  `user_img` VARCHAR(40) NOT NULL DEFAULT "captain.png",
+
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
 ENGINE = InnoDB;
@@ -122,9 +123,6 @@ CREATE TABLE IF NOT EXISTS `341`.`post_comment_ass` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
--- -----------------------------------------------------
--- Table `341`.`notifications`
--- -----------------------------------------------------
 DROP TABLE IF EXISTS `341`.`notifications` ; 
   
 CREATE TABLE `341`.`notifications` (
@@ -133,6 +131,7 @@ CREATE TABLE `341`.`notifications` (
   `notification_notificant_id` INT(8) NOT NULL,
   `notification_notifier_id` INT(8) NOT NULL,
   `notification_status` int(1) DEFAULT 1,
+
   
   PRIMARY KEY (`notification_id`)); 
 

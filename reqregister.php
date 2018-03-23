@@ -9,7 +9,7 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['pwd1']) && isset($_REQUEST['
 	if($check-> rowCount() > 0)
 	{ 
 		echo "<script>
-		alert('Sorry user name already exist');
+		alert('Sorry email already registered');
 		window.location.href='registrationpage.php';
 		</script>";
 	}

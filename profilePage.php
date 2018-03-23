@@ -8,22 +8,25 @@ require_once("partial/header.php")
 ?>
 <div class="mainbody container">
 	<div class="row">
-		<div style="padding-top:50px;"> </div>
+		<div style="padding-top:50px;"></div>
 
 		<div class="card col-lg-9 col-md-9 col-sm-12 col-xs-12 mt-2 justified">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<h1 class="panel-title justified" style="font-size:30px;"><i class="fa fa-cogs" aria-hidden="true"></i> User Profile</h1>
+					<h1 class="panel-title justified" style="font-size:30px;"><i class="fa fa-cogs" aria-hidden="true"></i>User Profile</h1>
 				</div>
 			</div>
 			<div class="panel panel-default ml-2">
 
 				<div class="row"><strong>Username: </strong>
-					<?=$action->userInfo["user_name"]?>
+					<?=$_SESSION["userInfo"]["user_name"]?>
 				</div>
 				<div class="row">
 					<strong>Member Since: </strong>
-					<?=$action->userInfo["user_creation_time"]?>
+					<?=$_SESSION["userInfo"]["user_creation_time"]?>
+				</div>
+				<div class="row"><strong>Number of Posts: </strong>
+					<?=$action->getNumberPosts($_SESSION["user_id"])?>
 				</div>
 
 
@@ -33,22 +36,13 @@ require_once("partial/header.php")
 				<div class="panel-body">
 					<div align="center">
 						<div class="col-lg-12 col-md-12">
-							<img class="img-thumbnail img-responsive" src="images/captain.png" style="width: 120px; height: 120px;"">
+							<img class="img img-responsive" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>" >
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<br>
-					<strong>Member Bio: </strong>
-					<br>
-					<?=$action->userInfo["user_bio"]?>
-				</div>
-
-			</div>
 			<?php
-		if ($action->isLoggedIn() && isset($_SESSION["user_id"]))
+		if ($action->isLoggedIn())
 		?>
 			<div class="panel panel-default mb-2">
 				<div class="panel-body">

@@ -36,7 +36,7 @@
 		?>
 		<div class="dropdown">
 			<button class = " btn btn-dark" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
+        
 				<?php
 				if(!empty($action->notifications)) {
 					?>
@@ -68,15 +68,19 @@
 
 		</div>
 
-		<div class="dropdown">
-			<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img alt="32x32" class="mr-2 rounded" style="width: 48px; height: 48px;" src="images/captain.png">
-			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" href="#">Profile</a>
-				<a class="dropdown-item" href="./?logout=true">Sign Out</a>
+<div class="dropdown mr-5">
+				<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>">
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<p class="text-center"><?=$_SESSION["userInfo"]["user_name"]?></p>
+					<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
+					<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
+					
+					<a href="./?logout=true" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
+
+				</div>
 			</div>
-		</div>
 		<?php
 	} 
 	else

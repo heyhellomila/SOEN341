@@ -42,11 +42,8 @@ foreach ($action->posts as $index=>$post) {
           <table>
           <tr>
             <td>
-            <strong class="d-block text-gray-dark">From:<form name="name" action="profilePage.php" method="post">
-          <input type="hidden" name="post_creator" value="<?=$post["post_creator"]?>">
-          <button type="submit" name="submit" class="notButton"><?=$postCreator["user_name"]?></button>
-      
-        </form></strong>
+            <strong class="d-block text-gray-dark">From:<?=$postCreator["user_name"]?>
+          </strong>
             <strong class="d-block text-gray-dark">Posted: <?=$post["post_creation_time"]?></strong>
             <strong class="d-block">Answers: <?=$post["post_nb_answers"]?></strong>
             <strong id="likes" class="d-block"><span class="likes_count">Likes: <?=$post["post_nb_likes"]?></span></strong>

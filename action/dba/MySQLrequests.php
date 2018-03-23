@@ -346,6 +346,120 @@ class MySQLRequests {
 	}
 
 
+	public static function updateBio($id, $bio) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("UPDATE user SET user_bio=? WHERE user_id=?");
+
+		$statement->bindParam(1, $bio);
+		$statement->bindParam(2, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+
+  	
+	public static function updatePassword($user_id,$password){
+		$connection = Connection::getConnection();
+		$hashPassword = sha1($password);
+		$statement = $connection->prepare("UPDATE user SET user_pass=? WHERE user_id=?");
+
+		$statement->bindParam(1, $hashPassword);
+		$statement->bindParam(2, $user_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+		
+
+	}
+	public static function checkPassword($user_id,$password){
+		$connection = connection::getConnection();
+		$pass = sha1($password);
+
+		$statement = $connection->prepare("SELECT *from user where user_pass = ? and user_id = ?");
+
+		$statement->bindParam(1, $pass);
+		$statement->bindParam(2, $user_id);
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+
+		$statement->execute();
+
+		$info = $statement->fetch();
+		connection::closeConnection();
+		return $info;
+		
+
+	}
+	public static function getPopularPost(){
+		$connection=connection::getConnection();
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_nb_likes DESC LIMIT 3");
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+		connection::closeConnection();
+		return $info;
+	}
+
+	public static  function getNewestPost(){
+		$connection=connection::getConnection();
+		
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id DESC LIMIT 3");
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+		connection::closeConnection();
+		return $info;
+	}
+
+	public static function getUnpopularPost(){
+		$connection=connection::getConnection();
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id ASC LIMIT 3");
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+		connection::closeConnection();
+		return $info;
+	}
+
+	public static function getNumberPosts($id){
+		$connection=connection::getConnection();
+		$statement= $connection->prepare("SELECT * FROM post WHERE post_creator=?");
+		$statement->bindParam(1, $id);
+		$statement->execute();
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info=count($statement->fetchall());
+		connection::closeConnection();
+
+		return $info;
+
+	}
+
+
+	public static function updateProfilePicture($pictureName,$user_id){
+		$connection=connection::getConnection();
+		$statement= $connection->prepare("UPDATE user set user_img=? WHERE user_id=?");
+		$statement->bindParam(1, $pictureName);
+		$statement->bindParam(2, $user_id);
+		$statement->execute();
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info=count($statement->fetchall());
+		connection::closeConnection();
+
+		return $info;
+
+	}
+	
+
+
 
 	public static function add_notification($notification_post_id,$notification_notificant_id,$notification_notifier_id){
 		$connection = Connection::getConnection();
