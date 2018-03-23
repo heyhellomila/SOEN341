@@ -79,3 +79,10 @@ input:checked +.profileimage-cc, .cc-selector input:checked +.profileimage-cc{
     -webkit-filter: none;
        -moz-filter: none;
             filter: none;
+
+}
+.dropdown-menu-right {
+    right: 0 !important;
+    left: auto !important;
+  }
+

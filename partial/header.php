@@ -12,6 +12,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/global.css">
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -72,7 +73,7 @@
 				<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>">
 				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 					<p class="text-center"><?=$_SESSION["userInfo"]["user_name"]?></p>
 					<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
 					<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
