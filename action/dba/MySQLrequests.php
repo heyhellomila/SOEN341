@@ -225,15 +225,13 @@ class MySQLRequests {
 		return $info;
 	}
 
-	public static function updateLike($postID, $n) {
+	public static function updatePostLike($post_id, $new_likes) {
 		$connection = Connection::getConnection();
-
-		$n2=$n+1;
 
 		$statement = $connection->prepare("UPDATE post SET post_nb_likes=? WHERE post_id=?");
 		
-		$statement->bindParam(1, $n2);
-		$statement->bindParam(2, $postID);
+		$statement->bindParam(1, $new_likes);
+		$statement->bindParam(2, $post_id);
 		$statement->execute();
 
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -243,56 +241,19 @@ class MySQLRequests {
 		return $info;
 	}
 
-	public static function updateDislike($postID, $n) {
+	public static function updateCommentLike($comment_id, $new_likes) {
 		$connection = Connection::getConnection();
-
-		$n2=$n-1;
-
-		$statement = $connection->prepare("UPDATE post SET post_nb_likes=? WHERE post_id=?");
-		
-		$statement->bindParam(1, $n2);
-		$statement->bindParam(2, $postID);
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-		
-		Connection::closeConnection();
-		return $info;
-	}
-
-	public static function updateCommentLike($id, $n) {
-		$connection = Connection::getConnection();
-		$n2=$n+1;
 		$statement = $connection->prepare("UPDATE comment SET comment_nb_likes=? WHERE comment_id=?");
 		
-		$statement->bindParam(1, $n2);
-		$statement->bindParam(2, $id);
+		$statement->bindParam(1, $new_likes);
+		$statement->bindParam(2, $comment_id);
 		$statement->execute();
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		$info = $statement->fetch();
 		Connection::closeConnection();
 		return $info;
 	}
-	public static function updateCommentDislike($id, $n) {
-		$connection = Connection::getConnection();
 
-		$n2=$n-1;
-
-		$statement = $connection->prepare("UPDATE comment SET comment_nb_likes=? WHERE comment_id=?");
-		
-		$statement->bindParam(1, $n2);
-		$statement->bindParam(2, $id);
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-
-		Connection::closeConnection();
-
-		return $info;
-
-	}
 
 	public static function addComment($creator,$post_id,$content)  {
 		$connection = Connection::getConnection();

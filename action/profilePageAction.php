@@ -18,6 +18,7 @@ class profilePageAction extends commonAction{
 		if (isset($_SESSION["user_id"])) {
 			$user_id=$_SESSION["user_id"];
 			if (isset($_POST['submit'])){
+				
 				MySQLrequests::updateProfilePicture($_POST['profilePicture'],$user_id);
 
 				if ($this->checkFields(array('password', 'newpassword','newpasswordConfirm'))) {
