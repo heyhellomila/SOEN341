@@ -124,7 +124,7 @@ require_once("partial/header.php");
 							?>
 							<div class="row">
 								<div class="media no-border">
-									<img class="d-flex mr-3" src="images/captain.png" alt="Generic placeholder image">
+									<img class="d-flex mr-3" src="images/icons/<?=$subCommentCreator["user_img"]?>" alt="Generic placeholder image">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<strong><?=$subCommentCreator["user_name"]?></strong> <span class="text-muted">commented on <?=$subC["comment_creation_time"]?></span>
@@ -153,7 +153,7 @@ require_once("partial/header.php");
 							<div class="row">
 								
 								<form class="form col" action="commentDBA.php" method="post">
-									<input type="hidden" name="parent_id" value="<?=$v["comment_id"]?>"></input>
+									<input type="hidden" name="parent_id" value="<?=$comment["comment_id"]?>"></input>
     								<div class="form-group ">
 										<label for="commentContent"></label>
 										<textarea class="form-control" name="commentContent" rows="3" placeholder="Write comments..."></textarea>
