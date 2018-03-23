@@ -422,7 +422,7 @@ class MySQLRequests {
 
 	public static function getUnpopularPost(){
 		$connection=connection::getConnection();
-		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_id ASC LIMIT 3");
+		$statement = $connection->prepare("SELECT * FROM post ORDER BY post_nb_answers ASC LIMIT 3");
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		$statement->execute();
 		$info = $statement->fetchAll();
