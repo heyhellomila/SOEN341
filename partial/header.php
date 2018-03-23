@@ -44,10 +44,10 @@
 			?>
 			<div class="dropdown mr-5">
 				<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/captain.png">
+					<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>">
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<p class="text-center"><?=$action->userInfo["user_name"]?></p>
+					<p class="text-center"><?=$_SESSION["userInfo"]["user_name"]?></p>
 					<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
 					<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
 					

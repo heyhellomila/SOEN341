@@ -32,9 +32,8 @@ require_once("partial/header.php");
     $n = $action->getCommentByID($commentid);
     $action->updateCommentDislike($commentid, $n["comment_nb_likes"]);
     echo $n["comment_nb_likes"]-1;
-    exit(); }
+    exit(); } 
 ?>
-
 <div class="background container">
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -42,7 +41,7 @@ require_once("partial/header.php");
 			<h2 style="margin-top: 25px;"><?=$action->post["post_title"]?></h2>
 			<div class="row mainPost">
 				<div class="media ">
-					<img class="d-flex mr-3 col user-icon" src="images/captain.png" alt="Generic placeholder image">
+					<img class=" mr-3 user-icon" src="images/icons/<?=$action->postCreator["user_img"]?>" alt="Generic placeholder image" style"height:64px;width:64px";>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<strong><?=$action->postCreator["user_name"]?></strong> <span class="text-muted">created on <?=$action->post["post_creation_time"]?></span>
@@ -61,17 +60,10 @@ require_once("partial/header.php");
             							<span class="post_dislike fa fa-thumbs-down" data-id="<?=$action->post["post_id"]?>"></span>
             						</div>
 								</div>							
-								<!--<div class="col">
-									<a href="https://facebook.com/" target="_blank" class="button pull-right"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-									<a href="https://google.com/" target="_blank" class="button pull-right"><i class="fa fa-google" aria-hidden="true"></i></a>
-									<a href="https://twitter.com/" target="_blank" class="button pull-right"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-								</div>-->
 							</div>
 							<div class="interuptLine"> </div>
 							<div class="row">
-								<div class="col-2">
-									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
-								</div>
+								
 								<form class="form col" action="commentDBA.php" method="post">
 									<input type="hidden" name="parent_id" value="post"></input>
 									<div class="form-group ">
@@ -96,7 +88,7 @@ require_once("partial/header.php");
 				?>
 				<div class="row ">
 					<div class="media "><div class="col">
-						<img class="d-flex mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
+						<img class="d-flex mr-3 user-icon" src="images/icons/<?=$commentCreator["user_img"]?>" alt="Generic placeholder image">
 						<img class="d-flex mr-3 no1-icon" src="images/no1.png" alt="Generic placeholder image">
 						
 					</div>
@@ -119,7 +111,7 @@ require_once("partial/header.php");
 
 								<div class="row">
 									<div class="media no-border">
-										<img class="d-flex mr-3" src="images/captain.png" alt="Generic placeholder image">
+										<img class="d-flex mr-3" src="images/icons/<?=$subCommentCreator["user_img"]?>" alt="Generic placeholder image">
 										<div class="panel panel-default">
 											<div class="panel-heading">
 												<strong><?=$subCommentCreator["user_name"]?></strong> <span class="text-muted">commented on <?=$subC["comment_creation_time"]?></span>
@@ -145,9 +137,7 @@ require_once("partial/header.php");
 							?>
 							<div class="interuptLine"> </div>
 							<div class="row">
-								<div class="col-2">
-									<img class="align-self-center mr-3 user-icon" src="images/captain.png" alt="Generic placeholder image">
-								</div>
+								
 								<form class="form col" action="commentDBA.php" method="post">
 									<input type="hidden" name="parent_id" value="<?=$v["comment_id"]?>"></input>
     								<div class="form-group ">

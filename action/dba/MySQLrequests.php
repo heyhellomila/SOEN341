@@ -444,4 +444,20 @@ class MySQLRequests {
 
 	}
 
+
+	public static function updateProfilePicture($pictureName,$user_id){
+		$connection=connection::getConnection();
+		$statement= $connection->prepare("UPDATE user set user_img=? WHERE user_id=?");
+		$statement->bindParam(1, $pictureName);
+		$statement->bindParam(2, $user_id);
+		$statement->execute();
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info=count($statement->fetchall());
+		connection::closeConnection();
+
+		return $info;
+
+	}
+	
+
 }

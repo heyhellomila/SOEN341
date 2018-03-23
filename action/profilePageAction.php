@@ -17,12 +17,10 @@ class profilePageAction extends commonAction{
 
 		if (isset($_SESSION["user_id"])) {
 			$user_id=$_SESSION["user_id"];
-			$this->userInfo=MySQLrequests::getUserByID($user_id);
-
 			if (isset($_POST['submit'])){
+				MySQLrequests::updateProfilePicture($_POST['profilePicture'],$user_id);
 
 				if ($this->checkFields(array('password', 'newpassword','newpasswordConfirm'))) {
-					$bio = $_POST['userbio'];
 					$oldPass = $_POST['password'];
 					$newPass = $_POST['newpassword'];
 					$newPassConfiorm = $_POST['newpasswordConfirm'];
@@ -44,6 +42,7 @@ class profilePageAction extends commonAction{
 						$this->wrongOldPass = true;
 					}
 				}
+				$_SESSION["userInfo"]=MySQLrequests::getUserByID($_SESSION["user_id"]);
 			}
 		}
 		else{

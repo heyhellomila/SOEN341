@@ -19,6 +19,7 @@ class SignInAction extends commonAction {
 			if (!empty($user)) {
 				$_SESSION["visibility"] = commonAction::$VISIBILITY_MEMBER;
 				$_SESSION["user_id"] = $user["user_id"];
+				$_SESSION["userInfo"]=MySQLrequests::getUserByID($_SESSION["user_id"]);
 
 				header("location:index.php");
 				exit;
