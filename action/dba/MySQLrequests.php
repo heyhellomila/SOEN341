@@ -323,7 +323,7 @@ class MySQLRequests {
 		return $info;
 	}
 
-  	
+
 	public static function updatePassword($user_id,$password){
 		$connection = Connection::getConnection();
 		$hashPassword = sha1($password);
@@ -597,4 +597,20 @@ class MySQLRequests {
 		
 	}
 
+	public static function addPost($post_title, $post_content, $post_creator){
+		$connection=connection::getConnection();
+
+		$statement = $connection->prepare("INSERT INTO post(post_title, post_content, post_creator) VALUES(?,?,?)");
+
+		$statement->bindParam(1, $post_title);
+		$statement->bindParam(2, $post_content);
+		$statement->bindParam(3, $post_creator);
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$info = $statement->fetchAll();
+
+		connection::closeConnection();
+		return $connection->LastInsertId();;
+	}
 }

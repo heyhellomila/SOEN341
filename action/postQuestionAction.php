@@ -14,24 +14,15 @@ class postQuestionAction extends commonAction {
 			
 
 			
-			$name = $_SESSION["user_id"];
+
 			if (isset($_POST['questiontopic']) && isset($_POST['content'])){
-				$a=$_POST['questiontopic']; 
-				$b=$_POST['content'];
-				$connection=connection::getConnection();
+				$post_title=$_POST['questiontopic']; 
+				$post_content=$_POST['content'];
+				$post_creator = $_SESSION["user_id"];
+				$newpost = MySQLrequests::addPost($post_title, $post_content, $post_creator);
+				$_SESSION["post_id"]=$newpost;
 
-				$statement = $connection->prepare("INSERT INTO post(post_title, post_content, post_creator) VALUES(?,?,?)");
-
-				$statement->bindParam(1, $a);
-				$statement->bindParam(2, $b);
-				$statement->bindParam(3, $name);
-
-				$statement->setFetchMode(PDO::FETCH_ASSOC);
-				$statement->execute();
-				$info = $statement->fetchAll();
-				$liked=$info;
-
-				connection::closeConnection();
+				header("location:viewPost.php");
 			}
 		}
 		else

@@ -12,9 +12,7 @@ class postTableAction extends commonAction{
 	protected function executeAction() {
 		if (isset($_REQUEST["post_id"])) {
 			$_SESSION["post_id"]=$_REQUEST["post_id"];
-			if (isset($_REQUEST["removeNotif"])) {
-				MySQLrequests::checkSeeNotifByID($_REQUEST["removeNotif"]);
-			}
+			
 			header("location:viewPost.php");
 		}
 

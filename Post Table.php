@@ -1,8 +1,6 @@
 <?php
   
-require_once("action/postTableAction.php");
-    $action = new postTableAction();
-    $action->execute();
+
 
   if (isset($_POST['liked'])) {
     $postid = $_POST['postid'];

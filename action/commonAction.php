@@ -35,8 +35,11 @@ abstract class commonAction {
 		if ($_SESSION["visibility"] < $this->pageVisibility) {
 			header("location:index.php");				
 			exit;
-		}
+		}if (isset($_REQUEST["removeNotif"])) {
+				MySQLrequests::checkSeeNotifByID($_REQUEST["removeNotif"]);
+			}
 		$this->checkNotifications();
+		
 			// execute function is abastract and must be defined in all the action.php files
 		$this->executeAction();
 	}
