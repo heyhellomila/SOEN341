@@ -22,10 +22,11 @@ abstract class commonAction {
 
 	public function execute() {
 			// if the user clicked logout kill the current sessiona and start a new one
-		if (!empty($_GET["logout"])) {
+		if (!empty($_REQUEST["logout"])) {
 			session_unset();
 			session_destroy();
 			session_start();
+			header("location:index.php");
 		}
 			//if its the first time someone goes to the website in a session. assign him the public visibility. this only execute once every session
 		if (empty($_SESSION["visibility"])) {
@@ -35,11 +36,8 @@ abstract class commonAction {
 		if ($_SESSION["visibility"] < $this->pageVisibility) {
 			header("location:index.php");				
 			exit;
-		}if (isset($_REQUEST["removeNotif"])) {
-				MySQLrequests::checkSeeNotifByID($_REQUEST["removeNotif"]);
-			}
+		}
 		$this->checkNotifications();
-		
 			// execute function is abastract and must be defined in all the action.php files
 		$this->executeAction();
 	}
@@ -60,6 +58,11 @@ abstract class commonAction {
 	}
 
 	public function getName($user_id){
+		return MySQLrequests::getUserById($user_id)["user_name"];
+
+	}
+}
+r_id){
 		return MySQLrequests::getUserById($user_id)["user_name"];
 
 	}
