@@ -125,7 +125,25 @@ class MySQLRequests {
 		Connection::closeConnection();
 		return $info;
 		
+
 	}
+	
+	public static function getCommentCreatorByCommentID($id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT user.* from user left JOIN  comment ON (user_id = comment.comment_creator) where comment.comment_id=?;");
+		
+		$statement->bindParam(1, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+		
+		Connection::closeConnection();
+		return $info;
+		
+	}
+
 
 	public static function getCommentsByPostID($id) {
 		$connection = Connection::getConnection();
@@ -175,23 +193,6 @@ class MySQLRequests {
 		
 	}
 
-	public static function addComment($creator,$parent,$content)  {
-		$connection = Connection::getConnection();
-
-		$statement = $connection->prepare("INSERT INTO post_comment_ass(post_id,comment_id) VALUES(?,?);");
-		$id=MySQLRequests::insertComment($creator,$content);
-
-		$statement->bindParam(1, $parent);
-		$statement->bindParam(2, $id);
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-
-		Connection::closeConnection();
-		return ;
-		
-	}
 	public static function insertComment($creator,$content) {
 		$connection = Connection::getConnection();
 
@@ -208,25 +209,6 @@ class MySQLRequests {
 		return $connection->LastInsertId();;
 	}
 
-
-	public static function addSubComments($creator,$parent,$content) {
-		$connection = Connection::getConnection();
-
-		$statement = $connection->prepare("INSERT INTO comment_comment_ass(parent_id,child_id) VALUES(?,?);");
-
-		$id=MySQLRequests::insertComment($creator,$content);
-
-		$statement->bindParam(1, $parent);
-		$statement->bindParam(2, $id);
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-
-		Connection::closeConnection();
-		return $info;
-		
-	}
 	public static function getLastPosts($limit,$offset) {
 		$connection = Connection::getConnection();
 
@@ -249,7 +231,7 @@ class MySQLRequests {
 		$n2=$n+1;
 
 		$statement = $connection->prepare("UPDATE post SET post_nb_likes=? WHERE post_id=?");
-
+		
 		$statement->bindParam(1, $n2);
 		$statement->bindParam(2, $postID);
 		$statement->execute();
@@ -267,43 +249,38 @@ class MySQLRequests {
 		$n2=$n-1;
 
 		$statement = $connection->prepare("UPDATE post SET post_nb_likes=? WHERE post_id=?");
-
+		
 		$statement->bindParam(1, $n2);
 		$statement->bindParam(2, $postID);
 		$statement->execute();
 
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		$info = $statement->fetch();
-
+		
 		Connection::closeConnection();
 		return $info;
 	}
 
 	public static function updateCommentLike($id, $n) {
 		$connection = Connection::getConnection();
-
 		$n2=$n+1;
-
 		$statement = $connection->prepare("UPDATE comment SET comment_nb_likes=? WHERE comment_id=?");
-
+		
 		$statement->bindParam(1, $n2);
 		$statement->bindParam(2, $id);
 		$statement->execute();
-
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		$info = $statement->fetch();
-
 		Connection::closeConnection();
 		return $info;
 	}
-
 	public static function updateCommentDislike($id, $n) {
 		$connection = Connection::getConnection();
 
 		$n2=$n-1;
 
 		$statement = $connection->prepare("UPDATE comment SET comment_nb_likes=? WHERE comment_id=?");
-
+		
 		$statement->bindParam(1, $n2);
 		$statement->bindParam(2, $id);
 		$statement->execute();
@@ -312,38 +289,60 @@ class MySQLRequests {
 		$info = $statement->fetch();
 
 		Connection::closeConnection();
+
 		return $info;
+
 	}
 
-	public static function getCommentbyID($id) {
+	public static function addComment($creator,$post_id,$content)  {
 		$connection = Connection::getConnection();
 
-		$statement = $connection->prepare("SELECT * from comment where comment_id=?");
+		$statement = $connection->prepare("INSERT INTO post_comment_ass(post_id,comment_id) VALUES(?,?);");
+		$id=MySQLRequests::insertComment($creator,$content);
 
-		$statement->bindParam(1, $id);
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-
-		Connection::closeConnection();
-		return $info;
-	}
-
-	public static function getAnswers($id, $answers) {
-		$connection = Connection::getConnection();
-
-		$statement = $connection->prepare("UPDATE post SET post_nb_answers=? WHERE post_id=?");
-
-		$statement->bindParam(1, $answers);
+		$statement->bindParam(1, $post_id);
 		$statement->bindParam(2, $id);
 		$statement->execute();
 
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		$info = $statement->fetch();
-
+		
 		Connection::closeConnection();
+		
+		$post_creator_id = MySQLRequests::getPostCreatorByPostID($post_id)["user_id"];
+		if ($post_creator_id != $creator) {
+			MySQLRequests::add_notification($post_id,$post_creator_id,$creator);
+		}
+		
+		
+		return ;
+		
+	}
+
+	public static function addSubComments($creator,$post_id,$parent,$content) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("INSERT INTO comment_comment_ass(parent_id,child_id) VALUES(?,?);");
+		
+		$id=MySQLRequests::insertComment($creator,$content);
+		
+		$statement->bindParam(1, $parent);
+		$statement->bindParam(2, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+		
+		Connection::closeConnection();
+		
+		$comment_creator_id = MySQLRequests::getCommentCreatorByCommentID($parent)["user_id"];
+		if ($comment_creator_id != $creator) {
+			MySQLRequests::add_notification($post_id,$comment_creator_id,$creator);
+		}
+		
+
 		return $info;
+		
 	}
 
 
@@ -459,5 +458,182 @@ class MySQLRequests {
 
 	}
 	
+
+
+
+	public static function add_notification($notification_post_id,$notification_notificant_id,$notification_notifier_id){
+		$connection = Connection::getConnection();
+		
+		$statement = $connection->prepare("INSERT INTO notifications(notification_post_id,notification_notificant_id,notification_notifier_id) 
+			VALUES(?,?,?);");
+
+		$statement->bindParam(1, $notification_post_id);
+		$statement->bindParam(2, $notification_notificant_id);
+		$statement->bindParam(3, $notification_notifier_id);
+		
+		$statement->execute();
+		$info = $statement->fetchAll();
+		Connection::closeConnection();
+		
+		return $info;	
+	}
+	
+	public static function get_notification($notification_notificant_id){
+		$connection = Connection::getConnection();
+		
+		$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_notificant_id=? and notification_status=? order by notification_id desc;");
+		$temp = 1;
+		$statement->bindParam(1, $notification_notificant_id);
+		$statement->bindParam(2,$temp);
+		$statement->execute();
+		
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetchAll();
+		Connection::closeConnection();
+		
+		return $info;	
+	}
+	public static function checkSeeNotifByID($notification_id){
+		$connection = Connection::getConnection();
+		
+		$statement = $connection->prepare("UPDATE notifications set notification_status=0 where notification_id=?;
+			");
+		$temp = 1;
+		$statement->bindParam(1, $notification_id);
+		$statement->execute();
+		
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetchAll();
+		Connection::closeConnection();
+		
+		return $info;	
+	}
+
+	public static function getPostIDbyCommentID($comment_id){
+		$connection = Connection::getConnection();
+		
+		$statement = $connection->prepare("SELECT post_id from post_comment_ass  where comment_id=?");
+
+		$statement->bindParam(1, $comment_id);
+		$statement->execute();
+		
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+		Connection::closeConnection();
+		
+		return $info;	
+	}
+	public static function getCommentbyID($id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT * from comment where comment_id=?");
+
+		$statement->bindParam(1, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+
+	public static function getAnswers($id, $answers) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("UPDATE post SET post_nb_answers=? WHERE post_id=?");
+		
+		$statement->bindParam(1, $answers);
+		$statement->bindParam(2, $id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function getBestAnswerByPostID($post_id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT * from post  WHERE post_id=?");
+		
+		$statement->bindParam(1, $post_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function getIsFavorite($comment_id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT comment.* from post_comment_ass left JOIN  comment ON (comment.comment_id = post_comment_ass.comment_id) where post_comment_ass.comment_id=? and favorite=1;;
+			");
+		
+		$statement->bindParam(1, $comment_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function invertFavorite($comment_id,$temp) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("UPDATE post_comment_ass SET favorite=? WHERE comment_id=?");
+		
+		$statement->bindParam(1, $temp);
+		$statement->bindParam(2, $comment_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}
+	public static function getFavoriteStatus($comment_id) {
+		$connection = Connection::getConnection();
+
+		$statement = $connection->prepare("SELECT * from post_comment_ass where comment_id=?");
+
+		$statement->bindParam(1, $comment_id);
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+
+		Connection::closeConnection();
+		return $info;
+	}	
+
+	
+	public static function updateProfile($username,$userbio,$password,$id){
+		$connection = Connection::getConnection();
+
+		$username = $_POST['username'];
+		$id=$_SESSION["user_id"];
+		$userbio = $_POST['userbio'];
+		$password=$_POST['password'];
+		$pass = sha1($password);
+		
+		$statement=$connection->prepare("UPDATE user SET user_name='$username', user_bio='$userbio',user_pass='$pass' WHERE user_id='$id'");
+		$statement->bindParam(1, $username);
+		$statement->bindParam(2, $userbio);
+		$statement->bindParam(3, $password);
+
+		$statement->execute();
+
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$info = $statement->fetch();
+		
+		Connection::closeConnection();
+		
+	}
 
 }

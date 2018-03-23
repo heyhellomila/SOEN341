@@ -1,12 +1,12 @@
 <?php
-require_once("action/SignInAction.php");
 
-$action = new SignInAction();
+require_once("action/registerAction.php");
 
+$action= new SignUpAction();
 $action->execute();
 
 require_once("partial/header.php");
-require_once("reqregister.php");
+
 
 
 require_once ("formvalidator.php");
@@ -57,10 +57,28 @@ if(isset($_POST['Submit']))
                     <div class="col-md-6 col-sm-8 mx-auto">
                         <div class="card border-none">
                             <div class="card-body">
-                                
+                                <?php 
+					if ($action->wrongSignUp) 
+						{echo "<script>
+		alert('Sorry user name already exist');
+		window.location.href='registrationpage.php';
+		</script>";}
+                          if($action->GoodSignUp){
+                echo "<script>
+		alert('Thank you for registration');
+		window.location.href='signin.php';
+		</script>";
+
+
+
+}
+
+
+				?>
+
                                 
                                 <div class="mt-4">
-                                    <form  id="myform" action="reqregister.php" method="post" ><div class="form-group">
+                                    <form  id="myform" action="registrationpage.php" method="post" ><div class="form-group">
                                            <label for='username'></label>
                                             <input type="text" class="form-control" name="username" value="" placeholder="Username" id="username">
                                         </div>
@@ -76,26 +94,13 @@ if(isset($_POST['Submit']))
 										</div>
                                            <div class="form-group">
                                             <input type="password" class="form-control" name="pwd2" value="" placeholder="Password" id="pwd2">
-
-                                        </div> <div class="form-group">
-                                            <input type="text" class="form-control" name="Interest" value="" placeholder="Area Of Interest">
-                                        </div>
                                         <div class="text-center">
-                                        <button type="submit" class="btn btn-danger" >Join Us </button>
+                                        <button type="submit" class="btn btn-success" >Sign Up </button>
 										</div>
                                     </form>
                                     
                                     <div class="clearfix"></div>
-                                    <div class="social-login">
-                                   	
-                                   <p>- - - - - - - - - - - - - Join Us With - - - - - - - - - - - - - </p>
-                                  
-                                  		<ul>
-                                <li><a href="" class="btn-primary"><i class="fa fa-facebook" ></i> Facebook</a></li>
-                                <li><a href=""><i class="fa fa-google-plus"></i> Google+</a></li>
-                                <li><a href=""><i class="fa fa-twitter"></i> Twitter</a></li>
-                                </ul>
-                                 </div><div class="clearfix"></div>
+                                    <div class="clearfix"></div>
                                   </div>
     
                                    </div>
