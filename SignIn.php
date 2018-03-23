@@ -26,12 +26,6 @@ require_once("partial/header.php") ;
 			Sign in
 		</button>
 		<hr>
-
-		<div class="form-group">
-			<a href="#forgot" data-toggle="modal"> Forgot Password? </a>
-		</div>
-
-		
 		
 	</form>
 </div>
