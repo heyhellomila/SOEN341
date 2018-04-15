@@ -1,19 +1,19 @@
 <?php
 
-require_once("action/commonAction.php");
+require_once("action/CommonAction.php");
 require_once("dba/MySQLrequests.php");
 
-class postTableAction extends commonAction{
+class PostTableAction extends CommonAction{
 
 	public function __construct() {
-		parent::__construct(commonAction::$VISIBILITY_PUBLIC);
+		parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
 	}
 
 	protected function executeAction() {
 		if (isset($_REQUEST["post_id"])) {
 			$_SESSION["post_id"]=$_REQUEST["post_id"];
 			
-			header("location:viewPost.php");
+			header("location:ViewPost.php");
 		}
 
 			$this->posts=MySQLrequests::getLastPosts(255,0);
@@ -29,23 +29,21 @@ class postTableAction extends commonAction{
 
 	public function addPostLike(){
 		if (isset($_POST['post_liked'])) {
-			$post_id = $_POST['postid'];
+			$post_id = $_POST['post_id'];
 			$post = $this->getPostByID($post_id);
-			$newLike = $post["post_nb_likes"]+1;
-			MySQLrequests::updatePostLike($post_id, $newLike);
-			echo $newLike;
-			exit(); 
+			$new_like = $post["post_nb_likes"]+1;
+			MySQLrequests::updatePostLike($post_id, $new_like);
+			echo $new_like;
 		}
 	}	
 
 	public function addPostDisike(){
 		if (isset($_POST['post_disliked'])) {
-			$post_id = $_POST['postid'];
+			$post_id = $_POST['post_id'];
 			$post = $this->getPostByID($post_id);
-			$newLike = $post["post_nb_likes"]-1;
-			MySQLrequests::updatePostLike($post_id, $newLike);
-			echo $newLike;
-			exit(); 
+			$new_like = $post["post_nb_likes"]-1;
+			MySQLrequests::updatePostLike($post_id, $new_like);
+			echo $new_like;
 		}
 
 	}

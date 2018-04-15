@@ -1,11 +1,11 @@
 <?php
-require_once("action/commonAction.php");
+require_once("action/CommonAction.php");
 require_once("dba/MySQLrequests.php");
 
-class viewPostAction extends commonAction{
+class ViewPostAction extends CommonAction{
 
 	public function __construct() {
-		parent::__construct(commonAction::$VISIBILITY_PUBLIC);
+		parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
 	}
 
 	protected function executeAction() {
@@ -14,7 +14,7 @@ class viewPostAction extends commonAction{
 
 
 			$this->post=MySQLrequests::getPostbyID($post_id);
-			$this->postCreator=MySQLrequests::getPostCreatorByPostID($post_id);
+			$this->post_creator=MySQLrequests::getPostCreatorByPostID($post_id);
 			$this->comments=MySQLrequests::getCommentsByPostID($post_id);
 
 			$this->invertFavorite();
@@ -23,9 +23,6 @@ class viewPostAction extends commonAction{
 			$this->addCommentLike();
 			$this->addCommentDisike();
 			
-		}
-		else{
-			header("location:error404.php");	
 		}
 	}
 	
@@ -69,44 +66,40 @@ class viewPostAction extends commonAction{
 	}
 	public function addPostLike(){
 		if (isset($_POST['post_liked'])) {
-			$post_id = $_POST['postid'];
+			$post_id = $_POST['post_id'];
 			$post = $this->getPostByID($post_id);
-			$newLike = $post["post_nb_likes"]+1;
-			MySQLrequests::updatePostLike($post_id, $newLike);
-			echo $newLike;
-			exit(); 
+			$new_like = $post["post_nb_likes"]+1;
+			MySQLrequests::updatePostLike($post_id, $new_like);
+			echo $new_like;
 		}
 	}	
 
 	public function addPostDisike(){
 		if (isset($_POST['post_disliked'])) {
-			$post_id = $_POST['postid'];
+			$post_id = $_POST['post_id'];
 			$post = $this->getPostByID($post_id);
-			$newLike = $post["post_nb_likes"]-1;
-			MySQLrequests::updatePostLike($post_id, $newLike);
-			echo $newLike;
-			exit(); 
+			$new_like = $post["post_nb_likes"]-1;
+			MySQLrequests::updatePostLike($post_id, $new_like);
+			echo $new_like;
 		}
 
 	}
 	public function addCommentLike(){
 		if (isset($_POST['comment_liked'])) {
-			$comment_id = $_POST['commentid'];
+			$comment_id = $_POST['comment_id'];
 			$comment = $this->getCommentByID($comment_id);
-			$newLike = $comment["comment_nb_likes"]+1;
-			MySQLrequests::updateCommentlike($comment_id, $newLike);
-			echo $newLike;
-			exit(); 
+			$new_like = $comment["comment_nb_likes"]+1;
+			MySQLrequests::updateCommentlike($comment_id, $new_like);
+			echo $new_like;
 		}
 	}	
 	public function addCommentDisike(){
 		if (isset($_POST['comment_disliked'])) {
-			$comment_id = $_POST['commentid'];
+			$comment_id = $_POST['comment_id'];
 			$comment = $this->getCommentByID($comment_id);
-			$newLike = $comment["comment_nb_likes"]-1;
-			MySQLrequests::updateCommentlike($comment_id, $newLike);
-			echo $newLike;
-			exit(); 
+			$new_like = $comment["comment_nb_likes"]-1;
+			MySQLrequests::updateCommentlike($comment_id, $new_like);
+			echo $new_like;
 		}
 	}	
 

@@ -1,49 +1,10 @@
 <?php
-require_once("action/commonAction.php");
-require_once("action/dba/connection.php");
+require_once("action/CommonAction.php");
+require_once("action/dba/Connection.php");
 
 class MySQLRequests {
 
 	private static $connection;
-
-		//remove weird characters created by HTML
-	public static function clearString($badStr){		
-		$goodStr = htmlspecialchars ($badStr);
-		return $goodStr;
-	}
-
-
-	public static function template($desc,$id,$ext,$title,$main) {
-			//clean strings
-
-		$desc=MySQLRequests::clearString($desc);
-		$title=MySQLRequests::clearString($title);
-
-			//open connection
-		$connection = Connection::getConnection();
-			//prepare your request and put "?" instead ov the variables
-		$statement = $connection->prepare("INSERT into j_realisation(ID_PROFIL,INFORMATION,IMG_EXT,NOM,MAIN) Values (?,?,?,?,?)");
-
-			// assign the "?" to variables
-		$statement->bindParam(1, $id);
-		$statement->bindParam(2, $desc);
-		$statement->bindParam(3, $ext);
-		$statement->bindParam(4, $title);
-		$statement->bindParam(5, $main);
-			//execute your request
-		$statement->execute();
-
-			//PDO::FETCH_ASSOC: returns an array indexed by column name as returned in your result set 
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-
-			//get the results and put them in a variable
-		$info = $statement->fetchAll();
-			//close connection
-		Connection::closeConnection();
-			//return your variable
-		return $info;
-	}
-
 
 	public static function authenticate($username, $password) {
 		$connection = connection::getConnection();
@@ -63,11 +24,11 @@ class MySQLRequests {
 		return $info;
 	}
 
-	public static function signup($user_name,$user_email,$user_pass)
+	public static function signUp($user_name,$user_email,$user_pass)
 	{
 		$connection = Connection::getConnection();
 
-		$statement = $connection->prepare("INSERT into user (user_name, user_email, user_pass)   Values (?,?,?)");
+		$statement = $connection->prepare("INSERT into user (user_name, user_email, user_pass) Values (?,?,?)");
 
 		$pass = sha1($user_pass);
 
@@ -90,8 +51,6 @@ class MySQLRequests {
 		$check= $connection->prepare("SELECT user_email FROM user WHERE user_email = ?");
 		$check->bindParam(1,$mail);
 		$check->execute();
-
-
 
 		Connection::closeConnection();
 		return $check;
@@ -405,10 +364,10 @@ class MySQLRequests {
 	}
 
 
-	public static function updateProfilePicture($pictureName,$user_id){
+	public static function updateProfilePicture($new_user_img,$user_id){
 		$connection=connection::getConnection();
 		$statement= $connection->prepare("UPDATE user set user_img=? WHERE user_id=?");
-		$statement->bindParam(1, $pictureName);
+		$statement->bindParam(1, $new_user_img);
 		$statement->bindParam(2, $user_id);
 		$statement->execute();
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -420,9 +379,7 @@ class MySQLRequests {
 	}
 	
 
-
-
-	public static function add_notification($notification_post_id,$notification_notificant_id,$notification_notifier_id){
+	public static function addNotification($notification_post_id,$notification_notificant_id,$notification_notifier_id){
 		$connection = Connection::getConnection();
 		
 		$statement = $connection->prepare("INSERT INTO notifications(notification_post_id,notification_notificant_id,notification_notifier_id) 
@@ -439,7 +396,7 @@ class MySQLRequests {
 		return $info;	
 	}
 	
-	public static function get_notification($notification_notificant_id){
+	public static function getNotification($notification_notificant_id){
 		$connection = Connection::getConnection();
 		
 		$statement = $connection->prepare("SELECT * FROM notifications WHERE notification_notificant_id=? and notification_status=? order by notification_id desc;");
@@ -573,29 +530,7 @@ class MySQLRequests {
 		return $info;
 	}	
 
-	
-	public static function updateProfile($username,$userbio,$password,$id){
-		$connection = Connection::getConnection();
 
-		$username = $_POST['username'];
-		$id=$_SESSION["user_id"];
-		$userbio = $_POST['userbio'];
-		$password=$_POST['password'];
-		$pass = sha1($password);
-		
-		$statement=$connection->prepare("UPDATE user SET user_name='$username', user_bio='$userbio',user_pass='$pass' WHERE user_id='$id'");
-		$statement->bindParam(1, $username);
-		$statement->bindParam(2, $userbio);
-		$statement->bindParam(3, $password);
-
-		$statement->execute();
-
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
-		$info = $statement->fetch();
-		
-		Connection::closeConnection();
-		
-	}
 
 	public static function addPost($post_title, $post_content, $post_creator){
 		$connection=connection::getConnection();
