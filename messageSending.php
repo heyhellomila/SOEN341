@@ -4,7 +4,7 @@ require_once("action/SignInAction.php");
 $action = new SignInAction();
 
 $action->execute();
-require_once("partial/header.php");
+require_once("partial/Header.php");
 ?>
 
 <div class="container">
@@ -17,7 +17,7 @@ require_once("partial/header.php");
     </div>
 
 <?php
-require_once("partial/footer.php");
+require_once("partial/Footer.php");
 ?>
 
 

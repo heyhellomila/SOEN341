@@ -4,7 +4,7 @@ require_once("action/SignInAction.php");
 $action = new SignInAction();
 
 $action->execute();
-require_once("partial/header.php");
+require_once("partial/Header.php");
 ?>
 
 <div class="container">
@@ -19,7 +19,7 @@ require_once("partial/header.php");
     <div class="row">
         <div class="col-md-8">
             <div class="well well-sm">
-                <form method = "post" action = "messageSending.php">
+                <form method = "post" action = "MessageSending.php">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">

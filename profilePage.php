@@ -1,9 +1,9 @@
 <?php 
 
-require_once("action/profilePageAction.php");
-$action = new profilePageAction();
+require_once("action/ProfilePageAction.php");
+$action = new ProfilePageAction();
 $action->execute();
-require_once("partial/header.php")
+require_once("partial/Header.php")
 
 ?>
 <div class="mainbody container">
@@ -60,5 +60,5 @@ require_once("partial/header.php")
 </div>
 
 <?php
-require_once("partial/footer.php");
+require_once("partial/Footer.php");
 ?>

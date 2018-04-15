@@ -1,9 +1,9 @@
 <?php 
-require_once("action/postQuestionAction.php");
+require_once("action/PostQuestionAction.php");
 
-$action = new postQuestionAction();
+$action = new PostQuestionAction();
 $action->execute();
-require_once("partial/header.php")
+require_once("partial/Header.php")
 
 ?>
 
@@ -24,5 +24,5 @@ require_once("partial/header.php")
   </form>
 </div>
 <?php
-require_once("partial/footer.php");
+require_once("partial/Footer.php");
 ?>
