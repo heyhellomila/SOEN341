@@ -14,3 +14,4 @@ class postQuestiontest extends TestCase {
     	->seeInDatabase('post',['post_title'=>'this is my question'])
     	->seeInDatatbase('post',['post_content'=>'this is the content']);
     }
+}
