@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use action/postQuestionAction;
+use action\postQuestionAction;
 
 class postQuestiontest extends TestCase {
 	private $post
