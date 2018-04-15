@@ -1,7 +1,7 @@
 <?php
   
-require_once("action/postTableAction.php");
-    $action = new postTableAction();
+require_once("action/PostTableAction.php");
+    $action = new PostTableAction();
     $action->execute();
 
 ?>

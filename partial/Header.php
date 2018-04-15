@@ -1,8 +1,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/global.css">
-<link rel="stylesheet" type="text/css" href="css/viewPost.css">
-<link rel="stylesheet" type="text/css" href="css/reg.css">
+<link rel="stylesheet" type="text/css" href="css/Global.css">
+<link rel="stylesheet" type="text/css" href="css/ViewPost.css">
+<link rel="stylesheet" type="text/css" href="css/Reg.css">
 <link rel="stylesheet" type="text/css" href="css/SignIn.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -26,7 +26,7 @@
 		<img class="navbar-brand " src="images/site_logo.png" height="60">
 	</a>
 
-	<form class="form-inline col-8" action="search.php" method="POST">
+	<form class="form-inline col-8" action="Search.php" method="POST">
 		<input class="form-control mr-sm-3 col" type="text" placeholder="Search" aria-label="Search" name="query">
 		<button class="btn btn-outline-success" type="submit" value="Search">Search</button>
 	</form>
@@ -46,9 +46,9 @@
 					<?php
 					foreach ($action->notifications as $notif) {
 						?>
-						<form name="title" action="index.php" method="post">
+						<form name="title" action="Index.php" method="post">
 							<input type="hidden" name="post_id" value="<?= $notif["notification_post_id"]?>"></input>    
-							<input type="hidden" name="removeNotif" value="<?= $notif["notification_id"]?>"></input>           
+							<input type="hidden" name="remove_notif" value="<?= $notif["notification_id"]?>"></input>           
 							<a class="dropdown-item" href="#"  onclick="$(this).closest('form').submit();"><?=$action->getName($notif["notification_notifier_id"])?> has commented on your stuff</a>
 							
 						</form>
@@ -70,12 +70,12 @@
 
 		<div class="dropdown mr-5">
 			<button class = "btn btn-dark dropdown-toggle" type ="button" id ="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["userInfo"]["user_img"]?>">
+				<img alt="32x32" class="rounded" style="width: 48px; height: 48px;" src="images/icons/<?=$_SESSION["user_info"]["user_img"]?>">
 			</button>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 				<p class="text-center"><?=$_SESSION["userInfo"]["user_name"]?></p>
-				<a href="editProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
-				<a href="profilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
+				<a href="EditProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Modify Profile</a>
+				<a href="ProfilePage.php" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> View Profile</a>
 				
 				<a href="./?logout=true" class="dropdown-item btn btn-default btn-sm"><i class="fa fa-power-off" aria-hidden="true" ></i> Sign Out</a>
 
@@ -89,7 +89,7 @@
 		<div class="col">
 			<form class="form-inline row" method="post">
 				<a class="mr-2" href="SignIn.php"><button class="btn btn-secondary " type="button">Sign In</button></a>
-				<a class="mr-2" href="registrationpage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
+				<a class="mr-2" href="RegistrationPage.php"><button class="btn btn-primary" type="button">Sign Up</button></a>
 			</form>
 		</div>
 		<?php
@@ -98,5 +98,5 @@
 </nav>
 
 <?php 
-require_once("tabmenu.php");
+require_once("TabMenu.php");
 ?>

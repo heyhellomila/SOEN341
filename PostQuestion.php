@@ -1,17 +1,17 @@
 <?php 
-require_once("action/postQuestionAction.php");
+require_once("action/PostQuestionAction.php");
 
-$action = new postQuestionAction();
+$action = new PostQuestionAction();
 $action->execute();
-require_once("partial/header.php")
+require_once("partial/Header.php")
 
 ?>
 
 <div class="container text-justified mt-3 p">
-  <form method="post" action="postQuestion.php">
+  <form method="post" action="PostQuestion.php">
     <div class="align-self-center form-group" >
       <label for="questiontopic" class="font-weight-bold">Question Title</label>
-      <input type="text" class="form-control" id="questiontopic" name="questiontopic" placeholder="Question title goes here">
+      <input type="text" class="form-control" id="question_topic" name="question_topic" placeholder="Write your question here.">
     </div>
 
     <div class="form-group">
@@ -24,5 +24,5 @@ require_once("partial/header.php")
   </form>
 </div>
 <?php
-require_once("partial/footer.php");
+require_once("partial/Footer.php");
 ?>

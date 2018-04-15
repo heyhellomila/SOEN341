@@ -1,11 +1,11 @@
 <?php
 
-require_once("action/viewPostAction.php");
+require_once("action/ViewPostAction.php");
 
-$action = new viewPostAction();
+$action = new ViewPostAction();
 $action->execute();
 
-require_once("partial/header.php");
+require_once("partial/Header.php");
 ?>
 <div class="background container">
 	<div class="row">
@@ -14,16 +14,16 @@ require_once("partial/header.php");
 			<h2 style="margin-top: 25px;"><?=$action->post["post_title"]?></h2>
 			<div class="row mainPost">
 				<div class="media ">
-					<img class=" mr-3 user-icon" src="images/icons/<?=$action->postCreator["user_img"]?>" alt="Generic placeholder image" style"height:64px;width:64px";>
+					<img class=" mr-3 user-icon" src="images/icons/<?=$action->post_creator["user_img"]?>" alt="Generic placeholder image" style"height:64px;width:64px";>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<strong><?=$action->postCreator["user_name"]?></strong> <span class="text-muted">created on <?=$action->post["post_creation_time"]?></span>
+							<strong><?=$action->post_creator["user_name"]?></strong> <span class="text-muted">created on <?=$action->post["post_creation_time"]?></span>
 
 						</div>
 						<div class="media-body">
 
 							<?=$action->post["post_content"]?>
-							<div class="interuptLine"> </div>
+							<div class="interrupt_line"> </div>
 
 							<div class="row">
 								<div class="col">
@@ -34,14 +34,14 @@ require_once("partial/header.php");
 									</div>
 								</div>							
 							</div>
-							<div class="interuptLine"> </div>
+							<div class="interrupt_line"> </div>
 							<div class="row">
 								
-								<form class="form col" action="commentDBA.php" method="post">
+								<form class="form col" action="CommentDBA.php" method="post">
 									<input type="hidden" name="parent_id" value="post"></input>
 									<div class="form-group ">
-										<label for="commentContent"></label>
-										<textarea class="form-control" name="commentContent"  rows="3" placeholder="Write comments..."></textarea>
+										<label for="comment_content"></label>
+										<textarea class="form-control" name="comment_content"  rows="3" placeholder="Write comments..."></textarea>
 									</div> 
 									<button type="submit" class="btn btn-primary">Comment</button>
 
@@ -52,18 +52,15 @@ require_once("partial/header.php");
 				</div>
 			</div>
 			<?php
-
-
-			
 			$answers = 0;
 			foreach ($action->comments as $comment) {
 				$answers++;
-				$subcomments=$action->getSubComments($comment["comment_id"]);
-				$commentCreator=$action->getUserByID($comment["comment_creator"]);
+				$sub_comments=$action->getSubComments($comment["comment_id"]);
+				$comment_creator=$action->getUserByID($comment["comment_creator"]);
 				?>
 				<div class="row ">
 					<div class="media "><div class="col">
-						<img class="d-flex mr-3 user-icon" src="images/icons/<?=$commentCreator["user_img"]?>" alt="Generic placeholder image">
+						<img class="d-flex mr-3 user-icon" src="images/icons/<?=$comment_creator["user_img"]?>" alt="Generic placeholder image">
 
 						<?php
 						if ($answers == 1) {?>
@@ -74,7 +71,7 @@ require_once("partial/header.php");
 						if ($action->isFavorite($comment["comment_id"])) {
 							?>
 
-							<form action="viewPost.php" method="post">
+							<form action="ViewPost.php" method="post">
 								<input type="hidden" name="comment_id" value="<?=$comment["comment_id"]?>"></input>
 								<img onclick="$(this).parent('form').submit();" class="favorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/favorite.png" alt="Generic placeholder image">
 							</form>
@@ -83,7 +80,7 @@ require_once("partial/header.php");
 						}
 						else{
 							?>
-							<form action="viewPost.php" method="post">
+							<form action="ViewPost.php" method="post">
 								<input type="hidden" name="comment_id" value="<?=$comment["comment_id"]?>"></input>
 								<img onclick="$(this).parent('form').submit();" class="unfavorite d-flex mr-3 no1-icon" data-id="<?=$comment["comment_id"]?>" src="images/unfavorite.png" alt="Generic placeholder image">
 							</form>
@@ -107,7 +104,7 @@ require_once("partial/header.php");
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong><?=$commentCreator["user_name"]?></strong> <span class="text-muted">commented on <?=$comment["comment_creation_time"]?></span>
+						<strong><?=$comment_creator["user_name"]?></strong> <span class="text-muted">commented on <?=$comment["comment_creation_time"]?></span>
 
 					</div>
 					<div class="media-body">
@@ -118,23 +115,22 @@ require_once("partial/header.php");
 							<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$comment["comment_id"]?>"></span>
 						</div>	
 						<?php 
-						foreach ($subcomments as $subC) {
-							$subCommentCreator = $action->getUserByID($subC["comment_creator"]);
+						foreach ($sub_comments as $sub_comments) {
+							$sub_comment_creator = $action->getUserByID($sub_comments["comment_creator"]);
 							?>
 							<div class="row">
 								<div class="media no-border">
-									<img class="d-flex mr-3" src="images/icons/<?=$subCommentCreator["user_img"]?>" alt="Generic placeholder image">
+									<img class="d-flex mr-3" src="images/icons/<?=$sub_comment_creator["user_img"]?>" alt="Generic placeholder image">
 									<div class="panel panel-default">
 										<div class="panel-heading">
-											<strong><?=$subCommentCreator["user_name"]?></strong> <span class="text-muted">commented on <?=$subC["comment_creation_time"]?></span>
+											<strong><?=$sub_comment_creator["user_name"]?></strong> <span class="text-muted">commented on <?=$sub_comments["comment_creation_time"]?></span>
 										</div>
 										<div class="media-body">
-											<?=$subC["comment_content"]?>
-
+											<?=$sub_comments["comment_content"]?>
 											<div class="col secondaryLikes">					
-												<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$subC["comment_nb_likes"]?></span>
-												<span class="comment_like fa fa-thumbs-up" data-id="<?=$subC["comment_id"]?>"></span>
-												<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$subC["comment_id"]?>"></span>
+												<span class="comment_likes_count" style="margin-right: 20px;">Likes: <?=$sub_comments["comment_nb_likes"]?></span>
+												<span class="comment_like fa fa-thumbs-up" data-id="<?=$sub_comments["comment_id"]?>"></span>
+												<span class="comment_dislike fa fa-thumbs-down" data-id="<?=$sub_comments["comment_id"]?>"></span>
 											</div>	
 										</div>
 									</div>
@@ -148,14 +144,14 @@ require_once("partial/header.php");
 
 
 							?>
-							<div class="interuptLine"> </div>
+							<div class="interrupt_line"> </div>
 							<div class="row">
 								
-								<form class="form col" action="commentDBA.php" method="post">
+								<form class="form col" action="CommentDBA.php" method="post">
 									<input type="hidden" name="parent_id" value="<?=$comment["comment_id"]?>"></input>
     								<div class="form-group ">
-										<label for="commentContent"></label>
-										<textarea class="form-control" name="commentContent" rows="3" placeholder="Write comments..."></textarea>
+										<label for="comment_content"></label>
+										<textarea class="form-control" name="comment_content" rows="3" placeholder="Write comments..."></textarea>
 									</div> 
 									<button type="submit" class="btn btn-primary">Comment</button>
 							</form>
@@ -177,40 +173,40 @@ require_once("partial/header.php");
 <script>
 	$(document).ready(function(){
 		$('.post_like').on('click', function(){
-			var postid = $(this).data('id');
+			var post_id = $(this).data('id');
 			$post = $(this);
 
 			$.ajax({
-				url: 'viewPost.php',
+				url: 'ViewPost.php',
 				type: 'post',
 				data: {
 					'post_liked': 1,
-					'postid': postid
+					'post_id': post_id
 				},
 				success: function(response){
 					$post.parent().find('span.post_likes_count').text("Likes: " + response);
 				}
 			});
-			//location.reload();
+			location.reload();
 		});
 
 
 		$('.post_dislike').on('click', function(){
-			var postid = $(this).data('id');
+			var post_id = $(this).data('id');
 			$post = $(this);
 
 			$.ajax({
-				url: 'viewPost.php',
+				url: 'ViewPost.php',
 				type: 'post',
 				data: {
 					'post_disliked': 1,
-					'postid': postid
+					'post_id': post_id
 				},
 				success: function(response){
 					$post.parent().find('span.post_likes_count').text("Likes: " + response);
 				}
 			});
-			//location.reload();
+			location.reload();
 		}); 
 
 		$('.comment_like').on('click', function(){
@@ -218,7 +214,7 @@ require_once("partial/header.php");
 			$comment = $(this);
 
 			$.ajax({
-				url: 'viewPost.php',
+				url: 'ViewPost.php',
 				type: 'post',
 				data: {
 					'comment_liked': 1,
@@ -228,7 +224,7 @@ require_once("partial/header.php");
 					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
 				}
 			});
-			//location.reload();
+			location.reload();
 		});
 
 		$('.comment_dislike').on('click', function(){
@@ -236,7 +232,7 @@ require_once("partial/header.php");
 			$comment = $(this);
 
 			$.ajax({
-				url: 'viewPost.php',
+				url: 'ViewPost.php',
 				type: 'post',
 				data: {
 					'comment_disliked': 1,
@@ -246,11 +242,11 @@ require_once("partial/header.php");
 					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
 				}
 			});
-			//location.reload();
+			location.reload();
 		});
 	});
 </script>
 
 <?php
-require_once("partial/footer.php");
+require_once("partial/Footer.php");
 ?>
