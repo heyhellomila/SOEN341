@@ -14,16 +14,16 @@ require_once("partial/Header.php");
 			<h2 style="margin-top: 25px;"><?=$action->post["post_title"]?></h2>
 			<div class="row mainPost">
 				<div class="media ">
-					<img class=" mr-3 user-icon" src="images/icons/<?=$action->postCreator["user_img"]?>" alt="Generic placeholder image" style"height:64px;width:64px";>
+					<img class=" mr-3 user-icon" src="images/icons/<?=$action->post_creator["user_img"]?>" alt="Generic placeholder image" style"height:64px;width:64px";>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<strong><?=$action->postCreator["user_name"]?></strong> <span class="text-muted">created on <?=$action->post["post_creation_time"]?></span>
+							<strong><?=$action->post_creator["user_name"]?></strong> <span class="text-muted">created on <?=$action->post["post_creation_time"]?></span>
 
 						</div>
 						<div class="media-body">
 
 							<?=$action->post["post_content"]?>
-							<div class="interruptLine"> </div>
+							<div class="interrupt_line"> </div>
 
 							<div class="row">
 								<div class="col">
@@ -34,7 +34,7 @@ require_once("partial/Header.php");
 									</div>
 								</div>							
 							</div>
-							<div class="interruptLine"> </div>
+							<div class="interrupt_line"> </div>
 							<div class="row">
 								
 								<form class="form col" action="CommentDBA.php" method="post">
@@ -144,7 +144,7 @@ require_once("partial/Header.php");
 
 
 							?>
-							<div class="interruptLine"> </div>
+							<div class="interrupt_line"> </div>
 							<div class="row">
 								
 								<form class="form col" action="CommentDBA.php" method="post">
