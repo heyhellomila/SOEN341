@@ -2,8 +2,6 @@
 require_once("action/CommonAction.php");
 require_once("dba/MySQLrequests.php");
 
-
-
 class PostQuestionAction extends CommonAction {
 
 	public function __construct() {
