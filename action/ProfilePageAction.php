@@ -2,9 +2,7 @@
 require_once("action/CommonAction.php");
 require_once("dba/MySQLrequests.php");
 
-
 class ProfilePageAction extends CommonAction{
-
 
 	public function __construct() {
 		parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
