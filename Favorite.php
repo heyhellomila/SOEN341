@@ -1,4 +1,5 @@
 <?php
+
 require_once("action/dba/MySQLrequests.php");
 if (!isset($_SESSION["user_id"])) {
 	header("location:SignIn.php");
@@ -7,15 +8,16 @@ if (!isset($_SESSION["user_id"])) {
 if ($_POST["parent_id"]=="post") {
 	addComment($_POST["comment_content"]);
 }
-else{
+else {
 	addSubComments($_POST["parent_id"],$_POST["comment_content"]);
-
 }
 
- function addSubComments($id,$content){
+function addSubComments($id,$content) {
 	MySQLrequests::addSubComments($_SESSION["user_id"],$id,$content);
 }
- function addComment($content){
+
+function addComment($content) {
 	MySQLrequests::addComment($_SESSION["user_id"],$_SESSION["post_id"],$content);
 }
-header("location:ViewPost.php");	
+
+header("location:ViewPost.php");
