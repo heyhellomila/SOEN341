@@ -23,7 +23,7 @@ class signInActionTest extends TestCase{
             'password' => 'bob',
             'email' => 'bob@bob.com',
         ]);
-        $this->visit->('SignIn.php')
+        $this->visit('SignIn.php')
             ->type('bob@bob.com', 'email')
             ->type('asdasd', 'password') //enter a wrong password
             ->press('Sign in')
