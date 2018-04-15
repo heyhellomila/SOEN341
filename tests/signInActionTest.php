@@ -3,12 +3,6 @@ use PHPUnit\Framework\TestCase;
 use action\SignInAction;
 
 class signInActionTest extends TestCase{
- 	private $wrongSignIn
-	public function __construct()
-    {
-        $this->wrongSignIn = new SignInAction();
-        parent::__construct();
-    }
 
         public function testLoginSuccess(){
         //create a user
