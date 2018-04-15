@@ -11,6 +11,6 @@ class postQuestiontest extends TestCase {
     	->type('this is the content','content')
     	->press('Submit')
     	->seePageIs('http://localhost/soen341/viewPost.php')
-    	->seeInDatabase('post'['post_title'=>'this is my question'])
-    	->seeInDatatbase('post'['post_content'=>'this is the content']);
+    	->seeInDatabase('post',['post_title'=>'this is my question'])
+    	->seeInDatatbase('post',['post_content'=>'this is the content']);
     }
