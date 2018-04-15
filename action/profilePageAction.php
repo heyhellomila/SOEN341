@@ -43,7 +43,7 @@ class ProfilePageAction extends CommonAction{
 						$this->wrong_old_pass = true;
 					}
 				}
-				$_SESSION["user_info"]=MySQLrequests::getUserByID($_SESSION["user_id"]);
+				$_SESSION["user_info"]=MySQLrequests::getUserById($_SESSION["user_id"]);
 			}
 		}
 		else{

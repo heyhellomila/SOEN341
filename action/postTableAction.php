@@ -19,18 +19,18 @@ class PostTableAction extends CommonAction{
 			$this->posts=MySQLrequests::getLastPosts(255,0);
 	}
 
-	public function getPostByID($id){
-		return MySQLrequests::getPostByID($id);
+	public function getPostById($id){
+		return MySQLrequests::getPostById($id);
 	}
 
-	public function getUserByID($id){
-		return MySQLrequests::getUserByID($id);
+	public function getUserById($id){
+		return MySQLrequests::getUserById($id);
 	}
 
 	public function addPostLike(){
 		if (isset($_POST['post_liked'])) {
 			$post_id = $_POST['post_id'];
-			$post = $this->getPostByID($post_id);
+			$post = $this->getPostById($post_id);
 			$new_like = $post["post_nb_likes"]+1;
 			MySQLrequests::updatePostLike($post_id, $new_like);
 			echo $new_like;
@@ -40,7 +40,7 @@ class PostTableAction extends CommonAction{
 	public function addPostDisike(){
 		if (isset($_POST['post_disliked'])) {
 			$post_id = $_POST['post_id'];
-			$post = $this->getPostByID($post_id);
+			$post = $this->getPostById($post_id);
 			$new_like = $post["post_nb_likes"]-1;
 			MySQLrequests::updatePostLike($post_id, $new_like);
 			echo $new_like;

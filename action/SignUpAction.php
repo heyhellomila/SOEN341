@@ -26,7 +26,7 @@ class SignUpAction extends CommonAction {
 				$this->wrong_sign_Up = true;
 			}
 			else {
-				MySQLrequests::signup($_REQUEST['username'],$_REQUEST['email'],$_REQUEST['password']);
+				MySQLrequests::signUp($_REQUEST['username'],$_REQUEST['email'],$_REQUEST['password']);
 				$this->good_sign_Up = true;
 			}
 		}

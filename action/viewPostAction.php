@@ -13,9 +13,9 @@ class ViewPostAction extends CommonAction{
 			$post_id=$_SESSION["post_id"];
 
 
-			$this->post=MySQLrequests::getPostbyID($post_id);
-			$this->post_creator=MySQLrequests::getPostCreatorByPostID($post_id);
-			$this->comments=MySQLrequests::getCommentsByPostID($post_id);
+			$this->post=MySQLrequests::getPostById($post_id);
+			$this->post_creator=MySQLrequests::getPostCreatorByPostId($post_id);
+			$this->comments=MySQLrequests::getCommentsByPostId($post_id);
 
 			$this->invertFavorite();
 			$this->addPostLike();
@@ -41,19 +41,19 @@ class ViewPostAction extends CommonAction{
 	}
 
 	public function getSubComments($id){
-		return MySQLrequests::getCommentsByCommentsID($id);
+		return MySQLrequests::getCommentsByCommentsId($id);
 	}
 
-	public function getUserByID($id){
-		return MySQLrequests::getUserByID($id);
+	public function getUserById($id){
+		return MySQLrequests::getUserById($id);
 	}
 
-	public function getPostByID($id){
-		return MySQLrequests::getPostByID($id);
+	public function getPostById($id){
+		return MySQLrequests::getPostById($id);
 	}
 
-	public function getCommentByID($id){
-		return MySQLrequests::getCommentByID($id);
+	public function getCommentById($id){
+		return MySQLrequests::getCommentById($id);
 	}
 
 
@@ -67,7 +67,7 @@ class ViewPostAction extends CommonAction{
 	public function addPostLike(){
 		if (isset($_POST['post_liked'])) {
 			$post_id = $_POST['post_id'];
-			$post = $this->getPostByID($post_id);
+			$post = $this->getPostById($post_id);
 			$new_like = $post["post_nb_likes"]+1;
 			MySQLrequests::updatePostLike($post_id, $new_like);
 			echo $new_like;
@@ -77,7 +77,7 @@ class ViewPostAction extends CommonAction{
 	public function addPostDisike(){
 		if (isset($_POST['post_disliked'])) {
 			$post_id = $_POST['post_id'];
-			$post = $this->getPostByID($post_id);
+			$post = $this->getPostById($post_id);
 			$new_like = $post["post_nb_likes"]-1;
 			MySQLrequests::updatePostLike($post_id, $new_like);
 			echo $new_like;
@@ -87,18 +87,18 @@ class ViewPostAction extends CommonAction{
 	public function addCommentLike(){
 		if (isset($_POST['comment_liked'])) {
 			$comment_id = $_POST['comment_id'];
-			$comment = $this->getCommentByID($comment_id);
+			$comment = $this->getCommentById($comment_id);
 			$new_like = $comment["comment_nb_likes"]+1;
-			MySQLrequests::updateCommentlike($comment_id, $new_like);
+			MySQLrequests::updateCommentLike($comment_id, $new_like);
 			echo $new_like;
 		}
 	}	
 	public function addCommentDisike(){
 		if (isset($_POST['comment_disliked'])) {
 			$comment_id = $_POST['comment_id'];
-			$comment = $this->getCommentByID($comment_id);
+			$comment = $this->getCommentById($comment_id);
 			$new_like = $comment["comment_nb_likes"]-1;
-			MySQLrequests::updateCommentlike($comment_id, $new_like);
+			MySQLrequests::updateCommentLike($comment_id, $new_like);
 			echo $new_like;
 		}
 	}	

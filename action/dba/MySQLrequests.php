@@ -49,13 +49,14 @@ class MySQLRequests {
 		$connection = Connection::getConnection();
 
 		$check= $connection->prepare("SELECT user_email FROM user WHERE user_email = ?");
-		$check->bindParam(1,$mail);
+		$check->bindParam(1,$email);
 		$check->execute();
 
 		Connection::closeConnection();
 		return $check;
 	}
-	public static function getPostbyID($id) {
+
+	public static function getPostById($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT * from post where post_id=?;");
@@ -70,7 +71,7 @@ class MySQLRequests {
 		return $info;
 	}
 
-	public static function getPostCreatorByPostID($id) {
+	public static function getPostCreatorByPostId($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT user.* from user left JOIN  post ON (user_id = post.post_creator) where post.post_id=?;");
@@ -87,7 +88,7 @@ class MySQLRequests {
 
 	}
 	
-	public static function getCommentCreatorByCommentID($id) {
+	public static function getCommentCreatorByCommentId($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT user.* from user left JOIN  comment ON (user_id = comment.comment_creator) where comment.comment_id=?;");
@@ -104,7 +105,7 @@ class MySQLRequests {
 	}
 
 
-	public static function getCommentsByPostID($id) {
+	public static function getCommentsByPostId($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT comment.* from comment,post_comment_ass where comment.comment_id=post_comment_ass.comment_id and post_comment_ass.post_id=?;");
@@ -120,7 +121,7 @@ class MySQLRequests {
 		
 	}
 
-	public static function getCommentsByCommentsID($id) {
+	public static function getCommentsByCommentsId($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT comment.* from comment,comment_comment_ass where comment.comment_id=comment_comment_ass.child_id and comment_comment_ass.parent_id=?;");
@@ -136,7 +137,7 @@ class MySQLRequests {
 		
 	}
 
-	public static function getUserByID($id) {
+	public static function getUserById($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT * from user  where user_id=?;");
@@ -229,9 +230,9 @@ class MySQLRequests {
 		
 		Connection::closeConnection();
 		
-		$post_creator_id = MySQLRequests::getPostCreatorByPostID($post_id)["user_id"];
+		$post_creator_id = MySQLRequests::getPostCreatorByPostId($post_id)["user_id"];
 		if ($post_creator_id != $creator) {
-			MySQLRequests::add_notification($post_id,$post_creator_id,$creator);
+			MySQLRequests::addNotification($post_id,$post_creator_id,$creator);
 		}
 		
 		
@@ -255,9 +256,9 @@ class MySQLRequests {
 		
 		Connection::closeConnection();
 		
-		$comment_creator_id = MySQLRequests::getCommentCreatorByCommentID($parent)["user_id"];
+		$comment_creator_id = MySQLRequests::getCommentCreatorByCommentId($parent)["user_id"];
 		if ($comment_creator_id != $creator) {
-			MySQLRequests::add_notification($post_id,$comment_creator_id,$creator);
+			MySQLRequests::addNotification($post_id,$comment_creator_id,$creator);
 		}
 		
 
@@ -411,7 +412,7 @@ class MySQLRequests {
 		
 		return $info;	
 	}
-	public static function checkSeeNotifByID($notification_id){
+	public static function checkSeeNotifById($notification_id){
 		$connection = Connection::getConnection();
 		
 		$statement = $connection->prepare("UPDATE notifications set notification_status=0 where notification_id=?;
@@ -427,7 +428,7 @@ class MySQLRequests {
 		return $info;	
 	}
 
-	public static function getPostIDbyCommentID($comment_id){
+	public static function getPostIdbyCommentId($comment_id){
 		$connection = Connection::getConnection();
 		
 		$statement = $connection->prepare("SELECT post_id from post_comment_ass  where comment_id=?");
@@ -441,7 +442,7 @@ class MySQLRequests {
 		
 		return $info;	
 	}
-	public static function getCommentbyID($id) {
+	public static function getCommentById($id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT * from comment where comment_id=?");
@@ -471,7 +472,7 @@ class MySQLRequests {
 		Connection::closeConnection();
 		return $info;
 	}
-	public static function getBestAnswerByPostID($post_id) {
+	public static function getBestAnswerByPostId($post_id) {
 		$connection = Connection::getConnection();
 
 		$statement = $connection->prepare("SELECT * from post  WHERE post_id=?");
