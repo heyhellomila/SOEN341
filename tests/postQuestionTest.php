@@ -3,12 +3,7 @@ use PHPUnit\Framework\TestCase;
 use action\postQuestionAction;
 
 class postQuestiontest extends TestCase {
-	private $post
-	public function __construct()
-    {
-        $this->post = new postQuestiontAction();
-        parent::__construct();
-    }
+
 
     public function testPostQuestion(){
     	$this->visit("postQuestion.php")
