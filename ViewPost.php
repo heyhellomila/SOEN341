@@ -187,6 +187,7 @@ require_once("partial/Header.php");
 					$post.parent().find('span.post_likes_count').text("Likes: " + response);
 				}
 			});
+			location.reload();
 		});
 
 
@@ -205,6 +206,7 @@ require_once("partial/Header.php");
 					$post.parent().find('span.post_likes_count').text("Likes: " + response);
 				}
 			});
+			location.reload();
 		}); 
 
 		$('.comment_like').on('click', function(){
@@ -222,10 +224,11 @@ require_once("partial/Header.php");
 					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
 				}
 			});
+			location.reload();
 		});
 
 		$('.comment_dislike').on('click', function(){
-			var commentid = $(this).data('id');
+			var comment_id = $(this).data('id');
 			$comment = $(this);
 
 			$.ajax({
@@ -239,6 +242,7 @@ require_once("partial/Header.php");
 					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
 				}
 			});
+			location.reload();
 		});
 	});
 </script>

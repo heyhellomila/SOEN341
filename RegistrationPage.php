@@ -1,6 +1,6 @@
 <?php
 
-require_once("action/RegisterAction.php");
+require_once("action/SignUpAction.php");
 
 $action= new SignUpAction();
 $action->execute();
