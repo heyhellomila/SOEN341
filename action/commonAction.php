@@ -35,7 +35,7 @@ abstract class CommonAction {
 			// if the visibility of this page is bigger than the session/viewer visibility redirect to index.php
 		if ($_SESSION["visibility"] < $this->page_visibility) {
 			header("location:Index.php");				
-			exit;
+			return;
 		}
 		$this->checkNotifications();
 			// execute function is abastract and must be defined in all the action.php files
