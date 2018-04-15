@@ -1,30 +1,23 @@
-<?php
-?>
 <div id="accordion">
 	<div class="container bg-white px-0" style="line-height: 0.5 !important;" `>
-		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item bg-light">
-				<a class="nav-link active font-weight-bold text-info" data-toggle="collapse" href="#activetab">Popular</a>
+				<a class="nav-link active font-weight-bold text-info" data-toggle="collapse" href="#active_tab">Popular</a>
 			</li>
 			<li class="nav-item bg-light">
-				<a class="nav-link font-weight-bold text-info" data-toggle="collapse" href="#newtab">New</a>
+				<a class="nav-link font-weight-bold text-info" data-toggle="collapse" href="#new_tab">New</a>
 			</li>
 			<li class="nav-item bg-light">
-				<a class="nav-link font-weight-bold text-success" data-toggle="collapse" href="#unansweredtab">Unanswered</a>
+				<a class="nav-link font-weight-bold text-success" data-toggle="collapse" href="#unanswered_tab">Unanswered</a>
 			</li>
 		</ul>
-
-		<!-- Tab panes -->
 		<div class="tab-content">
-			<div id="activetab" class="container collapse" data-parent="#accordion"><br>
+			<div id="active_tab" class="container collapse" data-parent="#accordion"><br>
 				<div class="container">
-					<!-- Table of posts -->
 					<div >
-						<!-- Single post that is added to the homepage starts here -->
 						<?php $liked=MySQLrequests::getPopularPost();
 						foreach ($liked as $post) {
-							$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
+							$post_creator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 							<div class="row border-bottom border-gray">    
 								<div class="col">
@@ -36,27 +29,22 @@
         							</h5>
 									<div class="my-1 text-muted small row">
 										<p class="m-0">
-											<strong class="text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
+											<strong class="text-gray-dark">&emsp;From: <?=$post_creator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 										</p>
 									</div>
 								</div>
 							</div>
 							<?php 	
 						}  ?>
-						<!-- End of single post -->
-
 					</div>
 				</div>
 			</div>
-			<div id="newtab" class="container collapse" data-parent="#accordion"><br>
+			<div id="new_tab" class="container collapse" data-parent="#accordion"><br>
 				<div class="container">
-					<!-- Table of posts -->
 					<div>
-						<!-- Single post that is added to the homepage starts here -->
 						<?php $newest=MySQLrequests::getNewestPost();
 						foreach ($newest as $post) {
-							$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
-							
+							$post_creator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 								<div class="row border-bottom border-gray">
 									<div class="col">
@@ -68,23 +56,20 @@
         								</h5>
 										<div class="my-1 text-muted row">
 											<p class="small m-0">
-												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
+												<strong class="d-block text-gray-dark">&emsp;From: <?=$post_creator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted:<?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>
 								<?php } ?>
-								<!-- End of single post -->
 							</div>
 						</div>
 					</div>
-					<div id="unansweredtab" class="container collapse" data-parent="#accordion"><br>
+					<div id="unanswered_tab" class="container collapse" data-parent="#accordion"><br>
 						<div class="container">
-							<!-- Table of posts -->
 							<div>
-								<!-- Single post that is added to the homepage starts here -->
 								<?php $unpopular=MySQLrequests::getUnpopularPost(); 
 								foreach ($unpopular as $post) {
-									$postCreator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
+									$post_creator=MySQLrequests::getPostCreatorByPostID($post["post_creator"]);
 							?>
 									<div class="row border-bottom border-gray"><div class="col">
 										<h5 class="row">
@@ -95,13 +80,11 @@
         								</h5>
 										<div class="my-1 text-muted row">
 											<p class="small m-0">
-												<strong class="d-block text-gray-dark">&emsp;From: <?=$postCreator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
+												<strong class="d-block text-gray-dark">&emsp;From: <?=$post_creator["user_name"]?><span style="color: green;">&emsp;Answers: <?=$post["post_nb_answers"]?>&emsp;</span><span style="color: blue;">Likes: <?=$post["post_nb_likes"]?></span>&emsp;Posted: <?=$post["post_creation_time"]?></strong>
 											</p>
 										</div></div>
 									</div>
 									<?php } ?>
-
-									<!-- End of single post -->
 								</div>
 							</div>
 						</div>
