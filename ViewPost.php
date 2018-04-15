@@ -210,7 +210,7 @@ require_once("partial/Header.php");
 		}); 
 
 		$('.comment_like').on('click', function(){
-			var comment_id = $(this).data('id');
+			var commentid = $(this).data('id');
 			$comment = $(this);
 
 			$.ajax({
@@ -218,7 +218,7 @@ require_once("partial/Header.php");
 				type: 'post',
 				data: {
 					'comment_liked': 1,
-					'comment_id': comment_id
+					'commentid': commentid
 				},
 				success: function(response){
 					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);
@@ -228,7 +228,7 @@ require_once("partial/Header.php");
 		});
 
 		$('.comment_dislike').on('click', function(){
-			var comment_id = $(this).data('id');
+			var commentid = $(this).data('id');
 			$comment = $(this);
 
 			$.ajax({
@@ -236,7 +236,7 @@ require_once("partial/Header.php");
 				type: 'post',
 				data: {
 					'comment_disliked': 1,
-					'comment_id': comment_id
+					'commentid': commentid
 				},
 				success: function(response){
 					$comment.parent().find('span.comment_likes_count').text("Likes: " + response);

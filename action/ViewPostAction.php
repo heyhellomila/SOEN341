@@ -28,7 +28,7 @@ class ViewPostAction extends CommonAction{
 	
 
 	public function isViewerCreator(){
-		if ($this->isLoggedIn() && $this->postCreator["user_id"] == $_SESSION["user_id"]) {
+		if ($this->isLoggedIn() && $this->post_creator["user_id"] == $_SESSION["user_id"]) {
 			return true;
 		}
 		return false;
@@ -86,7 +86,7 @@ class ViewPostAction extends CommonAction{
 	}
 	public function addCommentLike(){
 		if (isset($_POST['comment_liked'])) {
-			$comment_id = $_POST['comment_id'];
+			$comment_id = $_POST['commentid'];
 			$comment = $this->getCommentById($comment_id);
 			$new_like = $comment["comment_nb_likes"]+1;
 			MySQLrequests::updateCommentLike($comment_id, $new_like);
@@ -95,7 +95,7 @@ class ViewPostAction extends CommonAction{
 	}	
 	public function addCommentDisike(){
 		if (isset($_POST['comment_disliked'])) {
-			$comment_id = $_POST['comment_id'];
+			$comment_id = $_POST['commentid'];
 			$comment = $this->getCommentById($comment_id);
 			$new_like = $comment["comment_nb_likes"]-1;
 			MySQLrequests::updateCommentLike($comment_id, $new_like);
