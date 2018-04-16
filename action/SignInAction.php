@@ -14,7 +14,7 @@ class SignInAction extends commonAction {
 
 	protected function executeAction() {
 		if (isset($_POST["username"])) {
-			$user =MySQLrequests::authenticate($_POST["username"], $_POST["password"]);
+			$user = $this->authenticate($_POST);
 			$this->wrongSignin = false;
 			if (!empty($user)) {
 				$_SESSION["visibility"] = commonAction::$VISIBILITY_MEMBER;
@@ -28,5 +28,9 @@ class SignInAction extends commonAction {
 				$this->wrongSignin = true;
 			}
 		}
+	}
+
+	public function authenticate($user){
+		return MySQLrequests::authenticate($user["username"], $user["password"]);
 	}
 }
