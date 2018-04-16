@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use action\PostTableAction;
 
 class signInActionTest extends TestCase{
 
