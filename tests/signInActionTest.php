@@ -1,5 +1,4 @@
 <?php
-require_once("action/PostTableAction.php");
 use PHPUnit\Framework\TestCase;
 
 class signInActionTest extends TestCase{
