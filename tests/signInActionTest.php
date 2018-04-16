@@ -1,4 +1,5 @@
 <?php
+require_once("action/PostTableAction.php");
 use PHPUnit\Framework\TestCase;
 
 class signInActionTest extends TestCase{
@@ -6,7 +7,7 @@ class signInActionTest extends TestCase{
     public function testValidationOk()
     {
         $input = array('username' => 'bob', 'password' => 'pass');
-        $errorsArray = MyClass::validation($input);
+        $errorsArray = PostTableAction::authenticate($input);
         assertCount(0, $errorsArray);
     }
 
