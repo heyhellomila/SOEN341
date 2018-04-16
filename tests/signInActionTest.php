@@ -1,8 +1,7 @@
 <?php
-use PHPUnit\Framework\TestCase;
-use action\PostTableAction;
+include_once("PostTableAction.php");
 
-class signInActionTest extends TestCase{
+class signInActionTest extends \PHPUnit_Framework_TestCase {
 
     public function testValidationOk()
     {
